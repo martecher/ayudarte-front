@@ -20,7 +20,7 @@ export class LoginComponent implements OnInit {
   login() {
     const usuario = {email: this.email, password: this.password};
     this.usuarioService.login(usuario).subscribe( data => {
-      console.log("data");
+      console.log("LoginComponent.login() data");
       console.log(data);
       if(data.status_code===200){
 

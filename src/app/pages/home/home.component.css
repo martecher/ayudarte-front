@@ -20,3 +20,7 @@
 .texto-carrusel{
   font-size: 30px;
 }
+
+.ancho-carrusel{
+	width: 80%;
+}

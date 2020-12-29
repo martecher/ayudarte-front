@@ -20,13 +20,23 @@ export class UsuariosService {
     	pipe(
         	map((resp: any) => {
           		this.usuarioGuardadoServicio.setToken( resp.token_acceso );
-          		this.usuarioGuardadoServicio.setNombreUsuario( resp.usuario );
+          		this.usuarioGuardadoServicio.setNombreUsuario( resp.nombreUsuario );
+              this.usuarioGuardadoServicio.setNombre( resp.nombre );
+              this.usuarioGuardadoServicio.setApellido1( resp.apellido1 );
+              this.usuarioGuardadoServicio.setApellido2( resp.apellido2 );
+              this.usuarioGuardadoServicio.setFechaNacimiento( resp.fechaNacimiento );
+              this.usuarioGuardadoServicio.setExento( resp.exento );
+              this.usuarioGuardadoServicio.setBolsaHora( resp.bolsaHora );
+              this.usuarioGuardadoServicio.setReputacion( resp.reputacion );
+              this.usuarioGuardadoServicio.setAdministrador( resp.administrador );
+              this.usuarioGuardadoServicio.setEmail( resp.email );
+              this.usuarioGuardadoServicio.setUsuarioId( resp.usuario_id );
           		this.usuarioGuardadoServicio.setTipoToken(resp.tipo_token);
               console.log("-----");
-              console.log("Metodo login ");
+              console.log("UsuariosService.login()");
           		console.log("Usuario guardado: ");
-          		console.log(this.usuarioGuardadoServicio.getNombreUsuario());
-              console.log(this.usuarioGuardadoServicio.getToken());
+          		console.log(this.usuarioGuardadoServicio.toString());
+              console.log("-----");
               return resp;
         	})
       );
