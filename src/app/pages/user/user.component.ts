@@ -18,5 +18,11 @@ export class UserComponent implements OnInit{
 
   ngOnInit(){
   	this.nombre =this.usuarioGuardado.getNombreUsuario();
+    this.usuarioService.getUsuario(this.usuarioGuardado.getToken(),this.usuarioGuardado.getUsuarioId()).subscribe( data => {
+      console.log("-------");
+      console.log("UserComponent.ngOnInit()");
+      console.log(data.data);
+      console.log("-------");
+    });
   }
 }
