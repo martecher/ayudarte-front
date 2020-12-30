@@ -32,6 +32,8 @@ export class UsuariosService {
               this.usuarioGuardadoServicio.setEmail( resp.email );
               this.usuarioGuardadoServicio.setUsuarioId( resp.usuario_id );
           		this.usuarioGuardadoServicio.setTipoToken(resp.tipo_token);
+              this.usuarioGuardadoServicio.setNumeroVotaciones(resp.numeroVotaciones);
+
               console.log("-----");
               console.log("UsuariosService.login()");
           		console.log("Usuario guardado: ");
