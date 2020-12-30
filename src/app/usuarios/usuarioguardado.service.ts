@@ -17,6 +17,7 @@ export class UsuarioGuardadoService {
   private _administrador: string = null;
   private _email: string = null;
   private _usuario_id: string = null;
+  private _numeroVotaciones: string = null;
 
   private _tipoToken: string = null;
 
@@ -125,6 +126,15 @@ export class UsuarioGuardadoService {
   getUsuarioId() {
     return this._usuario_id;
   }
+
+  setNumeroVotaciones(numeroVotaciones: string) {
+    this._numeroVotaciones = numeroVotaciones;
+  }
+
+  getNumeroVotaciones() {
+    return this._numeroVotaciones;
+  }
+
   isLoggedIn() {
     console.log("isLoggedIn()");
     console.log(this.getToken());
@@ -151,6 +161,9 @@ export class UsuarioGuardadoService {
     console.log("_email: "+this. getEmail());
     console.log("_id: "+this. getUsuarioId());
     console.log("_tipoToken: "+this. getTipoToken());
+    console.log("_numeroVotaciones: "+this. getNumeroVotaciones());
+
+
   }
 
 }
