@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { UsuariosService } from '../../usuarios/usuarios.service';
+import { UsuarioGuardadoService } from "../../usuarios/usuarioguardado.service";
+import { TareasService } from "./tareas.service";
 
 declare interface TableData {
     headerRow: string[];
@@ -14,6 +17,14 @@ declare interface TableData {
 export class TableComponent implements OnInit{
     public tableData1: TableData;
     public tableData2: TableData;
+
+
+  constructor(
+    public usuarioService: UsuariosService,
+    public usuarioGuardado:UsuarioGuardadoService,
+    public tareasService:TareasService
+    ) { }
+
     ngOnInit(){
         this.tableData1 = {
             headerRow: [ 'ID', 'Name', 'Country', 'City', 'Salary'],
@@ -37,5 +48,20 @@ export class TableComponent implements OnInit{
                 ['6', 'Mason Porter', '$78,615', 'Chile', 'Gloucester' ]
             ]
         };
-    }
+
+
+    this.tareasService.listaTareasAsignadas(this.usuarioGuardado.getToken(),0).subscribe( data => {
+      console.log("-------");
+      console.log("TableComponent.ngOnInit(). Tareas no asigandas");
+      console.log(data.data);
+      console.log("-------");
+    });
+
+    this.tareasService.listaTareasAsignadas(this.usuarioGuardado.getToken(),1).subscribe( data => {
+      console.log("-------");
+      console.log("TableComponent.ngOnInit(). Tareas si asigandas");
+      console.log(data.data);
+      console.log("-------");
+    });
+  }
 }
