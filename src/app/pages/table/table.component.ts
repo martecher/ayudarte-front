@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UsuariosService } from '../../usuarios/usuarios.service';
 import { UsuarioGuardadoService } from "../../usuarios/usuarioguardado.service";
 import { TareasService } from "./tareas.service";
+import { ActividadesRealizadas } from "../../models/actividadesRealizadas";
 
 declare interface TableData {
     headerRow: string[];
@@ -17,7 +18,7 @@ declare interface TableData {
 export class TableComponent implements OnInit{
     public tableData1: TableData;
     public tableData2: TableData;
-
+    public listaTareas: ActividadesRealizadas[];
 
   constructor(
     public usuarioService: UsuariosService,
@@ -54,7 +55,7 @@ export class TableComponent implements OnInit{
       console.log("-------");
       console.log("TableComponent.ngOnInit(). Tareas no asigandas");
       console.log(data.data);
-      console.log("-------");
+      console.log("-- abria que meter cada una en un objeto ActividadesRealizadas y despues este objeto a la listaTareas -----");
     });
 
     this.tareasService.listaTareasAsignadas(this.usuarioGuardado.getToken(),1).subscribe( data => {
