@@ -99,7 +99,7 @@ export class TableComponent implements OnInit{
 //        console.log(this.tableData1.headerRow);
 //        console.log(this.tableData1.dataRows);
     });
-
+        //OJOOOOOOOOOO AQUI FALTARIA X FILTRAR QUE SEAN ASIGNADAS A MI
         this.tareasService.listaTareasAsignadas(this.usuarioGuardado.getToken(),1).subscribe( data => {
         console.log("-------");
         console.log("TableComponent.ngOnInit(). Tareas si asigandas");
@@ -126,7 +126,7 @@ export class TableComponent implements OnInit{
             this.dataLine.push(tarea.valoracion);
             this.dataLine.push(tarea.habilidad.horasEstipuladas);
             this.dataLine.push(tarea.horasReales);
-            this.dataLine.push("Boton para Realizarla");
+            this.dataLine.push("Boton para consultarla");
             this.dataRows.push(this.dataLine);
         }
 

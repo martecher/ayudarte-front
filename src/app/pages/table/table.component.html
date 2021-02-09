@@ -41,11 +41,61 @@
   </div>
 </div>
 
+                <span>Quizas las actividades en curso y las mias terminadas mejor a la pantalla de dashboard</span>
 <div class="row">
   <div class="col-md-12">
     <div class="card">
       <div class="card-header">
-        <h4 class="card-title"> Actividades realizadas</h4>
+        <h4 class="card-title"> Actividades en curso</h4>
+      </div>
+      <div class="card-body">
+        <div class="table-responsive">
+          <table class="table">
+            <thead class=" text-primary">
+              <th *ngFor="let header of tableData2.headerRow">
+                <span>{{header}}</span>
+              </th>
+             </thead>
+            <tbody>
+              <tr *ngFor="let dataRows of tableData2.dataRows">
+                <td>
+                  <span>{{dataRows[0]}}</span>
+                </td>
+                <td>
+                  <span>{{dataRows[1]}}</span>
+                </td>
+                <td>
+                  <span>{{dataRows[2]}}</span>
+                </td>
+                <td>
+                  <span>{{dataRows[3]}}</span>
+                </td>
+                <td>
+                  <span>{{dataRows[4]}}</span>
+                </td>
+                <td>
+                  <span>{{dataRows[5]}}</span>
+                </td>
+                <td>
+                  <span>{{dataRows[6]}}</span>
+                </td>
+                <td>
+                  <span>{{dataRows[7]}}</span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-header">
+        <h4 class="card-title"> Actividades Mias terminadas</h4>
       </div>
       <div class="card-body">
         <div class="table-responsive">
