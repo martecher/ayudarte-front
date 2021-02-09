@@ -18,7 +18,10 @@ declare interface TableData {
 export class TableComponent implements OnInit{
     public tableData1: TableData;
     public tableData2: TableData;
-    public listaTareas: ActividadesRealizadas[];
+    public listaTareasAsignadas: ActividadesRealizadas[];
+    public listaTareasNoAsignadas: ActividadesRealizadas[];
+    public dataRows: Array<Array<string>>= [];
+    public dataLine: Array<string> = [];
 
   constructor(
     public usuarioService: UsuariosService,
@@ -27,6 +30,8 @@ export class TableComponent implements OnInit{
     ) { }
 
     ngOnInit(){
+
+/*
         this.tableData1 = {
             headerRow: [ 'ID', 'Name', 'Country', 'City', 'Salary'],
             dataRows: [
@@ -38,6 +43,8 @@ export class TableComponent implements OnInit{
                 ['6', 'Mason Porter', 'Chile', 'Gloucester', '$78,615']
             ]
         };
+*/
+
         this.tableData2 = {
             headerRow: [ 'ID', 'Name',  'Salary', 'Country', 'City' ],
             dataRows: [
@@ -51,18 +58,51 @@ export class TableComponent implements OnInit{
         };
 
 
-    this.tareasService.listaTareasAsignadas(this.usuarioGuardado.getToken(),0).subscribe( data => {
-      console.log("-------");
-      console.log("TableComponent.ngOnInit(). Tareas no asigandas");
+        this.tareasService.listaTareasAsignadas(this.usuarioGuardado.getToken(),0).subscribe( data => {
+        console.log("-------");
+        console.log("TableComponent.ngOnInit(). Tareas no asigandas");
       console.log(data.data);
-      console.log("-- abria que meter cada una en un objeto ActividadesRealizadas y despues este objeto a la listaTareas -----");
+      console.log("-- Metemos data.data en un objeto ActividadesRealizadas -----");
+        this.listaTareasNoAsignadas = data.data;
+//        console.log("-- Mostramos el objeto listaTareas -----");
+//        console.log(this.listaTareasNoAsignadas);
+
+        for (var tarea of this.listaTareasNoAsignadas) {
+//            console.log(tarea);
+            this.dataLine = [];
+            this.dataLine.push(String(tarea.id));
+            this.dataLine.push(tarea.habilidad.descripcion);
+
+            this.dataLine.push(tarea.usuario_solicita.nombre.concat(
+                                ' ',
+                                tarea.usuario_solicita.apellido1,
+                                ' ',
+                                tarea.usuario_solicita.apellido2)
+            );
+
+            this.dataLine.push(tarea.observacion);
+            this.dataLine.push(tarea.habilidad.horasEstipuladas);
+            this.dataLine.push("Boton para Realizarla");
+            this.dataRows.push(this.dataLine);
+        }
+
+
+
+        this.tableData1 = {
+            headerRow: [ 'ID', 'Actividad', 'Solicita', 'Observacion', 'Horas Estipuladas', 'Realizarla'],
+            dataRows: this.dataRows
+        };
+
+        console.log("-- Mostramos la tabla -----");
+        console.log(this.tableData1.headerRow);
+        console.log(this.tableData1.dataRows);
     });
 
-    this.tareasService.listaTareasAsignadas(this.usuarioGuardado.getToken(),1).subscribe( data => {
-      console.log("-------");
-      console.log("TableComponent.ngOnInit(). Tareas si asigandas");
-      console.log(data.data);
-      console.log("-------");
+        this.tareasService.listaTareasAsignadas(this.usuarioGuardado.getToken(),1).subscribe( data => {
+        console.log("-------");
+        console.log("TableComponent.ngOnInit(). Tareas si asigandas");
+        console.log(data.data);
+        console.log("-------");
     });
   }
 }

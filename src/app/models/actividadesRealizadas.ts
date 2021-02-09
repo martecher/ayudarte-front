@@ -3,11 +3,11 @@ import { Habilidad } from './habilidad';
 
 export interface ActividadesRealizadas {
   id: number;
-  descripcion: string;
+  observacion: string;
   horasReales: string;
   valoracion: string;
-  usuarioSolicita: Usuario;
-  usuarioRealiza: Usuario;
+  usuario_solicita: Usuario;
+  usuario_realiza: Usuario;
   habilidad: Habilidad;
   puntuacionSolicita: string;
   finalizada: string;
