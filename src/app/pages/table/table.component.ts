@@ -61,8 +61,8 @@ export class TableComponent implements OnInit{
         this.tareasService.listaTareasAsignadas(this.usuarioGuardado.getToken(),0).subscribe( data => {
         console.log("-------");
         console.log("TableComponent.ngOnInit(). Tareas no asigandas");
-      console.log(data.data);
-      console.log("-- Metemos data.data en un objeto ActividadesRealizadas -----");
+        console.log(data.data);
+        console.log("-- Metemos data.data en un objeto ActividadesRealizadas -----");
         this.listaTareasNoAsignadas = data.data;
 //        console.log("-- Mostramos el objeto listaTareas -----");
 //        console.log(this.listaTareasNoAsignadas);
