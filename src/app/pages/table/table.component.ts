@@ -31,19 +31,6 @@ export class TableComponent implements OnInit{
 
     ngOnInit(){
 
-/*
-        this.tableData1 = {
-            headerRow: [ 'ID', 'Name', 'Country', 'City', 'Salary'],
-            dataRows: [
-                ['1', 'Dakota Rice', 'Niger', 'Oud-Turnhout', '$36,738'],
-                ['2', 'Minerva Hooper', 'Curaçao', 'Sinaai-Waas', '$23,789'],
-                ['3', 'Sage Rodriguez', 'Netherlands', 'Baileux', '$56,142'],
-                ['4', 'Philip Chaney', 'Korea, South', 'Overland Park', '$38,735'],
-                ['5', 'Doris Greene', 'Malawi', 'Feldkirchen in Kärnten', '$63,542'],
-                ['6', 'Mason Porter', 'Chile', 'Gloucester', '$78,615']
-            ]
-        };
-*/
 
         this.tableData2 = {
             headerRow: [ 'ID', 'Name',  'Salary', 'Country', 'City' ],
@@ -57,20 +44,13 @@ export class TableComponent implements OnInit{
             ]
         };
 
-
+        // Esta lista de tareas son las no asigandas, estan libres y voy a  poder asignamerlas yo
         this.tareasService.listaTareasAsignadas(this.usuarioGuardado.getToken(),0).subscribe( data => {
-//        console.log("-------");
-//        console.log("TableComponent.ngOnInit(). Tareas no asigandas");
-//        console.log(data.data);
-//        console.log("-- Metemos data.data en un objeto ActividadesRealizadas -----");
         this.listaTareasNoAsignadas = data.data;
-//        console.log("-- Mostramos el objeto listaTareas -----");
-//        console.log(this.listaTareasNoAsignadas);
-        
         this.dataRows= [];
 
         for (var tarea of this.listaTareasNoAsignadas) {
-//            console.log(tarea);
+
             this.dataLine = [];
             this.dataLine.push(String(tarea.id));
             this.dataLine.push(tarea.habilidad.descripcion);
@@ -99,43 +79,6 @@ export class TableComponent implements OnInit{
 //        console.log(this.tableData1.headerRow);
 //        console.log(this.tableData1.dataRows);
     });
-        //OJOOOOOOOOOO AQUI FALTARIA X FILTRAR QUE SEAN ASIGNADAS A MI
-        this.tareasService.listaTareasAsignadas(this.usuarioGuardado.getToken(),1).subscribe( data => {
-        console.log("-------");
-        console.log("TableComponent.ngOnInit(). Tareas si asigandas");
-        console.log(data.data);
-        console.log("-------");
-        this.listaTareasAsignadasPropias = data.data;
-//        console.log("-- Mostramos el objeto listaTareas -----");
-//        console.log(this.listaTareasNoAsignadas);
-        this.dataRows= [];
-        for (var tarea of this.listaTareasAsignadasPropias) {
-//            console.log(tarea);
-            this.dataLine = [];
-            this.dataLine.push(String(tarea.id));
-            this.dataLine.push(tarea.habilidad.descripcion);
 
-            this.dataLine.push(tarea.usuario_solicita.nombre.concat(
-                                ' ',
-                                tarea.usuario_solicita.apellido1,
-                                ' ',
-                                tarea.usuario_solicita.apellido2)
-            );
-
-            this.dataLine.push(tarea.observacion);
-            this.dataLine.push(tarea.valoracion);
-            this.dataLine.push(tarea.habilidad.horasEstipuladas);
-            this.dataLine.push(tarea.horasReales);
-            this.dataLine.push("Boton para consultarla");
-            this.dataRows.push(this.dataLine);
-        }
-
-
-
-        this.tableData2 = {
-            headerRow: [ 'ID', 'Actividad', 'Solicita', 'Observacion', 'Valoracion', 'Horas Estipuladas', 'Horas Reales', 'Acciones'],
-            dataRows: this.dataRows
-        };
-    });
   }
 }

@@ -1,7 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import Chart from 'chart.js';
-import { UsuariosService } from '../../usuarios/usuarios.service';
 import { UsuarioGuardadoService } from "../../usuarios/usuarioguardado.service";
+import { TareasService } from "../table/tareas.service";
+import { ActividadesRealizadas } from "../../models/actividadesRealizadas";
+import { UsuariosService } from '../../usuarios/usuarios.service';
+
+declare interface TableData {
+    headerRow: string[];
+    dataRows: string[][];
+}
 
 @Component({
     selector: 'dashboard-cmp',
@@ -17,11 +24,68 @@ export class DashboardComponent implements OnInit{
   public chartEmail;
   public chartHours;
 
+
+    public tableData1: TableData;
+    public tableData2: TableData;
+    public listaTareasAsignadasPropias: ActividadesRealizadas[];
+    public listaTareasNoAsignadas: ActividadesRealizadas[];
+    public dataRows: Array<Array<string>>= [];
+    public dataLine: Array<string> = [];
+    
   constructor(
     public usuarioService: UsuariosService,
-     public usuarioGuardado:UsuarioGuardadoService) { }
+    public usuarioGuardado:UsuarioGuardadoService,
+    public tareasService:TareasService
+     ) { }
 
     ngOnInit(){
+
+      //Listado de tareas asignadas a mi 
+              //OJOOOOOOOOOO AQUI FALTARIA X FILTRAR QUE SEAN ASIGNADAS A MI
+        this.tareasService.listaTareasAsignadas(this.usuarioGuardado.getToken(),1).subscribe( data => {
+        console.log("-------");
+        console.log("TableComponent.ngOnInit(). Tareas si asigandas");
+        console.log(data.data);
+        console.log("-------");
+        this.listaTareasAsignadasPropias = data.data;
+//        console.log("-- Mostramos el objeto listaTareas -----");
+//        console.log(this.listaTareasNoAsignadas);
+        this.dataRows= [];
+        for (var tarea of this.listaTareasAsignadasPropias) {
+//            console.log(tarea);
+            this.dataLine = [];
+            this.dataLine.push(String(tarea.id));
+            this.dataLine.push(tarea.habilidad.descripcion);
+
+            this.dataLine.push(tarea.usuario_solicita.nombre.concat(
+                                ' ',
+                                tarea.usuario_solicita.apellido1,
+                                ' ',
+                                tarea.usuario_solicita.apellido2)
+            );
+
+            this.dataLine.push(tarea.observacion);
+            this.dataLine.push(tarea.valoracion);
+            this.dataLine.push(tarea.habilidad.horasEstipuladas);
+            this.dataLine.push(tarea.horasReales);
+            this.dataLine.push("Boton para consultarla");
+            this.dataRows.push(this.dataLine);
+        }
+
+
+
+        this.tableData2 = {
+            headerRow: [ 'ID', 'Actividad', 'Solicita', 'Observacion', 'Valoracion', 'Horas Estipuladas', 'Horas Reales', 'Acciones'],
+            dataRows: this.dataRows
+        };
+    });
+
+
+
+
+
+
+
       this.chartColor = "#FFFFFF";
 
       this.canvas = document.getElementById("chartHours");

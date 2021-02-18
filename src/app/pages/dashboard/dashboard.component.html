@@ -10,7 +10,7 @@
           </div>
           <div class="col-7 col-md-8">
             <div class="numbers">
-              <p class="card-category">Nº Tareas</p>
+              <p class="card-category">T. Solicitadas</p>
               <p class="card-title">150GB
                 <p>
             </div>
@@ -31,12 +31,12 @@
         <div class="row">
           <div class="col-5 col-md-4">
             <div class="icon-big text-center icon-warning">
-              <i class="nc-icon nc-money-coins text-success"></i>
+              <i class="nc-icon nc-trophy text-danger"></i>
             </div>
           </div>
           <div class="col-7 col-md-8">
             <div class="numbers">
-              <p class="card-category">Nº horas</p>
+              <p class="card-category">T. Realizadas</p>
               <p class="card-title">$ 1,345
                 <p>
             </div>
@@ -57,12 +57,12 @@
         <div class="row">
           <div class="col-5 col-md-4">
             <div class="icon-big text-center icon-warning">
-              <i class="nc-icon nc-vector text-danger"></i>
+               <i class="nc-icon nc-money-coins text-success"></i>
             </div>
           </div>
           <div class="col-7 col-md-8">
             <div class="numbers">
-              <p class="card-category">Valoracion</p>
+              <p class="card-category">Nº horas</p>
               <p class="card-title">23
                 <p>
             </div>
@@ -88,7 +88,7 @@
           </div>
           <div class="col-7 col-md-8">
             <div class="numbers">
-              <p class="card-category">Followers</p>
+              <p class="card-category">Valoracion</p>
               <p class="card-title">+45K
                 <p>
             </div>
@@ -104,6 +104,157 @@
     </div>
   </div>
 </div>
+
+
+<div class="row">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-header">
+        <h4 class="card-title"> Actividades que estoy realizando</h4>
+      </div>
+      <div class="card-body">
+        <div class="table-responsive">
+          <table class="table">
+            <thead class=" text-primary">
+              <th *ngFor="let header of tableData2.headerRow">
+                <span>{{header}}</span>
+              </th>
+             </thead>
+            <tbody>
+              <tr *ngFor="let dataRows of tableData2.dataRows">
+                <td>
+                  <span>{{dataRows[0]}}</span>
+                </td>
+                <td>
+                  <span>{{dataRows[1]}}</span>
+                </td>
+                <td>
+                  <span>{{dataRows[2]}}</span>
+                </td>
+                <td>
+                  <span>{{dataRows[3]}}</span>
+                </td>
+                <td>
+                  <span>{{dataRows[4]}}</span>
+                </td>
+                <td>
+                  <span>{{dataRows[5]}}</span>
+                </td>
+                <td>
+                  <span>{{dataRows[6]}}</span>
+                </td>
+                <td>
+                  <span>{{dataRows[7]}}</span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-header">
+        <h4 class="card-title"> Actividades he solicitado</h4>
+      </div>
+      <div class="card-body">
+        <div class="table-responsive">
+          <table class="table">
+            <thead class=" text-primary">
+              <th *ngFor="let header of tableData2.headerRow">
+                <span>{{header}}</span>
+              </th>
+             </thead>
+            <tbody>
+              <tr *ngFor="let dataRows of tableData2.dataRows">
+                <td>
+                  <span>{{dataRows[0]}}</span>
+                </td>
+                <td>
+                  <span>{{dataRows[1]}}</span>
+                </td>
+                <td>
+                  <span>{{dataRows[2]}}</span>
+                </td>
+                <td>
+                  <span>{{dataRows[3]}}</span>
+                </td>
+                <td>
+                  <span>{{dataRows[4]}}</span>
+                </td>
+                <td>
+                  <span>{{dataRows[5]}}</span>
+                </td>
+                <td>
+                  <span>{{dataRows[6]}}</span>
+                </td>
+                <td>
+                  <span>{{dataRows[7]}}</span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="row">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-header">
+        <h4 class="card-title"> Actividades Mias terminadas tanto solicitadas como realizadas</h4>
+      </div>
+      <div class="card-body">
+        <div class="table-responsive">
+          <table class="table">
+            <thead class=" text-primary">
+              <th *ngFor="let header of tableData2.headerRow">
+                <span>{{header}}</span>
+              </th>
+             </thead>
+            <tbody>
+              <tr *ngFor="let dataRows of tableData2.dataRows">
+                <td>
+                  <span>{{dataRows[0]}}</span>
+                </td>
+                <td>
+                  <span>{{dataRows[1]}}</span>
+                </td>
+                <td>
+                  <span>{{dataRows[2]}}</span>
+                </td>
+                <td>
+                  <span>{{dataRows[3]}}</span>
+                </td>
+                <td>
+                  <span>{{dataRows[4]}}</span>
+                </td>
+                <td>
+                  <span>{{dataRows[5]}}</span>
+                </td>
+                <td>
+                  <span>{{dataRows[6]}}</span>
+                </td>
+                <td>
+                  <span>{{dataRows[7]}}</span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
 <div class="row">
   <div class="col-md-12">
     <div class="card ">
