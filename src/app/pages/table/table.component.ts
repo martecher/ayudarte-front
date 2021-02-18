@@ -48,7 +48,9 @@ export class TableComponent implements OnInit{
         this.tareasService.listaTareasAsignadas(this.usuarioGuardado.getToken(),0).subscribe( data => {
         this.listaTareasNoAsignadas = data.data;
         this.dataRows= [];
-
+        console.log("Muestro la lista de tareas no finalizadas asigandas al usuario");
+        console.log(this.listaTareasNoAsignadas);
+        
         for (var tarea of this.listaTareasNoAsignadas) {
 
             this.dataLine = [];
@@ -75,9 +77,7 @@ export class TableComponent implements OnInit{
             dataRows: this.dataRows
         };
 
-//        console.log("-- Mostramos la tabla -----");
-//        console.log(this.tableData1.headerRow);
-//        console.log(this.tableData1.dataRows);
+ 
     });
 
   }

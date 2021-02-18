@@ -27,6 +27,7 @@ export class DashboardComponent implements OnInit{
 
     public tableData1: TableData;
     public tableData2: TableData;
+    public tableData3: TableData;
     public listaTareasAsignadasPropias: ActividadesRealizadas[];
     public listaTareasNoAsignadas: ActividadesRealizadas[];
     public dataRows: Array<Array<string>>= [];
@@ -39,20 +40,16 @@ export class DashboardComponent implements OnInit{
      ) { }
 
     ngOnInit(){
-
-      //Listado de tareas asignadas a mi 
-              //OJOOOOOOOOOO AQUI FALTARIA X FILTRAR QUE SEAN ASIGNADAS A MI
-        this.tareasService.listaTareasAsignadas(this.usuarioGuardado.getToken(),1).subscribe( data => {
-        console.log("-------");
-        console.log("TableComponent.ngOnInit(). Tareas si asigandas");
-        console.log(data.data);
-        console.log("-------");
-        this.listaTareasAsignadasPropias = data.data;
-//        console.log("-- Mostramos el objeto listaTareas -----");
-//        console.log(this.listaTareasNoAsignadas);
+        console.log("DashboardComponent.ngOnInit()");
+        // Esta lista de tareas asignadas a mi sin terminar
+        this.tareasService.actividadesEnRealizacion(this.usuarioGuardado.getToken(),2).subscribe( data => {
+        this.listaTareasNoAsignadas = data.data;
         this.dataRows= [];
-        for (var tarea of this.listaTareasAsignadasPropias) {
-//            console.log(tarea);
+        console.log("Muestro la lista de tareas actividadesEnRealizacion");
+        console.log(this.listaTareasNoAsignadas);
+
+        for (var tarea of this.listaTareasNoAsignadas) {
+
             this.dataLine = [];
             this.dataLine.push(String(tarea.id));
             this.dataLine.push(tarea.habilidad.descripcion);
@@ -65,27 +62,77 @@ export class DashboardComponent implements OnInit{
             );
 
             this.dataLine.push(tarea.observacion);
-            this.dataLine.push(tarea.valoracion);
             this.dataLine.push(tarea.habilidad.horasEstipuladas);
-            this.dataLine.push(tarea.horasReales);
-            this.dataLine.push("Boton para consultarla");
+            this.dataLine.push("Boton para Realizarla");
             this.dataRows.push(this.dataLine);
         }
 
+        this.tableData1 = {
+            headerRow: [ 'ID', 'Actividad', 'Solicita', 'Observacion', 'Horas Estipuladas', 'Realizarla'],
+            dataRows: this.dataRows
+        };
 
+    });
 
+        // Esta lista de tareas solicitadas
+        this.tareasService.actividadesEnSolicitud(this.usuarioGuardado.getToken(),2).subscribe( data => {
+        this.listaTareasNoAsignadas = data.data;
+        this.dataRows= [];
+        console.log("Muestro la lista de tareas actividadesEnRealizacion");
+        console.log(this.listaTareasNoAsignadas);
+        for (var tarea of this.listaTareasNoAsignadas) {
+            this.dataLine = [];
+            this.dataLine.push(String(tarea.id));
+            this.dataLine.push(tarea.habilidad.descripcion);
+            this.dataLine.push(tarea.usuario_solicita.nombre.concat(
+                                ' ',
+                                tarea.usuario_solicita.apellido1,
+                                ' ',
+                                tarea.usuario_solicita.apellido2)
+            );
+            this.dataLine.push(tarea.observacion);
+            this.dataLine.push(tarea.habilidad.horasEstipuladas);
+            this.dataLine.push("Boton para Realizarla");
+            this.dataRows.push(this.dataLine);
+        }
         this.tableData2 = {
-            headerRow: [ 'ID', 'Actividad', 'Solicita', 'Observacion', 'Valoracion', 'Horas Estipuladas', 'Horas Reales', 'Acciones'],
+            headerRow: [ 'ID', 'Actividad', 'Solicita', 'Observacion', 'Horas Estipuladas', 'Realizarla'],
             dataRows: this.dataRows
         };
     });
 
+        // Esta lista de tareas terminadas realizadas por mi o solicitadas por mi
+        this.tareasService.actividadesEnTerminadas(this.usuarioGuardado.getToken(),2).subscribe( data => {
+        this.listaTareasNoAsignadas = data.data;
+        this.dataRows= [];
+        console.log("Muestro la lista de tareas actividadesEnRealizacion");
+        console.log(this.listaTareasNoAsignadas);
 
+        for (var tarea of this.listaTareasNoAsignadas) {
 
+            this.dataLine = [];
+            this.dataLine.push(String(tarea.id));
+            this.dataLine.push(tarea.habilidad.descripcion);
 
+            this.dataLine.push(tarea.usuario_solicita.nombre.concat(
+                                ' ',
+                                tarea.usuario_solicita.apellido1,
+                                ' ',
+                                tarea.usuario_solicita.apellido2)
+            );
 
+            this.dataLine.push(tarea.observacion);
+            this.dataLine.push(tarea.habilidad.horasEstipuladas);
+            this.dataLine.push("Boton para Realizarla");
+            this.dataRows.push(this.dataLine);
+        }
 
+        this.tableData3 = {
+            headerRow: [ 'ID', 'Actividad', 'Solicita', 'Observacion', 'Horas Estipuladas', 'Realizarla'],
+            dataRows: this.dataRows
+        };
 
+    });
       this.chartColor = "#FFFFFF";
 
       this.canvas = document.getElementById("chartHours");
