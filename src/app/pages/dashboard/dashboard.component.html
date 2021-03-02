@@ -11,7 +11,7 @@
           <div class="col-7 col-md-8">
             <div class="numbers">
               <p class="card-category">T. Solicitadas</p>
-              <p class="card-title">150GB
+              <p class="card-title">{{tSolicitadas}}
                 <p>
             </div>
           </div>
@@ -37,7 +37,7 @@
           <div class="col-7 col-md-8">
             <div class="numbers">
               <p class="card-category">T. Realizadas</p>
-              <p class="card-title">$ 1,345
+              <p class="card-title">{{tRealizadas}}
                 <p>
             </div>
           </div>
@@ -63,7 +63,7 @@
           <div class="col-7 col-md-8">
             <div class="numbers">
               <p class="card-category">Nº horas</p>
-              <p class="card-title">23
+              <p class="card-title"> {{horas}}
                 <p>
             </div>
           </div>
@@ -89,7 +89,7 @@
           <div class="col-7 col-md-8">
             <div class="numbers">
               <p class="card-category">Valoracion</p>
-              <p class="card-title">+45K
+              <p class="card-title">{{valoracion}}
                 <p>
             </div>
           </div>
@@ -110,7 +110,7 @@
   <div class="col-md-12">
     <div class="card">
       <div class="card-header">
-        <h4 class="card-title"> Actividades que estoy realizando</h4>
+        <h4 class="card-title">Realizando</h4>
       </div>
       <div class="card-body">
         <div class="table-responsive">
@@ -151,7 +151,7 @@
                 </td>
                 <td>
                   <div class="contenidoCentrado">
-                    <button type="button" (click)="prepararEditar(dataRows[0])" class="btn btn-info"><i class="nc-icon nc-paper"></i> Finalizar</button>
+                    <button type="button" (click)="prepararEditar(dataRows[0])" class="btn btn-info"><i class="nc-icon nc-paper"></i></button>
                   </div>
                 </td>
               </tr>
@@ -167,7 +167,7 @@
   <div class="col-md-12">
     <div class="card">
       <div class="card-header">
-        <h4 class="card-title"> Actividades he solicitado</h4>
+        <h4 class="card-title">Solicitadas</h4>
       </div>
       <div class="card-body">
         <div class="table-responsive">
@@ -208,7 +208,7 @@
                 </td>
                 <td>
                   <div class="contenidoCentrado">
-                    <button type="button" (click)="prepararEditar(dataRows[0])" class="btn btn-info"><i class="nc-icon nc-book-bookmark"></i> Aceptar</button>                  
+                    <button type="button" (click)="prepararEditar(dataRows[0])" class="btn btn-info"><i class="nc-icon nc-book-bookmark"></i></button>                  
                   </div> 
                 </td>
               </tr>
@@ -225,7 +225,7 @@
   <div class="col-md-12">
     <div class="card">
       <div class="card-header">
-        <h4 class="card-title"> Actividades Mias terminadas tanto solicitadas como realizadas</h4>
+        <h4 class="card-title">Terminadas</h4>
       </div>
       <div class="card-body">
         <div class="table-responsive">
@@ -266,7 +266,7 @@
                 </td>
                 <td>
                   <div class="contenidoCentrado">
-                    <button type="button" (click)="prepararEditar(dataRows[0])" class="btn btn-info"><i class="nc-icon nc-zoom-split"></i> Consultar</button>                
+                    <button type="button" (click)="prepararEditar(dataRows[0])" class="btn btn-info"><i class="nc-icon nc-zoom-split"></i></button>                
                   </div>
                 </td>
               </tr>

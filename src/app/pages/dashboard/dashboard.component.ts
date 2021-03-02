@@ -33,7 +33,10 @@ export class DashboardComponent implements OnInit{
   public dataRows: Array<Array<string>>= [];
   public dataLine: Array<string> = [];
   public tareasSeleccionada: ActividadesRealizadas;
-
+  public horas: string;
+  public valoracion: string;
+  public tSolicitadas: number;
+  public tRealizadas: number;
   constructor(
     public usuarioService: UsuariosService,
     public usuarioGuardado:UsuarioGuardadoService,
@@ -42,12 +45,28 @@ export class DashboardComponent implements OnInit{
 
     ngOnInit(){
         console.log("DashboardComponent.ngOnInit()");
+        this.horas =this.usuarioGuardado.getBolsaHora();
+        this.valoracion =this.usuarioGuardado.getReputacion();
+
+        this.tareasService.solicitadasPorUsuario(this.usuarioGuardado.getToken(),this.usuarioGuardado.getUsuarioId()).subscribe( data => {
+          this.listaTareasNoAsignadas = data.data;
+          this.tSolicitadas = this.listaTareasNoAsignadas.length;
+        });
+
+        this.tareasService.realizadasPorUsuario(this.usuarioGuardado.getToken(),this.usuarioGuardado.getUsuarioId()).subscribe( data => {
+          this.listaTareasAsignadasPropias = data.data;
+  console.log("return listaTareasAsignadasPropias para tRealizadas= "+this.listaTareasAsignadasPropias.length);
+        
+          this.tRealizadas = this.listaTareasAsignadasPropias.length;
+
+        });
+
+
+
         // Esta lista de tareas asignadas a mi sin terminar
-        this.tareasService.actividadesEnRealizacion(this.usuarioGuardado.getToken(),2).subscribe( data => {
+        this.tareasService.actividadesEnRealizacion(this.usuarioGuardado.getToken(),this.usuarioGuardado.getUsuarioId()).subscribe( data => {
         this.listaTareasNoAsignadas = data.data;
         this.dataRows= [];
-        console.log("Muestro la lista de tareas actividadesEnRealizacion");
-        console.log(this.listaTareasNoAsignadas);
 
         for (var tarea of this.listaTareasNoAsignadas) {
 
@@ -68,18 +87,16 @@ export class DashboardComponent implements OnInit{
         }
 
         this.tableData1 = {
-            headerRow: [ 'ID', 'Actividad', 'Solicita', 'Observacion', 'Horas Estipuladas', 'terminada y evaluar al solicitante'],
+            headerRow: [ 'ID', 'Actividad', 'Solicita', 'Observacion', 'Horas Estipuladas', 'Terminar'],
             dataRows: this.dataRows
         };
 
     });
 
         // Esta lista de tareas solicitadas
-        this.tareasService.actividadesEnSolicitud(this.usuarioGuardado.getToken(),2).subscribe( data => {
+        this.tareasService.actividadesEnSolicitud(this.usuarioGuardado.getToken(),this.usuarioGuardado.getUsuarioId()).subscribe( data => {
         this.listaTareasNoAsignadas = data.data;
         this.dataRows= [];
-        console.log("Muestro la lista de tareas actividadesEnRealizacion");
-        console.log(this.listaTareasNoAsignadas);
         for (var tarea of this.listaTareasNoAsignadas) {
             this.dataLine = [];
             this.dataLine.push(String(tarea.id));
@@ -95,17 +112,15 @@ export class DashboardComponent implements OnInit{
             this.dataRows.push(this.dataLine);
         }
         this.tableData2 = {
-            headerRow: [ 'ID', 'Actividad', 'Solicita', 'Observacion', 'Horas Estipuladas', 'finalizar con  observacion y evaluar a quien la realiza'],
+            headerRow: [ 'ID', 'Actividad', 'Solicita', 'Observacion', 'Horas Estipuladas', 'Aceptar'],
             dataRows: this.dataRows
         };
     });
 
         // Esta lista de tareas terminadas realizadas por mi o solicitadas por mi
-        this.tareasService.actividadesEnTerminadas(this.usuarioGuardado.getToken(),2).subscribe( data => {
+        this.tareasService.actividadesEnTerminadas(this.usuarioGuardado.getToken(),this.usuarioGuardado.getUsuarioId()).subscribe( data => {
         this.listaTareasNoAsignadas = data.data;
         this.dataRows= [];
-        console.log("Muestro la lista de tareas actividadesEnRealizacion");
-        console.log(this.listaTareasNoAsignadas);
 
         for (var tarea of this.listaTareasNoAsignadas) {
 
