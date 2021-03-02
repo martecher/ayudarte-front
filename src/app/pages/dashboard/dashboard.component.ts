@@ -25,14 +25,15 @@ export class DashboardComponent implements OnInit{
   public chartHours;
 
 
-    public tableData1: TableData;
-    public tableData2: TableData;
-    public tableData3: TableData;
-    public listaTareasAsignadasPropias: ActividadesRealizadas[];
-    public listaTareasNoAsignadas: ActividadesRealizadas[];
-    public dataRows: Array<Array<string>>= [];
-    public dataLine: Array<string> = [];
-    
+  public tableData1: TableData;
+  public tableData2: TableData;
+  public tableData3: TableData;
+  public listaTareasAsignadasPropias: ActividadesRealizadas[];
+  public listaTareasNoAsignadas: ActividadesRealizadas[];
+  public dataRows: Array<Array<string>>= [];
+  public dataLine: Array<string> = [];
+  public tareasSeleccionada: ActividadesRealizadas;
+
   constructor(
     public usuarioService: UsuariosService,
     public usuarioGuardado:UsuarioGuardadoService,
@@ -63,12 +64,12 @@ export class DashboardComponent implements OnInit{
 
             this.dataLine.push(tarea.observacion);
             this.dataLine.push(tarea.habilidad.horasEstipuladas);
-            this.dataLine.push("Boton para Realizarla");
+            this.dataLine.push(tarea.id.toString());
             this.dataRows.push(this.dataLine);
         }
 
         this.tableData1 = {
-            headerRow: [ 'ID', 'Actividad', 'Solicita', 'Observacion', 'Horas Estipuladas', 'Realizarla'],
+            headerRow: [ 'ID', 'Actividad', 'Solicita', 'Observacion', 'Horas Estipuladas', 'terminada y evaluar al solicitante'],
             dataRows: this.dataRows
         };
 
@@ -92,11 +93,11 @@ export class DashboardComponent implements OnInit{
             );
             this.dataLine.push(tarea.observacion);
             this.dataLine.push(tarea.habilidad.horasEstipuladas);
-            this.dataLine.push("Boton para Realizarla");
+            this.dataLine.push(tarea.id.toString());
             this.dataRows.push(this.dataLine);
         }
         this.tableData2 = {
-            headerRow: [ 'ID', 'Actividad', 'Solicita', 'Observacion', 'Horas Estipuladas', 'Realizarla'],
+            headerRow: [ 'ID', 'Actividad', 'Solicita', 'Observacion', 'Horas Estipuladas', 'finalizar con  observacion y evaluar a quien la realiza'],
             dataRows: this.dataRows
         };
     });
@@ -123,12 +124,12 @@ export class DashboardComponent implements OnInit{
 
             this.dataLine.push(tarea.observacion);
             this.dataLine.push(tarea.habilidad.horasEstipuladas);
-            this.dataLine.push("Boton para Realizarla");
+            this.dataLine.push(tarea.id.toString());
             this.dataRows.push(this.dataLine);
         }
 
         this.tableData3 = {
-            headerRow: [ 'ID', 'Actividad', 'Solicita', 'Observacion', 'Horas Estipuladas', 'Realizarla'],
+            headerRow: [ 'ID', 'Actividad', 'Solicita', 'Observacion', 'Horas Estipuladas', 'Consultar'],
             dataRows: this.dataRows
         };
 
