@@ -64,7 +64,7 @@ export class DashboardComponent implements OnInit{
 
             this.dataLine.push(tarea.observacion);
             this.dataLine.push(tarea.habilidad.horasEstipuladas);
-            this.dataLine.push(tarea.id.toString());
+            this.dataLine.push( tarea.id.toString());
             this.dataRows.push(this.dataLine);
         }
 
@@ -329,4 +329,10 @@ export class DashboardComponent implements OnInit{
 
     });
     }
+
+
+    prepararEditar(id) {
+    console.log("prepararEditar: " + id);
+  }
+
 }
