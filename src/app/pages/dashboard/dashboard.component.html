@@ -117,34 +117,42 @@
           <table class="table">
             <thead class=" text-primary">
               <th *ngFor="let header of tableData1.headerRow">
-                <span>{{header}}</span>
+                <div class="contenidoCentrado">
+                  <span>{{header}}</span>
+                </div>
               </th>
              </thead>
             <tbody>
               <tr *ngFor="let dataRows of tableData1.dataRows">
                 <td>
-                  <span>{{dataRows[0]}}</span>
+                  <div class="contenidoCentrado">
+                    <span>{{dataRows[0]}}</span>
+                  </div>
                 </td>
                 <td>
-                  <span>{{dataRows[1]}}</span>
+                  <div class="contenidoCentrado">
+                    <span>{{dataRows[1]}}</span>
+                  </div>
                 </td>
                 <td>
-                  <span>{{dataRows[2]}}</span>
+                  <div class="contenidoCentrado">
+                    <span>{{dataRows[2]}}</span>
+                  </div>
                 </td>
                 <td>
-                  <span>{{dataRows[3]}}</span>
+                  <div class="contenidoCentrado">
+                    <span>{{dataRows[3]}}</span>
+                  </div>
                 </td>
                 <td>
-                  <span>{{dataRows[4]}}</span>
+                  <div class="contenidoCentrado">
+                    <span>{{dataRows[4]}}</span>
+                  </div>
                 </td>
                 <td>
-                  <span>{{dataRows[5]}}</span>
-                </td>
-                <td>
-                  <span>{{dataRows[6]}}</span>
-                </td>
-                <td>
-                  <span><button (click)="prepararEditar(dataRows[0])"></button></span>
+                  <div class="contenidoCentrado">
+                    <button type="button" (click)="prepararEditar(dataRows[0])" class="btn btn-info">Info</button>
+                  </div>
                 </td>
               </tr>
             </tbody>
@@ -166,34 +174,42 @@
           <table class="table">
             <thead class=" text-primary">
               <th *ngFor="let header of tableData2.headerRow">
-                <span>{{header}}</span>
+                <div class="contenidoCentrado">
+                  <span>{{header}}</span>
+                </div>              
               </th>
              </thead>
             <tbody>
               <tr *ngFor="let dataRows of tableData2.dataRows">
                 <td>
-                  <span>{{dataRows[0]}}</span>
+                  <div class="contenidoCentrado">
+                    <span>{{dataRows[0]}}</span>
+                  </div> 
                 </td>
                 <td>
-                  <span>{{dataRows[1]}}</span>
+                  <div class="contenidoCentrado">
+                    <span>{{dataRows[1]}}</span>
+                  </div> 
                 </td>
                 <td>
-                  <span>{{dataRows[2]}}</span>
+                  <div class="contenidoCentrado">
+                    <span>{{dataRows[2]}}</span>
+                  </div> 
                 </td>
                 <td>
-                  <span>{{dataRows[3]}}</span>
+                  <div class="contenidoCentrado">
+                    <span>{{dataRows[3]}}</span>
+                  </div> 
                 </td>
                 <td>
-                  <span>{{dataRows[4]}}</span>
+                  <div class="contenidoCentrado">
+                    <span>{{dataRows[4]}}</span>
+                  </div> 
                 </td>
                 <td>
-                  <span>{{dataRows[5]}}</span>
-                </td>
-                <td>
-                  <span>{{dataRows[6]}}</span>
-                </td>
-                <td>
-                  <span><button (click)="prepararEditar(dataRows[0])"></button></span>
+                  <div class="contenidoCentrado">
+                    <button type="button" (click)="prepararEditar(dataRows[0])" class="btn btn-info">Info</button>                  
+                  </div> 
                 </td>
               </tr>
             </tbody>
@@ -216,34 +232,42 @@
           <table class="table">
             <thead class=" text-primary">
               <th *ngFor="let header of tableData3.headerRow">
-                <span>{{header}}</span>
+                <div class="contenidoCentrado">
+                  <span>{{header}}</span>
+                </div>              
               </th>
              </thead>
             <tbody>
               <tr *ngFor="let dataRows of tableData3.dataRows">
                 <td>
-                  <span>{{dataRows[0]}}</span>
+                  <div class="contenidoCentrado">
+                    <span>{{dataRows[0]}}</span>
+                  </div>
                 </td>
                 <td>
-                  <span>{{dataRows[1]}}</span>
+                  <div class="contenidoCentrado">
+                    <span>{{dataRows[1]}}</span>
+                  </div>
                 </td>
                 <td>
-                  <span>{{dataRows[2]}}</span>
+                  <div class="contenidoCentrado">
+                    <span>{{dataRows[2]}}</span>
+                  </div>
                 </td>
                 <td>
-                  <span>{{dataRows[3]}}</span>
+                  <div class="contenidoCentrado">
+                    <span>{{dataRows[3]}}</span>
+                  </div>
                 </td>
                 <td>
-                  <span>{{dataRows[4]}}</span>
+                  <div class="contenidoCentrado">
+                    <span>{{dataRows[4]}}</span>
+                  </div>
                 </td>
                 <td>
-                  <span>{{dataRows[5]}}</span>
-                </td>
-                <td>
-                  <span>{{dataRows[6]}}</span>
-                </td>
-                <td>
-                  <span><button (click)="prepararEditar(dataRows[0])"></button></span>
+                  <div class="contenidoCentrado">
+                    <button type="button" (click)="prepararEditar(dataRows[0])" class="btn btn-info"><i class="nc-icon nc-zoom-split"></i> Consultar</button>                
+                  </div>
                 </td>
               </tr>
             </tbody>
