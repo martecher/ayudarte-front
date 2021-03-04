@@ -22,43 +22,34 @@
 </header>
 
 <main role="main">
-
-<div class="text-center centrado">
-
-<div class="hijo">
-  <form class="form-signin" method="post">
-
-     <img class="mb-4" src="assets/images/logo/logo.jpg">
-
-
-
-  <h1 class="h3 mb-3 font-weight-normal">Por favor ingrese sus datos</h1>
-  <label for="inputEmail" class="sr-only">Dirección de correo</label>
-     <input
-      class="form-control"
-      placeholder="Email address"
-      type="email"
-      [(ngModel)]="email"
-      name="email"
-      placeholder="Email"
-      required="required"
-    />
-
-
-  <label for="inputPassword" class="sr-only">Password</label>
-    <input
-      class="form-control"
-      type="password"
-      [(ngModel)]="password"
-      name="password"
-      placeholder="Password"
-      required="required"
-    />
-
-  <button (click)="login()" class="btn btn-lg btn-success btn-block" type="submit">Log in</button>
-</form>
-</div>
-</div>
+  <div class="text-center centrado">
+    <div class="hijo">
+      <form class="form-signin" method="post">
+        <img class="mb-4" src="assets/images/logo/logo.jpg">
+        <h1 class="h3 mb-3 font-weight-normal">Por favor ingrese sus datos</h1>
+        <label for="inputEmail" class="sr-only">Dirección de correo</label>
+           <input
+            class="form-control"
+            placeholder="Email address"
+            type="email"
+            [(ngModel)]="email"
+            name="email"
+            placeholder="Email"
+            required="required"
+          />
+        <label for="inputPassword" class="sr-only">Password</label>
+          <input
+            class="form-control"
+            type="password"
+            [(ngModel)]="password"
+            name="password"
+            placeholder="Password"
+            required="required"
+          />
+          <button (click)="login()" class="btn btn-lg btn-success btn-block" type="submit">Log in</button>
+      </form>
+    </div>
+  </div>
 </main>
 
 

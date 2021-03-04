@@ -23,8 +23,7 @@ export class LoginComponent implements OnInit {
       console.log("LoginComponent.login() data");
       console.log(data);
       if(data.status_code===200){
-
-        this.router.navigateByUrl('/dashboard');
+        this.router.navigateByUrl('/panel');
       }else{
         this.router.navigateByUrl('/login');
       }

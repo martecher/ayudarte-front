@@ -104,7 +104,9 @@
     </div>
   </div>
 </div>
-
+<div class="row">
+<spam>FALTA UN ICONO PARA CREAR UNA TAREA Y ESTUDIAR COMO DAR DE ALTA LA HABILIDAD SI NO LA ENCUENTRO </spam>
+</div>
 
 <div class="row">
   <div class="col-md-12">
@@ -151,7 +153,7 @@
                 </td>
                 <td>
                   <div class="contenidoCentrado">
-                    <button type="button" (click)="prepararEditar(dataRows[0])" class="btn btn-info"><i class="nc-icon nc-paper"></i></button>
+                    <button type="button" (click)="prepararEditar(dataRows[0], 'Terminar')" class="btn btn-info"><i class="nc-icon nc-paper"></i></button>
                   </div>
                 </td>
               </tr>
@@ -176,7 +178,7 @@
               <th *ngFor="let header of tableData2.headerRow">
                 <div class="contenidoCentrado">
                   <span>{{header}}</span>
-                </div>              
+                </div>
               </th>
              </thead>
             <tbody>
@@ -184,32 +186,32 @@
                 <td>
                   <div class="contenidoCentrado">
                     <span>{{dataRows[0]}}</span>
-                  </div> 
+                  </div>
                 </td>
                 <td>
                   <div class="contenidoCentrado">
                     <span>{{dataRows[1]}}</span>
-                  </div> 
+                  </div>
                 </td>
                 <td>
                   <div class="contenidoCentrado">
                     <span>{{dataRows[2]}}</span>
-                  </div> 
+                  </div>
                 </td>
                 <td>
                   <div class="contenidoCentrado">
                     <span>{{dataRows[3]}}</span>
-                  </div> 
+                  </div>
                 </td>
                 <td>
                   <div class="contenidoCentrado">
                     <span>{{dataRows[4]}}</span>
-                  </div> 
+                  </div>
                 </td>
                 <td>
                   <div class="contenidoCentrado">
-                    <button type="button" (click)="prepararEditar(dataRows[0])" class="btn btn-info"><i class="nc-icon nc-book-bookmark"></i></button>                  
-                  </div> 
+                    <button type="button" (click)="prepararEditar(dataRows[0],'Aceptar')" class="btn btn-info"><i class="nc-icon nc-book-bookmark"></i></button>
+                  </div>
                 </td>
               </tr>
             </tbody>
@@ -234,7 +236,7 @@
               <th *ngFor="let header of tableData3.headerRow">
                 <div class="contenidoCentrado">
                   <span>{{header}}</span>
-                </div>              
+                </div>
               </th>
              </thead>
             <tbody>
@@ -266,7 +268,7 @@
                 </td>
                 <td>
                   <div class="contenidoCentrado">
-                    <button type="button" (click)="prepararEditar(dataRows[0])" class="btn btn-info"><i class="nc-icon nc-zoom-split"></i></button>                
+                    <button type="button" (click)="prepararEditar(dataRows[0], 'Consultar')" class="btn btn-info"><i class="nc-icon nc-zoom-split"></i></button>
                   </div>
                 </td>
               </tr>

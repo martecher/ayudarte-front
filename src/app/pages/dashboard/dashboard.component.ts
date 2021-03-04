@@ -4,6 +4,7 @@ import { UsuarioGuardadoService } from "../../usuarios/usuarioguardado.service";
 import { TareasService } from "../table/tareas.service";
 import { ActividadesRealizadas } from "../../models/actividadesRealizadas";
 import { UsuariosService } from '../../usuarios/usuarios.service';
+import { Router } from '@angular/router';
 
 declare interface TableData {
     headerRow: string[];
@@ -38,6 +39,7 @@ export class DashboardComponent implements OnInit{
   public tSolicitadas: number;
   public tRealizadas: number;
   constructor(
+    private router: Router,
     public usuarioService: UsuariosService,
     public usuarioGuardado:UsuarioGuardadoService,
     public tareasService:TareasService
@@ -56,7 +58,7 @@ export class DashboardComponent implements OnInit{
         this.tareasService.realizadasPorUsuario(this.usuarioGuardado.getToken(),this.usuarioGuardado.getUsuarioId()).subscribe( data => {
           this.listaTareasAsignadasPropias = data.data;
   console.log("return listaTareasAsignadasPropias para tRealizadas= "+this.listaTareasAsignadasPropias.length);
-        
+
           this.tRealizadas = this.listaTareasAsignadasPropias.length;
 
         });
@@ -342,8 +344,8 @@ export class DashboardComponent implements OnInit{
     }
 
 
-    prepararEditar(id) {
-      console.log("prepararEditar: " + id);
+    prepararEditar(id, operacion) {
+      console.log("prepararEditar: " + id + " " + operacion);
+      this.router.navigateByUrl('/actividad/'+id+'/'+operacion);
     }
-
 }
