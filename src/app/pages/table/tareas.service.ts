@@ -88,4 +88,14 @@ export class TareasService {
     })
     return this.http.get("http://127.0.0.1:8000/api/actividadesRealizadas/realizadasPorUsuario/"+id, { headers: headers })
   }
+
+  getTarea(auth_token, id): Observable<any> {
+    // estado = 0 para no asignadas
+    // estado = 1 para asignadas
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${auth_token}`
+    })
+    return this.http.get("http://127.0.0.1:8000/api/actividadesRealizadas/"+id, { headers: headers })
+  }
 }

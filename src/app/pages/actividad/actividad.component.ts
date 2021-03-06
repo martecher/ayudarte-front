@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
+import { ActividadesRealizadas } from '../../models/actividadesRealizadas';
+import { UsuarioGuardadoService } from "../../usuarios/usuarioguardado.service";
+import { TareasService } from "../table/tareas.service";
+import { UsuariosService } from '../../usuarios/usuarios.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-actividad',
@@ -12,14 +17,21 @@ export class ActividadComponent implements OnInit {
  
   public id: string;
   public operacion: string;
-
-  constructor( private rutaActiva: ActivatedRoute ) { }
+  public actividad: ActividadesRealizadas;
+  constructor( 
+  		private rutaActiva: ActivatedRoute,
+  		public usuarioService: UsuariosService,
+    	public usuarioGuardado:UsuarioGuardadoService,
+    	public tareasService:TareasService ) { }
 
   ngOnInit(): void {
   	this.id = this.rutaActiva.snapshot.params.id;
   	this.operacion = this.rutaActiva.snapshot.params.operacion;
   	console.log("ActividadComponent.ngOnInit(): "+ this.id+ " " + this.operacion);
-  	
+    this.tareasService.getTarea(this.usuarioGuardado.getToken(),this.id).subscribe( data => {
+        this.actividad = data.data;
+		console.log("ActividadComponent.ngOnInit(): "+ this.actividad.observacion);
+	});
   }
 
   actualizarActividad(){

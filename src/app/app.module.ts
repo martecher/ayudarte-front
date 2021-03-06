@@ -18,7 +18,7 @@ import { AppRoutes } from './app.routing';
 
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 import { PublicoLayoutComponent } from './layouts/publico-layout/publico-layout.component';
-import { ActividadComponent } from './pages/actividad/actividad.component';
+//import { ActividadComponent } from './pages/actividad/actividad.component';
  
 
 @NgModule({
@@ -26,7 +26,7 @@ import { ActividadComponent } from './pages/actividad/actividad.component';
     AppComponent,
     AdminLayoutComponent,
     PublicoLayoutComponent,
-    ActividadComponent 
+//    ActividadComponent 
  
   ],
   imports: [
