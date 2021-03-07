@@ -27,42 +27,42 @@ export class ActividadComponent implements OnInit {
     	public usuarioGuardado:UsuarioGuardadoService,
     	public tareasService:TareasService ) {
 
-    this.id = this.rutaActiva.snapshot.params.id;
-    this.operacion = this.rutaActiva.snapshot.params.operacion;
-    console.log("ActividadComponent.ngOnInit(): "+ this.id+ " " + this.operacion);
-    this.tareasService.getTarea(this.usuarioGuardado.getToken(),this.id).subscribe( data => {
-        this.actividad = data.data;
-        console.log("ActividadComponent.ngOnInit(): oberservacion de la tarea"+ this.actividad.observacion);
-        console.log("ActividadComponent.ngOnInit(): actividad.horasReales de la tarea"+ this.actividad.habilidad.horasEstipuladas);
-
-  this.createForm( this.operacion,this.actividad);
 
 
-    });
-       }
+   }
 
   ngOnInit(): void {
+      this.id = this.rutaActiva.snapshot.params.id;
+      this.operacion = this.rutaActiva.snapshot.params.operacion;
+      console.log("ActividadComponent.ngOnInit(): "+ this.id+ " " + this.operacion);
+      this.tareasService.getTarea(this.usuarioGuardado.getToken(),this.id).subscribe( data => {
+          var myJSON = JSON.stringify(data.data);
+          this.actividad = data.data;
+          console.log("ActividadComponent.ngOnInit(): myJSON "+ myJSON);
+ 
+      this.createForm( this.operacion,this.actividad);
 
+      });
   }
 
   createForm(operacion, actividad) {
-console.log("ActividadComponent.createForm(): oberservacion de la tarea"+ actividad.observacion);
-console.log("ActividadComponent.createForm(): actividad.horasReales de la tarea"+ actividad.habilidad.horasEstipuladas);
+      console.log("ActividadComponent.createForm(): oberservacion de la tarea "+ actividad.observacion);
+      console.log("ActividadComponent.createForm(): habilidad de la tarea "+ actividad.habilidad[0].descripcion);
 
-    switch (operacion) {
-      case "Terminar":
-        this.pizzaForm = this.fb.group({
-          isOnSale:[],
-          name: [actividad.observacion],
-          price: [actividad.habilidad.horasEstipuladas],
-          imageUrl: [null]
-        });
-        break;
-      
-      default:
-        // code...
-        break;
-    }
+      switch (operacion) {
+        case "Terminar":
+          this.pizzaForm = this.fb.group({
+            isOnSale:[],
+            name: [actividad.habilidad[0].descripcion],
+            price: [],
+            imageUrl: [null]
+          });
+          break;
+        
+        default:
+          // code...
+          break;
+      }
 
   }
 

@@ -6,37 +6,36 @@
 -->
 <main role="main">
 
-<h2>{{operacion}} tarea</h2>
+    <h2>{{operacion}} tarea</h2>
 
-<div class="form-group">
-  <form [formGroup]="pizzaForm" (ngSubmit)="onSubmit()">
-    <div class="pizza-name">
-      <input type="text"
-             placeholder="pizza Name"
-             name="pizzaName"
-             formControlName="name">
-    </div>
-    <div class="pizza-imageUrl">
-      <input type="text"
-              placeholder="pizza imageUrl"
-              formControlName="imageUrl">
 
+    <div class="form-group" *ngIf="operacion=='Terminar'">
+      <form [formGroup]="pizzaForm" (ngSubmit)="onSubmit()">
+        <div class="pizza-name">
+          <input type="text"
+                 placeholder="pizza Name"
+                 name="pizzaName"
+                 formControlName="name">
+        </div>
+        <div class="pizza-imageUrl">
+          <input type="text"
+                  placeholder="pizza imageUrl"
+                  formControlName="imageUrl">
+        </div>
+        <div class="pizza-price">
+          <input type="number"
+                  placeholder="pizza Price"
+                  formControlName="price">
+        </div>
+        <div class="pizza-isOnSale">
+            <input type="checkbox"
+              formControlName="isOnSale" name="isOnSale"
+            >
+            <label for="isOnSale">Is on sale</label>
+          </div> 
+        <button type="submit">Submit</button>
+      </form>
     </div>
-    <div class="pizza-price">
-      <input type="number"
-              placeholder="pizza Price"
-              formControlName="price">
- 
-    </div>
-    <div class="pizza-isOnSale">
-        <input type="checkbox"
-          formControlName="isOnSale" name="isOnSale"
-        >
-        <label for="isOnSale">Is on sale</label>
-      </div> 
-    <button type="submit">Submit</button>
-  </form>
-</div>
 
 
 </main>
