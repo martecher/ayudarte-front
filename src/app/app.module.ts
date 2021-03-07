@@ -2,9 +2,9 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { ToastrModule } from "ngx-toastr";
-import { FormsModule } from "@angular/forms";
 import { HttpClientModule } from '@angular/common/http';
-
+import { ReactiveFormsModule } from '@angular/forms';       
+import { FormsModule } from "@angular/forms";
 
 import { SidebarModule } from './sidebar/sidebar.module';
 import { FooterModule } from './shared/footer/footer.module';
@@ -30,8 +30,8 @@ import { PublicoLayoutComponent } from './layouts/publico-layout/publico-layout.
  
   ],
   imports: [
-
     FormsModule,
+    ReactiveFormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
     RouterModule.forRoot(AppRoutes,{

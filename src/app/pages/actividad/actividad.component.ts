@@ -5,6 +5,7 @@ import { UsuarioGuardadoService } from "../../usuarios/usuarioguardado.service";
 import { TareasService } from "../table/tareas.service";
 import { UsuariosService } from '../../usuarios/usuarios.service';
 import { Router } from '@angular/router';
+import { FormControl, FormGroup,Validators, FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-actividad',
@@ -18,11 +19,17 @@ export class ActividadComponent implements OnInit {
   public id: string;
   public operacion: string;
   public actividad: ActividadesRealizadas;
+  public pizzaForm: FormGroup;
   constructor( 
+      private fb: FormBuilder,
   		private rutaActiva: ActivatedRoute,
   		public usuarioService: UsuariosService,
     	public usuarioGuardado:UsuarioGuardadoService,
-    	public tareasService:TareasService ) { }
+    	public tareasService:TareasService ) {
+
+  
+
+       }
 
   ngOnInit(): void {
   	this.id = this.rutaActiva.snapshot.params.id;
@@ -32,6 +39,42 @@ export class ActividadComponent implements OnInit {
         this.actividad = data.data;
 		console.log("ActividadComponent.ngOnInit(): "+ this.actividad.observacion);
 	});
+
+      this.createForm(this.operacion);
+  }
+
+  createForm(operacion) {
+
+    switch (operacion) {
+      case "Terminar":
+          this.pizzaForm = this.fb.group({
+            isOnSale:[],
+            name: [null],
+            price: [0],
+            imageUrl: [null]
+          });
+        break;
+      case "Aceptar":
+          this.pizzaForm = this.fb.group({
+            isOnSale:[],
+            name: [null],
+            price: [0],
+            imageUrl: [null]
+          });
+        break;
+      case "Consultar":
+          this.pizzaForm = this.fb.group({
+            isOnSale:[],
+            name: [null],
+            price: [0],
+            imageUrl: [null]
+          });
+        break;
+      default:
+        // code...
+        break;
+    }
+
   }
 
   actualizarActividad(){

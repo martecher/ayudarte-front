@@ -1,37 +1,40 @@
-<p>actividad works!</p>
-<!--
+ <!--
 //segun hallamos elegido anteriormente "Terminar" o "Aceptar" 
   	// dependiendo de eso le habre mostrado un formulario u otro pero todos vendran al metodo
   	// actualizarActividad que asignará las propiedades y llamará al api rest de actualizar la tarea completa. Habrá que hacerlo con lo de ngModel o algo así
   	// la opción    "Consultar" no  se contempla ya que no será un formulario si no datos solo lectura
 -->
 <main role="main">
-	<div><span class="tituloFormulario">{{operacion}} tarea</span></div>
-	<div class="text-center centrado">
-	    <div class="hijo">
-	      <form class="form-signin" method="post">
-	        <label for="inputEmail" class="sr-only">Dirección de correo</label>
-	           <input
-	            class="form-control"
-	            placeholder="Email address"
-	            type="email"
-	            [(ngModel)]="email"
-	            name="email"
-	            placeholder="Email"
-	            required="required"
-	            re
-	          />
-	        <label for="inputPassword" class="sr-only">Password</label>
-	          <input
-	            class="form-control"
-	            type="password"
-	            [(ngModel)]="password"
-	            name="password"
-	            placeholder="Password"
-	            required="required"
-	          />
-	          <button (click)="login()" class="btn btn-lg btn-success btn-block" type="submit">Log in</button>
-	      </form>
-	    </div>
-	</div>
+
+<h2>{{operacion}} tarea</h2>
+
+<div class="form-group">
+  <form [formGroup]="pizzaForm" (ngSubmit)="onSubmit()">
+    <div class="pizza-name">
+      <input type="text"
+             placeholder="pizza Name"
+             name="pizzaName"
+             formControlName="name">
+
+        Name is required
+     </div>
+  
+    <div class="pizza-imageUrl">
+      <input type="text"
+              placeholder="pizza imageUrl"
+              formControlName="imageUrl">
+    </div>
+    <div class="pizza-price">
+      <input type="number"
+              placeholder="pizza Price"
+              formControlName="price">
+      </div>
+    <div class="pizza-isOnSale">
+        <input type="checkbox"
+          formControlName="isOnSale" name="isOnSale"
+        >
+      </div>
+    <button type="submit">Submit</button>
+  </form>
+</div>
 </main>

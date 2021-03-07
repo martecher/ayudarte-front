@@ -16,12 +16,14 @@ import { UpgradeComponent }         from '../../pages/upgrade/upgrade.component'
 import { ActividadComponent }       from '../../pages/actividad/actividad.component';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ReactiveFormsModule } from '@angular/forms';       
 
 @NgModule({
   imports: [
     CommonModule,
     RouterModule.forChild(AdminLayoutRoutes),
     FormsModule,
+    ReactiveFormsModule,
     NgbModule
   ],
   declarations: [
