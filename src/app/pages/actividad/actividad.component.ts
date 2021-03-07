@@ -27,49 +27,38 @@ export class ActividadComponent implements OnInit {
     	public usuarioGuardado:UsuarioGuardadoService,
     	public tareasService:TareasService ) {
 
-  
+    this.id = this.rutaActiva.snapshot.params.id;
+    this.operacion = this.rutaActiva.snapshot.params.operacion;
+    console.log("ActividadComponent.ngOnInit(): "+ this.id+ " " + this.operacion);
+    this.tareasService.getTarea(this.usuarioGuardado.getToken(),this.id).subscribe( data => {
+        this.actividad = data.data;
+        console.log("ActividadComponent.ngOnInit(): oberservacion de la tarea"+ this.actividad.observacion);
+        console.log("ActividadComponent.ngOnInit(): actividad.horasReales de la tarea"+ this.actividad.habilidad.horasEstipuladas);
 
+  this.createForm( this.operacion,this.actividad);
+
+
+    });
        }
 
   ngOnInit(): void {
-  	this.id = this.rutaActiva.snapshot.params.id;
-  	this.operacion = this.rutaActiva.snapshot.params.operacion;
-  	console.log("ActividadComponent.ngOnInit(): "+ this.id+ " " + this.operacion);
-    this.tareasService.getTarea(this.usuarioGuardado.getToken(),this.id).subscribe( data => {
-        this.actividad = data.data;
-		console.log("ActividadComponent.ngOnInit(): "+ this.actividad.observacion);
-	});
 
-      this.createForm(this.operacion);
   }
 
-  createForm(operacion) {
+  createForm(operacion, actividad) {
+console.log("ActividadComponent.createForm(): oberservacion de la tarea"+ actividad.observacion);
+console.log("ActividadComponent.createForm(): actividad.horasReales de la tarea"+ actividad.habilidad.horasEstipuladas);
 
     switch (operacion) {
       case "Terminar":
-          this.pizzaForm = this.fb.group({
-            isOnSale:[],
-            name: [null],
-            price: [0],
-            imageUrl: [null]
-          });
+        this.pizzaForm = this.fb.group({
+          isOnSale:[],
+          name: [actividad.observacion],
+          price: [actividad.habilidad.horasEstipuladas],
+          imageUrl: [null]
+        });
         break;
-      case "Aceptar":
-          this.pizzaForm = this.fb.group({
-            isOnSale:[],
-            name: [null],
-            price: [0],
-            imageUrl: [null]
-          });
-        break;
-      case "Consultar":
-          this.pizzaForm = this.fb.group({
-            isOnSale:[],
-            name: [null],
-            price: [0],
-            imageUrl: [null]
-          });
-        break;
+      
       default:
         // code...
         break;
