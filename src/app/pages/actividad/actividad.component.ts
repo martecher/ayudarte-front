@@ -36,9 +36,7 @@ export class ActividadComponent implements OnInit {
       this.operacion = this.rutaActiva.snapshot.params.operacion;
       console.log("ActividadComponent.ngOnInit(): "+ this.id+ " " + this.operacion);
       this.tareasService.getTarea(this.usuarioGuardado.getToken(),this.id).subscribe( data => {
-          var myJSON = JSON.stringify(data.data);
           this.actividad = data.data;
-          console.log("ActividadComponent.ngOnInit(): myJSON "+ myJSON);
  
       this.createForm( this.operacion,this.actividad);
 
@@ -46,16 +44,28 @@ export class ActividadComponent implements OnInit {
   }
 
   createForm(operacion, actividad) {
-      console.log("ActividadComponent.createForm(): oberservacion de la tarea "+ actividad.observacion);
-      console.log("ActividadComponent.createForm(): habilidad de la tarea "+ actividad.habilidad[0].descripcion);
 
+/*
+  id: number;
+  observacion: string;
+  horasReales: string;
+  valoracion: string;
+  usuario_solicita: Usuario;
+  usuario_realiza: Usuario;
+  habilidad: Habilidad;
+  puntuacionSolicita: string;
+  finalizada: string;
+*/
+ 
       switch (operacion) {
         case "Terminar":
           this.pizzaForm = this.fb.group({
             isOnSale:[],
-            name: [actividad.habilidad[0].descripcion],
-            price: [],
-            imageUrl: [null]
+            descripcionTarea: [actividad.habilidad[0].descripcion],
+            horasReales: [],
+            usuario_solicita: [actividad.usuarioSolicita[0].nombre],
+            usuario_realiza: [actividad.usuarioRealiza[0].nombre],
+            puntuacionSolicita: [null]
           });
           break;
         

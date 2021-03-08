@@ -10,30 +10,46 @@
 
 
     <div class="form-group" *ngIf="operacion=='Terminar'">
-      <form [formGroup]="pizzaForm" (ngSubmit)="onSubmit()">
-        <div class="pizza-name">
+      <form [formGroup]="pizzaForm" (ngSubmit)="actualizarActividad()">
+        <label igxLabel for="descripcionTarea">Tarea</label>
+        <div class="descripcion-tarea">
           <input type="text"
-                 placeholder="pizza Name"
-                 name="pizzaName"
-                 formControlName="name">
+                 placeholder="Tarea"
+                 name="descripcionTarea"
+                 formControlName="descripcionTarea"
+                  readonly="true" 
+          >
         </div>
-        <div class="pizza-imageUrl">
+        <label igxLabel for="usuario_solicita">Usuario solicitante</label>
+        <div class="usuario-solicita">
           <input type="text"
-                  placeholder="pizza imageUrl"
-                  formControlName="imageUrl">
+                  placeholder="Usuario que solicita"
+                  formControlName="usuario_solicita"
+                  readonly="true" 
+          >
         </div>
-        <div class="pizza-price">
+        <label igxLabel for="usuario_solicita">Usuario que realiza</label>
+        <div class="usuario-realiza">
+          <input type="text"
+                  placeholder="Usuario que realiza"
+                  formControlName="usuario_realiza"
+                  readonly="true" 
+          >
+        </div>
+        <label igxLabel for="horasReales">Usuario que realiza</label>
+        <div class="horas-reales">
           <input type="number"
-                  placeholder="pizza Price"
-                  formControlName="price">
+                  placeholder="Horas Reales"
+                  formControlName="horasReales"
+          >
         </div>
-        <div class="pizza-isOnSale">
-            <input type="checkbox"
-              formControlName="isOnSale" name="isOnSale"
-            >
-            <label for="isOnSale">Is on sale</label>
-          </div> 
-        <button type="submit">Submit</button>
+        <label igxLabel for="puntuacionSolicita">Puntua al usuario que solicita</label>
+        <div class="puntuacionSolicita">
+          <input type="number"
+                  placeholder="Puntua a quien solicita"
+                  formControlName="puntuacionSolicita">
+        </div>
+        <button type="submit">Guardar</button>
       </form>
     </div>
 
