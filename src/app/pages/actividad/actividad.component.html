@@ -44,11 +44,22 @@
           >
         </div>
         <label igxLabel for="puntuacionSolicita">Puntua al usuario que solicita</label>
-        <div class="puntuacionSolicita">
-          <input type="number"
-                  placeholder="Puntua a quien solicita"
-                  formControlName="puntuacionSolicita">
-        </div>
+        <p class="clasificacion">
+          <input class="radioEstrella" id="radio1" type="radio" formControlName="puntuacionSolicita" value="5">
+          <label class="estrella" for="radio1">★</label>
+
+          <input class="radioEstrella" id="radio2" type="radio" formControlName="puntuacionSolicita" value="4"> 
+          <label class="estrella" for="radio2">★</label> 
+
+          <input class="radioEstrella" id="radio3" type="radio" formControlName="puntuacionSolicita" value="3"> 
+          <label class="estrella" for="radio3">★</label> 
+
+          <input class="radioEstrella" id="radio4" type="radio"  formControlName="puntuacionSolicita" value="2"> 
+          <label class="estrella" for="radio4">★</label> 
+
+          <input class="radioEstrella" id="radio5" type="radio" formControlName="puntuacionSolicita" value="1"> 
+          <label class="estrella"  for="radio5">★</label>
+        </p>
         <button type="submit">Guardar</button>
       </form>
     </div>
