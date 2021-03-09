@@ -19,7 +19,8 @@ export class ActividadComponent implements OnInit {
   public id: string;
   public operacion: string;
   public actividad: ActividadesRealizadas;
-  public pizzaForm: FormGroup;
+  public terminarForm: FormGroup;
+  public puntuacionRecibida: number;
   constructor( 
       private fb: FormBuilder,
   		private rutaActiva: ActivatedRoute,
@@ -56,16 +57,15 @@ export class ActividadComponent implements OnInit {
   puntuacionSolicita: string;
   finalizada: string;
 */
- 
+      this.puntuacionRecibida = actividad.usuarioSolicita[0].reputacion;
       switch (operacion) {
         case "Terminar":
-          this.pizzaForm = this.fb.group({
-            isOnSale:[],
+          this.terminarForm = this.fb.group({
             descripcionTarea: [actividad.habilidad[0].descripcion],
             horasReales: [],
             usuario_solicita: [actividad.usuarioSolicita[0].nombre],
             usuario_realiza: [actividad.usuarioRealiza[0].nombre],
-            puntuacionSolicita: [null]
+            puntuacionSolicita: [actividad.usuarioSolicita[0].reputacion]
           });
           break;
         
@@ -81,6 +81,17 @@ export class ActividadComponent implements OnInit {
   	// dependiendo de eso le habre mostrado un formulario u otro pero todos vendran a este metodo
   	// que asignará las propiedades y llamará al api rest de actualizar la tarea completa
   	// la opción    "Consultar" no  se contempla ya que no será un formulario si no datos solo lectura
+
+      switch (this.operacion) {
+        case "Terminar":
+        console.log('Terminar Form Value', this.terminarForm.value);
+          break;
+        
+        default:
+          // code...
+          break;
+      }
+
   }
 
 }

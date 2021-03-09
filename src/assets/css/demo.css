@@ -214,13 +214,13 @@
 }
 .estrella:hover{color:orange;}
 .estrella:hover ~ .estrella{color:orange;}
-
-
 .radioEstrella{
  display:none;
 }
+.radioEstrella:checked ~ label{color:orange;}
 
 .clasificacion{
       direction: rtl;/* right to left */
       unicode-bidi: bidi-override;/* bidi de bidireccional */
+      font-size: 15px;
   }
