@@ -20,7 +20,7 @@ export class ActividadComponent implements OnInit {
   public operacion: string;
   public actividad: ActividadesRealizadas;
   public terminarForm: FormGroup;
-  public puntuacionRecibida: number;
+  public puntuacionRecibida: string;
   constructor( 
       private fb: FormBuilder,
   		private rutaActiva: ActivatedRoute,
@@ -57,7 +57,9 @@ export class ActividadComponent implements OnInit {
   puntuacionSolicita: string;
   finalizada: string;
 */
-      this.puntuacionRecibida = actividad.usuarioSolicita[0].reputacion;
+      this.puntuacionRecibida = ""+actividad.usuarioSolicita[0].reputacion;
+      console.log("ActividadComponent.ngOnInit() puntuacionRecibida: "+ this.puntuacionRecibida);
+
       switch (operacion) {
         case "Terminar":
           this.terminarForm = this.fb.group({
@@ -84,7 +86,13 @@ export class ActividadComponent implements OnInit {
 
       switch (this.operacion) {
         case "Terminar":
-        console.log('Terminar Form Value', this.terminarForm.value);
+            this.actividad.horasReales = this.terminarForm.value.horasReales;
+            this.actividad.puntuacionSolicita = this.terminarForm.value.puntuacionSolicita;
+            this.actividad.finalizada = "1";
+
+            console.log('actualizarActividad ',  this.actividad);
+
+
           break;
         
         default:
