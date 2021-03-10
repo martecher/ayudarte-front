@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
 //import {UsuarioGuardadoService} from './usuarioguardado.service';
 import { map } from 'rxjs/operators';
 import { HttpHeaders } from '@angular/common/http';
+import { HttpParams } from '@angular/common/http';
 
 
 @Injectable({
@@ -79,7 +80,7 @@ export class TareasService {
     return this.http.get("http://127.0.0.1:8000/api/actividadesRealizadas/solicitadasPorUsuario/"+id, { headers: headers })
   }
 
-    realizadasPorUsuario(auth_token, id): Observable<any> {
+  realizadasPorUsuario(auth_token, id): Observable<any> {
     // estado = 0 para no asignadas
     // estado = 1 para asignadas
     const headers = new HttpHeaders({
@@ -106,6 +107,14 @@ export class TareasService {
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${auth_token}`
     })
-    return this.http.put("http://127.0.0.1:8000/api/actividadesRealizadas/"+id, { headers: headers })
+
+    const params= new HttpParams().set('finalizada', '1');
+    params.set('finalizada', '1');
+    params.set('puntuacionSolicita', tarea.puntuacionSolicita);
+    params.set('horasReales', tarea.horasReales);
+
+
+
+    return this.http.put("http://127.0.0.1:8000/api/actividadesRealizadas/"+id, { headers: headers, params: params })
   }
 }

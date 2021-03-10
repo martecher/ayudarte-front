@@ -37,10 +37,8 @@ export class ActividadComponent implements OnInit {
       this.operacion = this.rutaActiva.snapshot.params.operacion;
       console.log("ActividadComponent.ngOnInit(): "+ this.id+ " " + this.operacion);
       this.tareasService.getTarea(this.usuarioGuardado.getToken(),this.id).subscribe( data => {
-          this.actividad = data.data;
- 
-      this.createForm( this.operacion,this.actividad);
-
+        this.actividad = data.data;
+        this.createForm( this.operacion,this.actividad);
       });
   }
 
@@ -89,9 +87,11 @@ export class ActividadComponent implements OnInit {
             this.actividad.horasReales = this.terminarForm.value.horasReales;
             this.actividad.puntuacionSolicita = this.terminarForm.value.puntuacionSolicita;
             this.actividad.finalizada = "1";
-
             console.log('actualizarActividad ',  this.actividad);
-
+            this.tareasService.finalizarTarea(this.usuarioGuardado.getToken(),this.actividad).subscribe( data => {
+              this.actividad = data.data;
+              this.createForm( this.operacion,this.actividad);
+            });
 
           break;
         
