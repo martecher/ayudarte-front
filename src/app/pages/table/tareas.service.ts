@@ -103,6 +103,9 @@ export class TareasService {
   finalizarTarea(auth_token, tarea): Observable<any> {
     // estado = 0 para no asignadas
     // estado = 1 para asignadas
+
+    console.log('TareasService.finalizarTarea() auth_token: ',  auth_token);
+
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${auth_token}`
@@ -112,9 +115,6 @@ export class TareasService {
     params.set('finalizada', '1');
     params.set('puntuacionSolicita', tarea.puntuacionSolicita);
     params.set('horasReales', tarea.horasReales);
-
-
-
-    return this.http.put("http://127.0.0.1:8000/api/actividadesRealizadas/"+id, { headers: headers, params: params })
+    return this.http.put("http://127.0.0.1:8000/api/actividadesRealizadas/"+tarea.id+"?finalizada=1&puntuacionSolicita="+tarea.puntuacionSolicita+"&horasReales="+tarea.horasReales, { headers: headers})
   }
 }

@@ -35,9 +35,11 @@ export class ActividadComponent implements OnInit {
   ngOnInit(): void {
       this.id = this.rutaActiva.snapshot.params.id;
       this.operacion = this.rutaActiva.snapshot.params.operacion;
-      console.log("ActividadComponent.ngOnInit(): "+ this.id+ " " + this.operacion);
       this.tareasService.getTarea(this.usuarioGuardado.getToken(),this.id).subscribe( data => {
-        this.actividad = data.data;
+      this.actividad = data.data;
+      var myJSON = JSON.stringify(data.data);
+      console.log("ActividadComponent.ngOnInit() data.data: "+ myJSON);
+
         this.createForm( this.operacion,this.actividad);
       });
   }
@@ -55,7 +57,7 @@ export class ActividadComponent implements OnInit {
   puntuacionSolicita: string;
   finalizada: string;
 */
-      this.puntuacionRecibida = ""+actividad.usuarioSolicita[0].reputacion;
+//      this.puntuacionRecibida = ""+actividad.usuarioSolicita[0].reputacion;
       console.log("ActividadComponent.ngOnInit() puntuacionRecibida: "+ this.puntuacionRecibida);
 
       switch (operacion) {
@@ -84,13 +86,14 @@ export class ActividadComponent implements OnInit {
 
       switch (this.operacion) {
         case "Terminar":
+            this.actividad.id=  Number(this.id);
             this.actividad.horasReales = this.terminarForm.value.horasReales;
             this.actividad.puntuacionSolicita = this.terminarForm.value.puntuacionSolicita;
             this.actividad.finalizada = "1";
-            console.log('actualizarActividad ',  this.actividad);
             this.tareasService.finalizarTarea(this.usuarioGuardado.getToken(),this.actividad).subscribe( data => {
-              this.actividad = data.data;
-              this.createForm( this.operacion,this.actividad);
+              data.data;
+              var myJSON = JSON.stringify(data.data);
+              console.log("ActividadComponent.actualizarActividad() data.data: "+ myJSON);
             });
 
           break;
