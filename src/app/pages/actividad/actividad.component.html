@@ -7,10 +7,77 @@
 <main role="main">
 
     <h2>{{operacion}} tarea</h2>
-
-
+    <!-- Formulario Terminar -->
     <div class="form-group" *ngIf="operacion=='Terminar'">
       <form [formGroup]="terminarForm" (ngSubmit)="actualizarActividad()">
+        <label igxLabel for="descripcionTarea">Tarea</label>
+        <div class="descripcion-tarea">
+          <input type="text"
+                 placeholder="Tarea"
+                 name="descripcionTarea"
+                 formControlName="descripcionTarea"
+                  readonly="true" 
+          >
+        </div>
+        <label igxLabel for="usuario_solicita">Usuario solicitante</label>
+        <div class="usuario-solicita">
+          <input type="text"
+                  placeholder="Usuario que solicita"
+                  formControlName="usuario_solicita"
+                  readonly="true" 
+          >
+        </div>
+        <label igxLabel for="usuario_solicita">Usuario que realiza</label>
+        <div class="usuario-realiza">
+          <input type="text"
+                  placeholder="Usuario que realiza"
+                  formControlName="usuario_realiza"
+                  readonly="true" 
+          >
+        </div>
+        <label igxLabel for="observacion">observacion</label>
+        <div class="observacion">
+          <input type="text"
+                  placeholder="observacion"
+                  formControlName="observacion"
+                  readonly="true" 
+          >
+        </div>
+        
+
+        
+        <label igxLabel for="horasReales">Usuario que realiza OJO SEPARADO CON . no con ,</label>
+        <div class="horas-reales">
+          <input type="number"
+                  placeholder="Horas Reales"
+                  formControlName="horasReales"
+          >
+        </div>
+        <label igxLabel for="puntuacionSolicita">Puntua al usuario que solicita</label>
+        <p class="clasificacion">
+          <input class="radioEstrella" id="radio1" type="radio" formControlName="puntuacionSolicita" value="5"  >
+          <label class="estrella" for="radio1">★</label>
+
+          <input class="radioEstrella" id="radio2" type="radio" formControlName="puntuacionSolicita" value="4" >
+          <label class="estrella" for="radio2">★</label>
+
+          <input class="radioEstrella" id="radio3" type="radio" formControlName="puntuacionSolicita" value="3" >
+          <label class="estrella" for="radio3">★</label>
+
+          <input class="radioEstrella" id="radio4" type="radio"  formControlName="puntuacionSolicita" value="2"  >
+          <label class="estrella" for="radio4">★</label>
+
+          <input class="radioEstrella" id="radio5" type="radio" formControlName="puntuacionSolicita" value="1"  >
+          <label class="estrella"  for="radio5">★</label>
+        </p>
+        <button type="submit">Guardar</button>
+      </form>
+    </div>
+    <!-- Fin del formulario Terminar  -->
+
+    <!-- Formulario Consultar -->
+    <div class="form-group" *ngIf="operacion=='Consultar'">
+      <form [formGroup]="consultarForm" (ngSubmit)="actualizarActividad()">
         <label igxLabel for="descripcionTarea">Tarea</label>
         <div class="descripcion-tarea">
           <input type="text"
@@ -63,6 +130,62 @@
         <button type="submit">Guardar</button>
       </form>
     </div>
+    <!-- Fin del formulario Consultar  -->
 
+    <!-- Formulario Aceptar -->
+    <div class="form-group" *ngIf="operacion=='Aceptar'">
+      <form [formGroup]="aceptarForm" (ngSubmit)="actualizarActividad()">
+        <label igxLabel for="descripcionTarea">Tarea</label>
+        <div class="descripcion-tarea">
+          <input type="text"
+                 placeholder="Tarea"
+                 name="descripcionTarea"
+                 formControlName="descripcionTarea"
+                  readonly="true" 
+          >
+        </div>
+        <label igxLabel for="usuario_solicita">Usuario solicitante</label>
+        <div class="usuario-solicita">
+          <input type="text"
+                  placeholder="Usuario que solicita"
+                  formControlName="usuario_solicita"
+                  readonly="true" 
+          >
+        </div>
+        <label igxLabel for="usuario_solicita">Usuario que realiza</label>
+        <div class="usuario-realiza">
+          <input type="text"
+                  placeholder="Usuario que realiza"
+                  formControlName="usuario_realiza"
+                  readonly="true" 
+          >
+        </div>
+        <label igxLabel for="horasReales">Usuario que realiza OJO SEPARADO CON . no con ,</label>
+        <div class="horas-reales">
+          <input type="number"
+                  placeholder="Horas Reales"
+                  formControlName="horasReales"
+          >
+        </div>
+        <label igxLabel for="puntuacionSolicita">Puntua al usuario que solicita</label>
+        <p class="clasificacion">
+          <input class="radioEstrella" id="radio1" type="radio" formControlName="puntuacionSolicita" value="5"  >
+          <label class="estrella" for="radio1">★</label>
 
+          <input class="radioEstrella" id="radio2" type="radio" formControlName="puntuacionSolicita" value="4" >
+          <label class="estrella" for="radio2">★</label>
+
+          <input class="radioEstrella" id="radio3" type="radio" formControlName="puntuacionSolicita" value="3" >
+          <label class="estrella" for="radio3">★</label>
+
+          <input class="radioEstrella" id="radio4" type="radio"  formControlName="puntuacionSolicita" value="2"  >
+          <label class="estrella" for="radio4">★</label>
+
+          <input class="radioEstrella" id="radio5" type="radio" formControlName="puntuacionSolicita" value="1"  >
+          <label class="estrella"  for="radio5">★</label>
+        </p>
+        <button type="submit">Guardar</button>
+      </form>
+    </div>
+    <!-- Fin del formulario Consultar  -->
 </main>

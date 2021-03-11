@@ -20,6 +20,8 @@ export class ActividadComponent implements OnInit {
   public operacion: string;
   public actividad: ActividadesRealizadas;
   public terminarForm: FormGroup;
+  public aceptarForm: FormGroup;
+  public consultarForm: FormGroup;
   public puntuacionRecibida: string;
   constructor( 
       private fb: FormBuilder,
@@ -38,7 +40,7 @@ export class ActividadComponent implements OnInit {
       this.tareasService.getTarea(this.usuarioGuardado.getToken(),this.id).subscribe( data => {
       this.actividad = data.data;
       var myJSON = JSON.stringify(data.data);
-      console.log("ActividadComponent.ngOnInit() data.data: "+ myJSON);
+       console.log("ActividadComponent.ngOnInit() data.data: "+ myJSON);
 
         this.createForm( this.operacion,this.actividad);
       });
@@ -67,10 +69,30 @@ export class ActividadComponent implements OnInit {
             horasReales: [],
             usuario_solicita: [actividad.usuarioSolicita[0].nombre],
             usuario_realiza: [actividad.usuarioRealiza[0].nombre],
+            puntuacionSolicita: [actividad.usuarioSolicita[0].reputacion],
+            observacion: [actividad.observacion]
+          });
+          break;
+ 
+        case "Aceptar":
+          this.aceptarForm = this.fb.group({
+            descripcionTarea: [actividad.habilidad[0].descripcion],
+            horasReales: [],
+            usuario_solicita: [actividad.usuarioSolicita[0].nombre],
+            usuario_realiza: [actividad.usuarioRealiza[0].nombre],
             puntuacionSolicita: [actividad.usuarioSolicita[0].reputacion]
           });
           break;
-        
+        case "Consultar":
+          this.consultarForm = this.fb.group({
+            descripcionTarea: [actividad.habilidad[0].descripcion],
+            horasReales: [],
+            usuario_solicita: [actividad.usuarioSolicita[0].nombre],
+            usuario_realiza: [actividad.usuarioRealiza[0].nombre],
+            puntuacionSolicita: [actividad.usuarioSolicita[0].reputacion]
+          });
+          break;
+
         default:
           // code...
           break;
@@ -95,9 +117,29 @@ export class ActividadComponent implements OnInit {
               var myJSON = JSON.stringify(data.data);
               console.log("ActividadComponent.actualizarActividad() data.data: "+ myJSON);
             });
-
           break;
-        
+        case "Aceptar":
+            this.actividad.id=  Number(this.id);
+            this.actividad.horasReales = this.aceptarForm.value.horasReales;
+            this.actividad.puntuacionSolicita = this.aceptarForm.value.puntuacionSolicita;
+            this.actividad.finalizada = "1";
+            this.tareasService.finalizarTarea(this.usuarioGuardado.getToken(),this.actividad).subscribe( data => {
+              data.data;
+              var myJSON = JSON.stringify(data.data);
+              console.log("ActividadComponent.actualizarActividad() data.data: "+ myJSON);
+            });
+          break;
+        case "Consultar":
+            this.actividad.id=  Number(this.id);
+            this.actividad.horasReales = this.consultarForm.value.horasReales;
+            this.actividad.puntuacionSolicita = this.consultarForm.value.puntuacionSolicita;
+            this.actividad.finalizada = "1";
+            this.tareasService.finalizarTarea(this.usuarioGuardado.getToken(),this.actividad).subscribe( data => {
+              data.data;
+              var myJSON = JSON.stringify(data.data);
+              console.log("ActividadComponent.actualizarActividad() data.data: "+ myJSON);
+            });
+          break;
         default:
           // code...
           break;
