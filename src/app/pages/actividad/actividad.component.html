@@ -35,6 +35,7 @@
                   readonly="true" 
           >
         </div>
+
         <label igxLabel for="observacion">observacion</label>
         <div class="observacion">
           <input type="text"
@@ -43,10 +44,8 @@
                   readonly="true" 
           >
         </div>
-        
 
-        
-        <label igxLabel for="horasReales">Usuario que realiza OJO SEPARADO CON . no con ,</label>
+        <label igxLabel for="horasReales">horas reales OJO SEPARADO CON . no con ,</label>
         <div class="horas-reales">
           <input type="number"
                   placeholder="Horas Reales"
@@ -71,6 +70,7 @@
           <label class="estrella"  for="radio5">★</label>
         </p>
         <button type="submit">Guardar</button>
+        <button type="submit" (click)="volver()" >Volver</button>
       </form>
     </div>
     <!-- Fin del formulario Terminar  -->
@@ -103,31 +103,40 @@
                   readonly="true" 
           >
         </div>
-        <label igxLabel for="horasReales">Usuario que realiza OJO SEPARADO CON . no con ,</label>
+        <label igxLabel for="observacion">observacion</label>
+
+        <div class="observacion">
+          <input type="text"
+                  placeholder="observacion"
+                  formControlName="observacion"
+                  readonly="true" 
+          >
+        </div>
+        <label igxLabel for="horasReales">horas reales</label>
         <div class="horas-reales">
           <input type="number"
                   placeholder="Horas Reales"
                   formControlName="horasReales"
+                  readonly="true" 
           >
         </div>
-        <label igxLabel for="puntuacionSolicita">Puntua al usuario que solicita</label>
-        <p class="clasificacion">
-          <input class="radioEstrella" id="radio1" type="radio" formControlName="puntuacionSolicita" value="5"  >
-          <label class="estrella" for="radio1">★</label>
-
-          <input class="radioEstrella" id="radio2" type="radio" formControlName="puntuacionSolicita" value="4" >
-          <label class="estrella" for="radio2">★</label>
-
-          <input class="radioEstrella" id="radio3" type="radio" formControlName="puntuacionSolicita" value="3" >
-          <label class="estrella" for="radio3">★</label>
-
-          <input class="radioEstrella" id="radio4" type="radio"  formControlName="puntuacionSolicita" value="2"  >
-          <label class="estrella" for="radio4">★</label>
-
-          <input class="radioEstrella" id="radio5" type="radio" formControlName="puntuacionSolicita" value="1"  >
-          <label class="estrella"  for="radio5">★</label>
-        </p>
-        <button type="submit">Guardar</button>
+        <label igxLabel for="puntuacionSolicita">Puntuación al usuario que solicita</label>
+        <div class="puntuacionSolicita">
+          <input type="number"
+                  placeholder="puntuacionSolicita"
+                  formControlName="puntuacionSolicita"
+                  readonly="true" 
+          >
+        </div>
+        <label igxLabel for="valoracion">Puntuación al usuario que realiza</label>
+        <div class="valoracion">
+          <input type="number"
+                  placeholder="valoracion"
+                  formControlName="valoracion"
+                  readonly="true" 
+          >
+        </div>
+        <button type="submit">Volver</button>
       </form>
     </div>
     <!-- Fin del formulario Consultar  -->
@@ -160,32 +169,43 @@
                   readonly="true" 
           >
         </div>
-        <label igxLabel for="horasReales">Usuario que realiza OJO SEPARADO CON . no con ,</label>
+        <label igxLabel for="observacion">observacion</label>
+
+        <div class="observacion">
+          <input type="text"
+                  placeholder="observacion"
+                  formControlName="observacion"
+                  readonly="true" 
+          >
+        </div>
+        <label igxLabel for="horasReales">Horas reales OJO SEPARADO CON . no con ,</label>
         <div class="horas-reales">
           <input type="number"
                   placeholder="Horas Reales"
                   formControlName="horasReales"
+                  readonly="true" 
           >
         </div>
-        <label igxLabel for="puntuacionSolicita">Puntua al usuario que solicita</label>
+        <label igxLabel for="valoracion">Puntua al usuario que realiza</label>
         <p class="clasificacion">
-          <input class="radioEstrella" id="radio1" type="radio" formControlName="puntuacionSolicita" value="5"  >
+          <input class="radioEstrella" id="radio1" type="radio" formControlName="valoracion" value="5"  >
           <label class="estrella" for="radio1">★</label>
 
-          <input class="radioEstrella" id="radio2" type="radio" formControlName="puntuacionSolicita" value="4" >
+          <input class="radioEstrella" id="radio2" type="radio" formControlName="valoracion" value="4" >
           <label class="estrella" for="radio2">★</label>
 
-          <input class="radioEstrella" id="radio3" type="radio" formControlName="puntuacionSolicita" value="3" >
+          <input class="radioEstrella" id="radio3" type="radio" formControlName="valoracion" value="3" >
           <label class="estrella" for="radio3">★</label>
 
-          <input class="radioEstrella" id="radio4" type="radio"  formControlName="puntuacionSolicita" value="2"  >
+          <input class="radioEstrella" id="radio4" type="radio"  formControlName="valoracion" value="2"  >
           <label class="estrella" for="radio4">★</label>
 
-          <input class="radioEstrella" id="radio5" type="radio" formControlName="puntuacionSolicita" value="1"  >
+          <input class="radioEstrella" id="radio5" type="radio" formControlName="valoracion" value="1"  >
           <label class="estrella"  for="radio5">★</label>
         </p>
         <button type="submit">Guardar</button>
+        <button type="submit" (click)="volver()" >Volver</button>
       </form>
     </div>
-    <!-- Fin del formulario Consultar  -->
+    <!-- Fin del formulario Aceptar  -->
 </main>
