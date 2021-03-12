@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import Chart from 'chart.js';
-import { UsuarioGuardadoService } from "../../usuarios/usuarioguardado.service";
-import { TareasService } from "../table/tareas.service";
+import { UsuarioGuardadoService } from "../../servicios/usuarioguardado.service";
+import { TareasService } from "../../servicios/tareas.service";
 import { ActividadesRealizadas } from "../../models/actividadesRealizadas";
-import { UsuariosService } from '../../usuarios/usuarios.service';
+import { UsuariosService } from '../../servicios/usuarios.service';
 import { Router } from '@angular/router';
 
 declare interface TableData {

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { UsuariosService } from '../../usuarios/usuarios.service';
-import { UsuarioGuardadoService } from "../../usuarios/usuarioguardado.service";
-import { TareasService } from "./tareas.service";
+import { UsuariosService } from '../../servicios/usuarios.service';
+import { UsuarioGuardadoService } from "../../servicios/usuarioguardado.service";
+import { TareasService } from "../../servicios/tareas.service";
 import { ActividadesRealizadas } from "../../models/actividadesRealizadas";
 
 declare interface TableData {

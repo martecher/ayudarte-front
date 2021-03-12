@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { ActividadesRealizadas } from '../../models/actividadesRealizadas';
-import { UsuarioGuardadoService } from "../../usuarios/usuarioguardado.service";
-import { TareasService } from "../table/tareas.service";
-import { UsuariosService } from '../../usuarios/usuarios.service';
+import { UsuarioGuardadoService } from "../../servicios/usuarioguardado.service";
+import { TareasService } from "../../servicios/tareas.service";
+import { UsuariosService } from '../../servicios/usuarios.service';
 import { Router } from '@angular/router';
 import { FormControl, FormGroup,Validators, FormBuilder } from '@angular/forms';
 

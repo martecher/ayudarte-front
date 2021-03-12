@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { UsuariosService } from '../../usuarios/usuarios.service';
-import { UsuarioGuardadoService } from "../../usuarios/usuarioguardado.service";
+import { UsuariosService } from '../../servicios/usuarios.service';
+import { UsuarioGuardadoService } from "../../servicios/usuarioguardado.service";
 
 @Component({
     selector: 'user-cmp',
