@@ -8,6 +8,7 @@
 
     <h2>{{operacion}} tarea</h2>
     <!-- Formulario Terminar -->
+    <spam>poner un boton en cada formulario para crear un mensaje y asi saber quien es el que envia y el que recibe en cada caso segun sea el formulario en cuestion</spam>
     <div class="form-group" *ngIf="operacion=='Terminar'">
       <form [formGroup]="terminarForm" (ngSubmit)="actualizarActividad()">
         <label igxLabel for="descripcionTarea">Tarea</label>
@@ -208,4 +209,66 @@
       </form>
     </div>
     <!-- Fin del formulario Aceptar  -->
+
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header">
+            <h4 class="card-title">Mensajes de la tarea</h4>
+          </div>
+          <div class="card-body">
+            <div class="table-responsive">
+              <table class="table">
+                <thead class=" text-primary">
+                  <th *ngFor="let header of tableData1.headerRow">
+                    <div class="contenidoCentrado">
+                      <span>{{header}}</span>
+                    </div>
+                  </th>
+                 </thead>
+                <tbody>
+                  <tr *ngFor="let dataRows of tableData1.dataRows">
+                    <td>
+                      <div class="contenidoCentrado">
+                        <span>{{dataRows[0]}}</span>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="contenidoCentrado">
+                        <span>{{dataRows[1]}}</span>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="contenidoCentrado">
+                        <span>{{dataRows[2]}}</span>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="contenidoCentrado">
+                        <span>{{dataRows[3]}}</span>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="contenidoCentrado">
+                        <span>{{dataRows[4]}}</span>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="contenidoCentrado">
+                        <span>{{dataRows[5]}}</span>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="contenidoCentrado">
+                        <button type="button" (click)="prepararEditar(dataRows[0], 'Terminar')" class="btn btn-info"><i class="nc-icon nc-paper"></i></button>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 </main>

@@ -1,11 +1,23 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
+
 import { ActividadesRealizadas } from '../../models/actividadesRealizadas';
+import { Mensajes } from '../../models/mensajes';
+
+
+
 import { UsuarioGuardadoService } from "../../servicios/usuarioguardado.service";
+import { MensajesService } from "../../servicios/mensajes.service";
 import { TareasService } from "../../servicios/tareas.service";
 import { UsuariosService } from '../../servicios/usuarios.service';
+
 import { Router } from '@angular/router';
 import { FormControl, FormGroup,Validators, FormBuilder } from '@angular/forms';
+
+declare interface TableData {
+  headerRow: string[];
+  dataRows: string[][];
+}
 
 @Component({
   selector: 'app-actividad',
@@ -15,10 +27,14 @@ import { FormControl, FormGroup,Validators, FormBuilder } from '@angular/forms';
 })
 
 export class ActividadComponent implements OnInit {
- 
+
+  public tableData1: TableData;
+  public dataRows: Array<Array<string>>= [];
+  public dataLine: Array<string> = [];
   public id: string;
   public operacion: string;
   public actividad: ActividadesRealizadas;
+  public mensajesTarea: Array<Mensajes> = [];
   public terminarForm: FormGroup;
   public aceptarForm: FormGroup;
   public consultarForm: FormGroup;
@@ -27,6 +43,7 @@ export class ActividadComponent implements OnInit {
       private router: Router,
       private fb: FormBuilder,
   		private rutaActiva: ActivatedRoute,
+  		public mensajesService: MensajesService,
   		public usuarioService: UsuariosService,
     	public usuarioGuardado:UsuarioGuardadoService,
     	public tareasService:TareasService ) {
@@ -44,6 +61,57 @@ export class ActividadComponent implements OnInit {
         console.log("ActividadComponent.ngOnInit() data.data: "+ myJSON);
         this.createForm( this.operacion,this.actividad);
       });
+
+      this.mensajesService.listaMensajesTarea(this.usuarioGuardado.getToken(),this.id).subscribe( data => {
+        this.mensajesTarea = data.data;
+        var myJSON = JSON.stringify(data.data);
+          console.log("ActividadComponent.ngOnInit() Mensajes data.data: "+ myJSON);
+          this.dataRows= [];
+/*
+
+  id: number;
+  texto: string;
+  leido: number;
+  usuarioEnvia_id: number;
+  usuarioReacibe_id: number;
+  orden: number;
+  tarea_id: number;
+  
+  */
+          for (var mensaje of this.mensajesTarea) {
+
+            this.dataLine = [];
+            this.dataLine.push(String(mensaje.id));
+            this.dataLine.push(String(mensaje.orden));
+            this.dataLine.push(mensaje.texto);
+ 
+            this.dataLine.push(mensaje.usuario_envia.nombre.concat(
+                                ' ',
+                                mensaje.usuario_envia.apellido1,
+                                ' ',
+                                mensaje.usuario_envia.apellido2)
+            );
+           
+            this.dataLine.push(mensaje.usuario_recibe.nombre.concat(
+              ' ',
+              mensaje.usuario_recibe.apellido1,
+              ' ',
+              mensaje.usuario_recibe.apellido2)
+            );
+ 
+ 
+
+            this.dataLine.push(String(mensaje.leido));
+            this.dataRows.push(this.dataLine);
+        }
+
+
+
+          this.tableData1 = {
+            headerRow: [ 'id','orden', 'texto', 'envía', 'recibe', 'leido'],
+            dataRows: this.dataRows
+        };
+        });
   }
 
   createForm(operacion, actividad) {
