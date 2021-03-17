@@ -10,6 +10,6 @@ export interface Mensajes {
   usuario_envia: Usuario;
   usuario_recibe: Usuario;
   orden: number;
-//  tarea: ActividadesRealizadas;
+  tarea: ActividadesRealizadas;
 }
 

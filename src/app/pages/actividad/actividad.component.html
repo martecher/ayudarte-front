@@ -73,9 +73,10 @@
           <input class="radioEstrella" id="radio5" type="radio" formControlName="puntuacionSolicita" value="1"  >
           <label class="estrella"  for="radio5">★</label>
         </p>
+      </div>
         <button type="submit">Guardar</button>
         <button type="submit" (click)="volver()" >Volver</button>
-      </div>
+
       </form>
     </div>
     <!-- Fin del formulario Terminar  -->
@@ -222,13 +223,38 @@
           <input class="radioEstrella" id="radio5" type="radio" formControlName="valoracion" value="1"  >
           <label class="estrella"  for="radio5">★</label>
         </p>
+      </div>
         <button type="submit">Guardar</button>
         <button type="submit" (click)="volver()" >Volver</button>
-      </div>
+   
 
       </form>
     </div>
+    
     <!-- Fin del formulario Aceptar  -->
+
+    <!-- Formulario nuevo mensaje  -->
+
+    <div class="form-group" >
+      <form [formGroup]="mensajeForm" (ngSubmit)="enviarMensaje()">
+         <div class="form-group">
+
+        <label igxLabel for="texto">Mensaje</label>
+
+          <input type="textarea"
+                  placeholder="texto"
+                  formControlName="texto"
+                  readonly="true" 
+          >
+        </div>
+        <a href="#" ><i class="nc-icon nc-send"></i></a>
+
+      </form>
+    </div>
+
+
+    <!-- Fin del formulario  nuevo mensaje  -->
+
 
     <div class="row">
       <div class="col-md-12">
@@ -250,16 +276,6 @@
                   <tr *ngFor="let dataRows of tableData1.dataRows">
                     <td>
                       <div class="contenidoCentrado">
-                        <span>{{dataRows[0]}}</span>
-                      </div>
-                    </td>
-                    <td>
-                      <div class="contenidoCentrado">
-                        <span>{{dataRows[1]}}</span>
-                      </div>
-                    </td>
-                    <td>
-                      <div class="contenidoCentrado">
                         <span>{{dataRows[2]}}</span>
                       </div>
                     </td>
@@ -275,12 +291,7 @@
                     </td>
                     <td>
                       <div class="contenidoCentrado">
-                        <span>{{dataRows[5]}}</span>
-                      </div>
-                    </td>
-                    <td>
-                      <div class="contenidoCentrado">
-                        <button type="button" (click)="prepararEditar(dataRows[0], 'Terminar')" class="btn btn-info"><i class="nc-icon nc-paper"></i></button>
+                        <i class="nc-icon nc-check-2"></i>                      
                       </div>
                     </td>
                   </tr>

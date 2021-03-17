@@ -35,9 +35,13 @@ export class ActividadComponent implements OnInit {
   public operacion: string;
   public actividad: ActividadesRealizadas;
   public mensajesTarea: Array<Mensajes> = [];
+  public mensajeTarea: Mensajes;
+
   public terminarForm: FormGroup;
   public aceptarForm: FormGroup;
   public consultarForm: FormGroup;
+  public mensajeForm: FormGroup;
+  
   public puntuacionRecibida: string;
   constructor( 
       private router: Router,
@@ -79,7 +83,6 @@ export class ActividadComponent implements OnInit {
   
   */
           for (var mensaje of this.mensajesTarea) {
-
             this.dataLine = [];
             this.dataLine.push(String(mensaje.id));
             this.dataLine.push(String(mensaje.orden));
@@ -98,17 +101,11 @@ export class ActividadComponent implements OnInit {
               ' ',
               mensaje.usuario_recibe.apellido2)
             );
- 
- 
-
             this.dataLine.push(String(mensaje.leido));
             this.dataRows.push(this.dataLine);
         }
-
-
-
           this.tableData1 = {
-            headerRow: [ 'id','orden', 'texto', 'envía', 'recibe', 'leido'],
+            headerRow: [  'texto', 'envía', 'recibe', 'leido'],
             dataRows: this.dataRows
         };
         });
@@ -116,20 +113,7 @@ export class ActividadComponent implements OnInit {
 
   createForm(operacion, actividad) {
 
-/*
-  id: number;
-  observacion: string;
-  horasReales: string;
-  valoracion: string;
-  usuario_solicita: Usuario;
-  usuario_realiza: Usuario;
-  habilidad: Habilidad;
-  puntuacionSolicita: string;
-  finalizada: string;
-*/
-//      this.puntuacionRecibida = ""+actividad.usuarioSolicita[0].reputacion;
       console.log("ActividadComponent.ngOnInit() puntuacionRecibida: "+ this.puntuacionRecibida);
-
       switch (operacion) {
         case "Terminar":
           this.terminarForm = this.fb.group({
@@ -141,7 +125,6 @@ export class ActividadComponent implements OnInit {
             observacion: [actividad.observacion]
           });
           break;
- 
         case "Aceptar":
           this.aceptarForm = this.fb.group({
             descripcionTarea: [actividad.habilidad[0].descripcion],
@@ -170,9 +153,17 @@ export class ActividadComponent implements OnInit {
           break;
       }
 
+      this.mensajeForm = this.fb.group({
+        texto: []
+      });
+
   }
 
   volver(){
+    this.mensajesService.marcarLeidosMensajesTarea(this.usuarioGuardado.getToken(),this.id).subscribe( data => {
+      var myJSON = JSON.stringify(data.data);
+        console.log("ActividadComponent.volver() data.data: "+ myJSON);
+      });
     this.router.navigateByUrl('/panel');
   }
 
@@ -215,7 +206,49 @@ export class ActividadComponent implements OnInit {
           // code...
           break;
       }
-
   }
+  
+  enviarMensaje(){
+    //recibe la funcion que hemos elegido anteriormente "Terminar" o "Aceptar"
+     // dependiendo de eso le habre mostrado un formulario u otro pero todos vendran a este metodo
+     // que asignará las propiedades y llamará al api rest de actualizar la tarea completa
+     // la opción    "Consultar" no  se contempla ya que no será un formulario si no datos solo lectura
+ 
+       switch (this.operacion) {
+         case "Terminar":
+             //indica las horasReales realizas  y la puntuacion al que solicító la tarea
+             this.mensajeTarea.texto= this.terminarForm.value.texto;
+             this.mensajeTarea.leido= 0;
+             this.mensajeTarea.orden =   this.mensajesTarea.length + 1;
+             this.mensajeTarea.usuario_envia.usuario_id = this.actividad.usuario_realiza.usuario_id;
+             this.mensajeTarea.usuario_recibe.usuario_id =  this.actividad.usuario_solicita.usuario_id;
+             this.mensajeTarea.tarea.id = Number(this.id);
+
+             this.mensajesService.nuevoMensaje(this.usuarioGuardado.getToken(),this.mensajeTarea).subscribe( data => {
+               data.data;
+               var myJSON = JSON.stringify(data.data);
+               console.log("ActividadComponent.enviarMensaje() data.data: "+ myJSON);
+             });
+           break;
+         case "Aceptar":
+             //valora al usuario  que la realizó
+             this.actividad.id=  Number(this.id);
+             this.actividad.valoracion = this.aceptarForm.value.valoracion;
+             this.tareasService.finalizarTarea(this.usuarioGuardado.getToken(),this.actividad).subscribe( data => {
+               data.data;
+               var myJSON = JSON.stringify(data.data);
+               console.log("ActividadComponent.actualizarActividad() data.data: "+ myJSON);
+             });
+           break;
+         case "Consultar":
+             // Este no hace nada. Puede dirigir al dashboard 
+             this.router.navigateByUrl('/panel');
+ 
+           break;
+         default:
+           // code...
+           break;
+       }
+   }
 
 }
