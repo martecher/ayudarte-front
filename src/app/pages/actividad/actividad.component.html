@@ -11,8 +11,8 @@
     <spam>poner un boton en cada formulario para crear un mensaje y asi saber quien es el que envia y el que recibe en cada caso segun sea el formulario en cuestion</spam>
     <div class="form-group" *ngIf="operacion=='Terminar'">
       <form [formGroup]="terminarForm" (ngSubmit)="actualizarActividad()">
-        <label igxLabel for="descripcionTarea">Tarea</label>
-        <div class="descripcion-tarea">
+        <div class="form-group">
+          <label igxLabel for="descripcionTarea">Tarea</label>
           <input type="text"
                  placeholder="Tarea"
                  name="descripcionTarea"
@@ -20,39 +20,42 @@
                   readonly="true" 
           >
         </div>
+        <div class="form-group">
         <label igxLabel for="usuario_solicita">Usuario solicitante</label>
-        <div class="usuario-solicita">
           <input type="text"
                   placeholder="Usuario que solicita"
                   formControlName="usuario_solicita"
                   readonly="true" 
           >
         </div>
+        <div class="form-group">
+
         <label igxLabel for="usuario_solicita">Usuario que realiza</label>
-        <div class="usuario-realiza">
           <input type="text"
                   placeholder="Usuario que realiza"
                   formControlName="usuario_realiza"
                   readonly="true" 
           >
         </div>
+        <div class="form-group">
 
         <label igxLabel for="observacion">observacion</label>
-        <div class="observacion">
           <input type="text"
                   placeholder="observacion"
                   formControlName="observacion"
                   readonly="true" 
           >
         </div>
+        <div class="form-group">
 
         <label igxLabel for="horasReales">horas reales OJO SEPARADO CON . no con ,</label>
-        <div class="horas-reales">
           <input type="number"
                   placeholder="Horas Reales"
                   formControlName="horasReales"
           >
         </div>
+        <div class="form-group">
+
         <label igxLabel for="puntuacionSolicita">Puntua al usuario que solicita</label>
         <p class="clasificacion">
           <input class="radioEstrella" id="radio1" type="radio" formControlName="puntuacionSolicita" value="5"  >
@@ -72,6 +75,7 @@
         </p>
         <button type="submit">Guardar</button>
         <button type="submit" (click)="volver()" >Volver</button>
+      </div>
       </form>
     </div>
     <!-- Fin del formulario Terminar  -->
@@ -79,8 +83,9 @@
     <!-- Formulario Consultar -->
     <div class="form-group" *ngIf="operacion=='Consultar'">
       <form [formGroup]="consultarForm" (ngSubmit)="actualizarActividad()">
+        <div class="form-group">
+
         <label igxLabel for="descripcionTarea">Tarea</label>
-        <div class="descripcion-tarea">
           <input type="text"
                  placeholder="Tarea"
                  name="descripcionTarea"
@@ -88,49 +93,55 @@
                   readonly="true" 
           >
         </div>
+        <div class="form-group">
+
         <label igxLabel for="usuario_solicita">Usuario solicitante</label>
-        <div class="usuario-solicita">
           <input type="text"
                   placeholder="Usuario que solicita"
                   formControlName="usuario_solicita"
                   readonly="true" 
           >
         </div>
+        <div class="form-group">
+
         <label igxLabel for="usuario_solicita">Usuario que realiza</label>
-        <div class="usuario-realiza">
           <input type="text"
                   placeholder="Usuario que realiza"
                   formControlName="usuario_realiza"
                   readonly="true" 
           >
         </div>
+        <div class="form-group">
+
         <label igxLabel for="observacion">observacion</label>
 
-        <div class="observacion">
           <input type="text"
                   placeholder="observacion"
                   formControlName="observacion"
                   readonly="true" 
           >
         </div>
+        <div class="form-group">
+
         <label igxLabel for="horasReales">horas reales</label>
-        <div class="horas-reales">
           <input type="number"
                   placeholder="Horas Reales"
                   formControlName="horasReales"
                   readonly="true" 
           >
         </div>
+        <div class="form-group">
+
         <label igxLabel for="puntuacionSolicita">Puntuación al usuario que solicita</label>
-        <div class="puntuacionSolicita">
           <input type="number"
                   placeholder="puntuacionSolicita"
                   formControlName="puntuacionSolicita"
                   readonly="true" 
           >
         </div>
+        <div class="form-group">
+
         <label igxLabel for="valoracion">Puntuación al usuario que realiza</label>
-        <div class="valoracion">
           <input type="number"
                   placeholder="valoracion"
                   formControlName="valoracion"
@@ -145,8 +156,9 @@
     <!-- Formulario Aceptar -->
     <div class="form-group" *ngIf="operacion=='Aceptar'">
       <form [formGroup]="aceptarForm" (ngSubmit)="actualizarActividad()">
+        <div class="form-group">
+
         <label igxLabel for="descripcionTarea">Tarea</label>
-        <div class="descripcion-tarea">
           <input type="text"
                  placeholder="Tarea"
                  name="descripcionTarea"
@@ -154,39 +166,45 @@
                   readonly="true" 
           >
         </div>
+        <div class="form-group">
+
         <label igxLabel for="usuario_solicita">Usuario solicitante</label>
-        <div class="usuario-solicita">
           <input type="text"
                   placeholder="Usuario que solicita"
                   formControlName="usuario_solicita"
                   readonly="true" 
           >
         </div>
+        <div class="form-group">
+
         <label igxLabel for="usuario_solicita">Usuario que realiza</label>
-        <div class="usuario-realiza">
           <input type="text"
                   placeholder="Usuario que realiza"
                   formControlName="usuario_realiza"
                   readonly="true" 
           >
         </div>
+        <div class="form-group">
+
         <label igxLabel for="observacion">observacion</label>
 
-        <div class="observacion">
           <input type="text"
                   placeholder="observacion"
                   formControlName="observacion"
                   readonly="true" 
           >
         </div>
+        <div class="form-group">
+
         <label igxLabel for="horasReales">Horas reales OJO SEPARADO CON . no con ,</label>
-        <div class="horas-reales">
           <input type="number"
                   placeholder="Horas Reales"
                   formControlName="horasReales"
                   readonly="true" 
           >
         </div>
+        <div class="form-group">
+
         <label igxLabel for="valoracion">Puntua al usuario que realiza</label>
         <p class="clasificacion">
           <input class="radioEstrella" id="radio1" type="radio" formControlName="valoracion" value="5"  >
@@ -206,6 +224,8 @@
         </p>
         <button type="submit">Guardar</button>
         <button type="submit" (click)="volver()" >Volver</button>
+      </div>
+
       </form>
     </div>
     <!-- Fin del formulario Aceptar  -->
