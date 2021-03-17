@@ -1,12 +1,15 @@
 <div class="container h-100">
   <div class="d-flex justify-content-center h-100">
     <div class="searchbar">
-      <input class="search_input" type="text" name="" placeholder="Buscar...">
-      <a href="#" class="search_icon"><i class="nc-icon nc-zoom-split"></i></a>
+      <form [formGroup]="buscarForm" class="form_search">
+        <input  class="search_input" 
+                type="text" formControlName="texto"
+                placeholder="Buscar actividad">
+        <a (click)="buscarPorHabilidad()" class="search_icon"><i class="nc-icon nc-zoom-split"></i></a>
+      </form>
     </div>
   </div>
 </div>
-
 
 <div class="row"></div>
 

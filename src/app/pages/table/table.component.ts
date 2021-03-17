@@ -3,6 +3,7 @@ import { UsuariosService } from '../../servicios/usuarios.service';
 import { UsuarioGuardadoService } from "../../servicios/usuarioguardado.service";
 import { TareasService } from "../../servicios/tareas.service";
 import { ActividadesRealizadas } from "../../models/actividadesRealizadas";
+import { FormControl, FormGroup,Validators, FormBuilder } from '@angular/forms';
 
 declare interface TableData {
     headerRow: string[];
@@ -22,16 +23,19 @@ export class TableComponent implements OnInit{
     public listaTareasNoAsignadas: ActividadesRealizadas[];
     public dataRows: Array<Array<string>>= [];
     public dataLine: Array<string> = [];
+    public buscarForm: FormGroup;
 
   constructor(
+    private fb: FormBuilder,
     public usuarioService: UsuariosService,
     public usuarioGuardado:UsuarioGuardadoService,
     public tareasService:TareasService
     ) { }
 
     ngOnInit(){
-
-
+        this.buscarForm = this.fb.group({
+            texto: []
+          });
         this.tableData2 = {
             headerRow: [ 'ID', 'Name',  'Salary', 'Country', 'City' ],
             dataRows: [
@@ -43,42 +47,36 @@ export class TableComponent implements OnInit{
                 ['6', 'Mason Porter', '$78,615', 'Chile', 'Gloucester' ]
             ]
         };
-
         // Esta lista de tareas son las no asigandas, estan libres y voy a  poder asignamerlas yo
         this.tareasService.listaTareasAsignadas(this.usuarioGuardado.getToken(),0).subscribe( data => {
         this.listaTareasNoAsignadas = data.data;
         this.dataRows= [];
         console.log("Muestro la lista de tareas no finalizadas asigandas al usuario");
         console.log(this.listaTareasNoAsignadas);
-        
         for (var tarea of this.listaTareasNoAsignadas) {
-
             this.dataLine = [];
             this.dataLine.push(String(tarea.id));
             this.dataLine.push(tarea.habilidad.descripcion);
-
             this.dataLine.push(tarea.usuario_solicita.nombre.concat(
                                 ' ',
                                 tarea.usuario_solicita.apellido1,
                                 ' ',
                                 tarea.usuario_solicita.apellido2)
             );
-
             this.dataLine.push(tarea.observacion);
             this.dataLine.push(tarea.habilidad.horasEstipuladas);
             this.dataLine.push("Boton para Realizarla");
             this.dataRows.push(this.dataLine);
         }
-
-
-
         this.tableData1 = {
             headerRow: [ 'ID', 'Actividad', 'Solicita', 'Observacion', 'Horas Estipuladas', 'Realizarla'],
             dataRows: this.dataRows
         };
-
- 
     });
-
+  }
+  buscarPorHabilidad(habilidad){
+      //falta llamar a un metodo que filtre las actividades por habilidad que incluya el nombre
+      //de la actividad
+    console.log("TableComponent buscarPorHabilidad: "+this.buscarForm.value.texto );
   }
 }
