@@ -235,23 +235,18 @@
 
     <!-- Formulario nuevo mensaje  -->
 
-    <div class="form-group" >
-      <form [formGroup]="mensajeForm" (ngSubmit)="enviarMensaje()">
-         <div class="form-group">
-
-        <label igxLabel for="texto">Mensaje</label>
-
-          <input type="textarea"
-                  placeholder="texto"
-                  formControlName="texto"
-                  readonly="true" 
-          >
-        </div>
-        <a href="#" ><i class="nc-icon nc-send"></i></a>
-
-      </form>
+    <div class="container h-100">
+      <div class="d-flex justify-content-center h-100">
+          <form [formGroup]="mensajeForm" class="form_search">
+            <input   
+                    type="textarea" formControlName="texto"
+                    placeholder="Escriba su mensaje">
+            <a (click)="enviarMensaje()" class="search_icon"><i class="nc-icon nc-send"></i></a>
+          </form>
+      </div>
     </div>
 
+ 
 
     <!-- Fin del formulario  nuevo mensaje  -->
 

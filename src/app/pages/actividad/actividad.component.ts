@@ -209,46 +209,19 @@ export class ActividadComponent implements OnInit {
   }
   
   enviarMensaje(){
-    //recibe la funcion que hemos elegido anteriormente "Terminar" o "Aceptar"
-     // dependiendo de eso le habre mostrado un formulario u otro pero todos vendran a este metodo
-     // que asignará las propiedades y llamará al api rest de actualizar la tarea completa
-     // la opción    "Consultar" no  se contempla ya que no será un formulario si no datos solo lectura
- 
-       switch (this.operacion) {
-         case "Terminar":
-             //indica las horasReales realizas  y la puntuacion al que solicító la tarea
-             this.mensajeTarea.texto= this.terminarForm.value.texto;
-             this.mensajeTarea.leido= 0;
-             this.mensajeTarea.orden =   this.mensajesTarea.length + 1;
-             this.mensajeTarea.usuario_envia.usuario_id = this.actividad.usuario_realiza.usuario_id;
-             this.mensajeTarea.usuario_recibe.usuario_id =  this.actividad.usuario_solicita.usuario_id;
-             this.mensajeTarea.tarea.id = Number(this.id);
+    this.mensajeTarea =  {} as Mensajes;
+    this.mensajeTarea.texto= this.terminarForm.value.texto;
+    this.mensajeTarea.leido= 0;
+    this.mensajeTarea.orden =   this.mensajesTarea.length + 1;
+    this.mensajeTarea.usuario_envia.usuario_id = this.actividad.usuario_realiza.usuario_id;
+     this.mensajeTarea.usuario_recibe.usuario_id =  this.actividad.usuario_solicita.usuario_id;
+    this.mensajeTarea.tarea.id = Number(this.id);
 
-             this.mensajesService.nuevoMensaje(this.usuarioGuardado.getToken(),this.mensajeTarea).subscribe( data => {
-               data.data;
-               var myJSON = JSON.stringify(data.data);
-               console.log("ActividadComponent.enviarMensaje() data.data: "+ myJSON);
-             });
-           break;
-         case "Aceptar":
-             //valora al usuario  que la realizó
-             this.actividad.id=  Number(this.id);
-             this.actividad.valoracion = this.aceptarForm.value.valoracion;
-             this.tareasService.finalizarTarea(this.usuarioGuardado.getToken(),this.actividad).subscribe( data => {
-               data.data;
-               var myJSON = JSON.stringify(data.data);
-               console.log("ActividadComponent.actualizarActividad() data.data: "+ myJSON);
-             });
-           break;
-         case "Consultar":
-             // Este no hace nada. Puede dirigir al dashboard 
-             this.router.navigateByUrl('/panel');
- 
-           break;
-         default:
-           // code...
-           break;
-       }
+    this.mensajesService.nuevoMensaje(this.usuarioGuardado.getToken(),this.mensajeTarea).subscribe( data => {
+        data.data;
+        var myJSON = JSON.stringify(data.data);
+        console.log("ActividadComponent.enviarMensaje() data.data: "+ myJSON);
+      });
    }
 
 }
