@@ -4,6 +4,7 @@ import { UsuarioGuardadoService } from "../../servicios/usuarioguardado.service"
 import { TareasService } from "../../servicios/tareas.service";
 import { ActividadesRealizadas } from "../../models/actividadesRealizadas";
 import { FormControl, FormGroup,Validators, FormBuilder } from '@angular/forms';
+import { Router } from '@angular/router';
 
 declare interface TableData {
     headerRow: string[];
@@ -21,11 +22,14 @@ export class TableComponent implements OnInit{
     public tableData2: TableData;
     public listaTareasAsignadasPropias: ActividadesRealizadas[];
     public listaTareasNoAsignadas: ActividadesRealizadas[];
+    public listaTareasNoAsignadasAux: ActividadesRealizadas[];
+
     public dataRows: Array<Array<string>>= [];
     public dataLine: Array<string> = [];
     public buscarForm: FormGroup;
 
   constructor(
+    private router: Router,
     private fb: FormBuilder,
     public usuarioService: UsuariosService,
     public usuarioGuardado:UsuarioGuardadoService,
@@ -78,5 +82,32 @@ export class TableComponent implements OnInit{
       //falta llamar a un metodo que filtre las actividades por habilidad que incluya el nombre
       //de la actividad
     console.log("TableComponent buscarPorHabilidad: "+this.buscarForm.value.texto );
+    
+  this.listaTareasNoAsignadasAux=this.listaTareasNoAsignadas.filter(tarea => tarea.habilidad.descripcion.includes(this.buscarForm.value.texto));
+  
+  this.dataRows= [];
+  console.log("buscarPorHabilidad listaTareasNoAsignadasAux");
+  console.log(this.listaTareasNoAsignadasAux);
+  for (var tarea of this.listaTareasNoAsignadasAux) {
+      this.dataLine = [];
+      this.dataLine.push(String(tarea.id));
+      this.dataLine.push(tarea.habilidad.descripcion);
+      this.dataLine.push(tarea.usuario_solicita.nombre.concat(
+                          ' ',
+                          tarea.usuario_solicita.apellido1,
+                          ' ',
+                          tarea.usuario_solicita.apellido2)
+      );
+      this.dataLine.push(tarea.observacion);
+      this.dataLine.push(tarea.habilidad.horasEstipuladas);
+      this.dataLine.push("Boton para Realizarla");
+      this.dataRows.push(this.dataLine);
+  }
+  this.tableData1 = {
+      headerRow: [ 'ID', 'Actividad', 'Solicita', 'Observacion', 'Horas Estipuladas', 'Realizarla'],
+      dataRows: this.dataRows
+  };
+  this.router.navigateByUrl('/actividades');
+
   }
 }
