@@ -33,21 +33,25 @@ export class MensajesService {
     return this.http.put("http://127.0.0.1:8000/api/mensajes/tarea/marcarleidos/"+id, { headers: headers })
   }
 
-  nuevoMensaje(auth_token, mensajeTarea): Observable<any> {
+  nuevoMensaje(auth_token, texto, idUsuarioEnvia, idUsuarioRecibe, idTarea, orden): Observable<any> {
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${auth_token}`
-    })
-    //falta por implementar el body con los parametros y llamar al metodo correcto que 
-    //aun no está programado en el api
+    });
+    const body = { 
+      tarea_id: idTarea,
+      texto:texto,
+      leido: 0,
+      usuarioEnvia_id: idUsuarioEnvia,
+      usuarioRecibe_id:idUsuarioRecibe,
+      orden: orden
+   };
+ 
+    
     /*        
-    'texto',
-		'leido',
-		'usuarioEnvia_id',
-    'usuarioRecibe_id',
-        'orden',
-		'tarea_id'*/
-    return this.http.post("http://127.0.0.1:8000/api/mensajes/tarea_id="+mensajeTarea.tarea.id+"?texto="+mensajeTarea.texto+"&leido=0&usuarioEnvia_id="+mensajeTarea.usuario_envia.usuario_id +"&usuarioRecibe_id="+mensajeTarea.usuario_recibe.usuario_id , { headers: headers })
+&usuarioRecibe_id="+idUsuarioRecibe
+    */
+    return this.http.post("http://127.0.0.1:8000/api/mensajes" , body, { headers: headers })
   }
   
 

@@ -3,6 +3,7 @@ import { ActivatedRoute, Params } from '@angular/router';
 
 import { ActividadesRealizadas } from '../../models/actividadesRealizadas';
 import { Mensajes } from '../../models/mensajes';
+import { Usuario } from '../../models/usuario';
 
 
 
@@ -62,26 +63,15 @@ export class ActividadComponent implements OnInit {
       this.tareasService.getTarea(this.usuarioGuardado.getToken(),this.id).subscribe( data => {
       this.actividad = data.data;
       var myJSON = JSON.stringify(data.data);
-        console.log("ActividadComponent.ngOnInit() data.data: "+ myJSON);
+   //     console.log("ActividadComponent.ngOnInit() data.data: "+ myJSON);
         this.createForm( this.operacion,this.actividad);
       });
 
       this.mensajesService.listaMensajesTarea(this.usuarioGuardado.getToken(),this.id).subscribe( data => {
         this.mensajesTarea = data.data;
         var myJSON = JSON.stringify(data.data);
-          console.log("ActividadComponent.ngOnInit() Mensajes data.data: "+ myJSON);
           this.dataRows= [];
-/*
 
-  id: number;
-  texto: string;
-  leido: number;
-  usuarioEnvia_id: number;
-  usuarioReacibe_id: number;
-  orden: number;
-  tarea_id: number;
-  
-  */
           for (var mensaje of this.mensajesTarea) {
             this.dataLine = [];
             this.dataLine.push(String(mensaje.id));
@@ -113,7 +103,7 @@ export class ActividadComponent implements OnInit {
 
   createForm(operacion, actividad) {
 
-      console.log("ActividadComponent.ngOnInit() puntuacionRecibida: "+ this.puntuacionRecibida);
+ //     console.log("ActividadComponent.ngOnInit() puntuacionRecibida: "+ this.puntuacionRecibida);
       switch (operacion) {
         case "Terminar":
           this.terminarForm = this.fb.group({
@@ -162,7 +152,7 @@ export class ActividadComponent implements OnInit {
   volver(){
     this.mensajesService.marcarLeidosMensajesTarea(this.usuarioGuardado.getToken(),this.id).subscribe( data => {
       var myJSON = JSON.stringify(data.data);
-        console.log("ActividadComponent.volver() data.data: "+ myJSON);
+   //     console.log("ActividadComponent.volver() data.data: "+ myJSON);
       });
     this.router.navigateByUrl('/panel');
   }
@@ -184,7 +174,7 @@ export class ActividadComponent implements OnInit {
             this.tareasService.finalizarTarea(this.usuarioGuardado.getToken(),this.actividad).subscribe( data => {
               data.data;
               var myJSON = JSON.stringify(data.data);
-              console.log("ActividadComponent.actualizarActividad() data.data: "+ myJSON);
+  //            console.log("ActividadComponent.actualizarActividad() data.data: "+ myJSON);
             });
           break;
         case "Aceptar":
@@ -194,7 +184,7 @@ export class ActividadComponent implements OnInit {
             this.tareasService.finalizarTarea(this.usuarioGuardado.getToken(),this.actividad).subscribe( data => {
               data.data;
               var myJSON = JSON.stringify(data.data);
-              console.log("ActividadComponent.actualizarActividad() data.data: "+ myJSON);
+   //           console.log("ActividadComponent.actualizarActividad() data.data: "+ myJSON);
             });
           break;
         case "Consultar":
@@ -209,19 +199,58 @@ export class ActividadComponent implements OnInit {
   }
   
   enviarMensaje(){
-    this.mensajeTarea =  {} as Mensajes;
-    this.mensajeTarea.texto= this.terminarForm.value.texto;
-    this.mensajeTarea.leido= 0;
-    this.mensajeTarea.orden =   this.mensajesTarea.length + 1;
-    this.mensajeTarea.usuario_envia.usuario_id = this.actividad.usuario_realiza.usuario_id;
-     this.mensajeTarea.usuario_recibe.usuario_id =  this.actividad.usuario_solicita.usuario_id;
-    this.mensajeTarea.tarea.id = Number(this.id);
+     switch (this.operacion) {
+      case "Terminar":
+          //console.log("ActividadComponent.enviarMensaje() this.id: "+ this.id);
+          this.tareasService.getTarea(this.usuarioGuardado.getToken(),this.id).subscribe( data => {
+            this.actividad = data.data;
+            var myJSON = JSON.stringify(data.data);
+  //      console.log("ActividadComponent.ngOnInit() data.data: "+ myJSON);
+  //            console.log("ActividadComponent.ngOnInit() data.data.usuarioSolicita[0].usuario_id: "+ data.data.usuarioSolicita[0].usuario_id);
+ 
+              this.mensajesService.nuevoMensaje(this.usuarioGuardado.getToken(),
+              this.mensajeForm.value.texto, data.data.usuarioRealiza[0].usuario_id,
+              data.data.usuarioSolicita[0].usuario_id, this.id,
+              this.mensajesTarea.length+1
+              ).subscribe( data => {
+                  data.data;
+                  this.mensajesService.listaMensajesTarea(this.usuarioGuardado.getToken(),this.id).subscribe( data => {
+                    this.mensajesTarea = data.data;
+                    var myJSON = JSON.stringify(data.data);
+                      this.dataRows= [];
+                      for (var mensaje of this.mensajesTarea) {
+                        this.dataLine = [];
+                        this.dataLine.push(String(mensaje.id));
+                        this.dataLine.push(String(mensaje.orden));
+                        this.dataLine.push(mensaje.texto);
+             
+                        this.dataLine.push(mensaje.usuario_envia.nombre.concat(
+                                            ' ',
+                                            mensaje.usuario_envia.apellido1,
+                                            ' ',
+                                            mensaje.usuario_envia.apellido2)
+                        );
+                        this.dataLine.push(mensaje.usuario_recibe.nombre.concat(
+                          ' ',
+                          mensaje.usuario_recibe.apellido1,
+                          ' ',
+                          mensaje.usuario_recibe.apellido2)
+                        );
+                        this.dataLine.push(String(mensaje.leido));
+                        this.dataRows.push(this.dataLine);
+                    }
+                      this.tableData1 = {
+                        headerRow: [  'texto', 'envía', 'recibe', 'leido'],
+                        dataRows: this.dataRows
+                    };
+                    });
+                });
+            });        
 
-    this.mensajesService.nuevoMensaje(this.usuarioGuardado.getToken(),this.mensajeTarea).subscribe( data => {
-        data.data;
-        var myJSON = JSON.stringify(data.data);
-        console.log("ActividadComponent.enviarMensaje() data.data: "+ myJSON);
-      });
-   }
-
+      break;
+      default:
+        // code...
+        break;
+     }
+    }
 }
