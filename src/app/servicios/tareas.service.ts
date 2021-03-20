@@ -100,6 +100,15 @@ export class TareasService {
     return this.http.get("http://127.0.0.1:8000/api/actividadesRealizadas/"+id, { headers: headers })
   }
 
+  asignarTarea(auth_token, idTarea, idUsuario): Observable<any> {
+
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${auth_token}`
+    })
+    
+    return this.http.put("http://127.0.0.1:8000/api/actividadesRealizadas/"+idTarea+"/usuarioId/"+idUsuario, { headers: headers})
+  }
 
 
   finalizarTarea(auth_token, tarea): Observable<any> {
@@ -108,7 +117,7 @@ export class TareasService {
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${auth_token}`
     })
-
+    
     return this.http.put("http://127.0.0.1:8000/api/actividadesRealizadas/"+tarea.id+"?finalizada=1&puntuacionSolicita="+tarea.puntuacionSolicita+"&horasReales="+tarea.horasReales, { headers: headers})
   }
 

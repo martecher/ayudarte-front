@@ -11,4 +11,5 @@ export interface ActividadesRealizadas {
   habilidad: Habilidad;
   puntuacionSolicita: string;
   finalizada: string;
+
 }

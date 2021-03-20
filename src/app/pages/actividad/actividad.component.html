@@ -235,7 +235,7 @@
 
     <!-- Formulario nuevo mensaje  -->
 
-    <div class="container h-100">
+    <div class="container h-100" *ngIf="operacion=='Aceptar' || operacion=='Terminar'" >
       <div class="d-flex justify-content-center h-100">
           <form [formGroup]="mensajeForm" class="form_search">
             <input   

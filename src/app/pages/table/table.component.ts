@@ -5,6 +5,7 @@ import { TareasService } from "../../servicios/tareas.service";
 import { ActividadesRealizadas } from "../../models/actividadesRealizadas";
 import { FormControl, FormGroup,Validators, FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
+import { MensajesService } from "../../servicios/mensajes.service";
 
 declare interface TableData {
     headerRow: string[];
@@ -23,12 +24,14 @@ export class TableComponent implements OnInit{
     public listaTareasAsignadasPropias: ActividadesRealizadas[];
     public listaTareasNoAsignadas: ActividadesRealizadas[];
     public listaTareasNoAsignadasAux: ActividadesRealizadas[];
+    public actividad: ActividadesRealizadas;
 
     public dataRows: Array<Array<string>>= [];
     public dataLine: Array<string> = [];
     public buscarForm: FormGroup;
 
   constructor(
+    public mensajesService: MensajesService,
     private router: Router,
     private fb: FormBuilder,
     public usuarioService: UsuariosService,
@@ -110,4 +113,28 @@ export class TableComponent implements OnInit{
   this.router.navigateByUrl('/actividades');
 
   }
+
+
+    asignar(id, operacion) {
+
+        this.tareasService.getTarea(this.usuarioGuardado.getToken(),id).subscribe( data => {
+           var actividad = data.data;
+            var myJSON = JSON.stringify(data.data);   
+
+            this.tareasService.asignarTarea(this.usuarioGuardado.getToken(),id,this.usuarioGuardado.getUsuarioId()).subscribe( data => {
+              data.data;
+        
+              var myJSON = JSON.stringify(actividad);   
+              console.log("TableComponent.asignar()  myJSON: " + myJSON);      
+
+              this.mensajesService.nuevoMensaje(this.usuarioGuardado.getToken(),
+              "La tarea ha sido seleccionada para ser realazada por un usuario", this.usuarioGuardado.getUsuarioId(),
+              actividad.usuarioSolicita[0].usuario_id, id,1
+              ).subscribe( data => {
+                  data.data;
+                  this.router.navigateByUrl('/panel');
+              });
+            });
+        });
+    }
 }
