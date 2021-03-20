@@ -115,7 +115,7 @@ export class TableComponent implements OnInit{
   }
 
 
-    asignar(id, operacion) {
+    asignar(id) {
 
         this.tareasService.getTarea(this.usuarioGuardado.getToken(),id).subscribe( data => {
            var actividad = data.data;

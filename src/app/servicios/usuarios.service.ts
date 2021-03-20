@@ -57,11 +57,24 @@ export class UsuariosService {
     return this.http.get("http://127.0.0.1:8000/api/usuarios", { headers: headers })
   }
 
-    getUsuario(auth_token, id): Observable<any> {
+  getUsuario(auth_token, id): Observable<any> {
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${auth_token}`
     })
     return this.http.get("http://127.0.0.1:8000/api/usuarios/"+id, { headers: headers })
+  }
+  actualizarValoracionUsuario(auth_token, id, numeroVotaciones, reputacionSolicita, horas): Observable<any> {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${auth_token}`
+    })
+    const body = { 
+      numeroVotaciones: numeroVotaciones,
+      reputacion:reputacionSolicita,
+      bolsaHora:horas
+   };
+
+    return this.http.put("http://127.0.0.1:8000/api/usuarios/updateNoPass/"+id, body,  { headers: headers })
   }
 }

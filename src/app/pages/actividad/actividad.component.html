@@ -8,7 +8,7 @@
 
     <h2>{{operacion}} tarea</h2>
     <!-- Formulario Terminar -->
-    <spam>poner un boton en cada formulario para crear un mensaje y asi saber quien es el que envia y el que recibe en cada caso segun sea el formulario en cuestion</spam>
+    <span>poner un boton en cada formulario para crear un mensaje y asi saber quien es el que envia y el que recibe en cada caso segun sea el formulario en cuestion</span>
     <div class="form-group" *ngIf="operacion=='Terminar'">
       <form [formGroup]="terminarForm" (ngSubmit)="actualizarActividad()">
         <div class="form-group">

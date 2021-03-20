@@ -37,7 +37,7 @@ export class ActividadComponent implements OnInit {
   public actividad: ActividadesRealizadas;
   public mensajesTarea: Array<Mensajes> = [];
   public mensajeTarea: Mensajes;
-
+  public actividadCruda;
   public terminarForm: FormGroup;
   public aceptarForm: FormGroup;
   public consultarForm: FormGroup;
@@ -51,17 +51,14 @@ export class ActividadComponent implements OnInit {
   		public mensajesService: MensajesService,
   		public usuarioService: UsuariosService,
     	public usuarioGuardado:UsuarioGuardadoService,
-    	public tareasService:TareasService ) {
-
-
-
-   }
+    	public tareasService:TareasService ) {   }
 
   ngOnInit(): void {
       this.id = this.rutaActiva.snapshot.params.id;
       this.operacion = this.rutaActiva.snapshot.params.operacion;
       this.tareasService.getTarea(this.usuarioGuardado.getToken(),this.id).subscribe( data => {
       this.actividad = data.data;
+      this.actividadCruda = data.data;
       var myJSON = JSON.stringify(data.data);
    //     console.log("ActividadComponent.ngOnInit() data.data: "+ myJSON);
         this.createForm( this.operacion,this.actividad);
@@ -168,34 +165,59 @@ export class ActividadComponent implements OnInit {
         case "Terminar":
             //indica las horasReales realizas  y la puntuacion al que solicító la tarea
             console.log("actualizarActividad  var myJSON = JSON.stringify(this.actividad): " + JSON.stringify(this.actividad));      
-            let reputacionSolicita = this.actividad.usuario_solicita[0].reputacion;
+            let reputacionSolicita = this.actividadCruda.usuarioSolicita[0].reputacion;
             console.log("actualizarActividad reputacionSolicita: " + reputacionSolicita);
-            let numeroVotaciones = this.actividad.usuario_solicita[0].numeroVotaciones;
+            let numeroVotaciones = this.actividadCruda.usuarioSolicita[0].numeroVotaciones;
             console.log("actualizarActividad numeroVotaciones: " + numeroVotaciones);
             numeroVotaciones=numeroVotaciones+1;
-            reputacionSolicita=(reputacionSolicita+this.terminarForm.value.puntuacionSolicita)/numeroVotaciones;
+            console.log("actualizarActividad numeroVotaciones: " + numeroVotaciones);
+            
+            console.log("this.terminarForm.value.puntuacionSolicita: " + this.terminarForm.value.puntuacionSolicita);
 
+            reputacionSolicita=Number(reputacionSolicita)+ Number(this.terminarForm.value.puntuacionSolicita);
+            console.log("actualizarActividad reputacionSolicita: " + reputacionSolicita);
+            reputacionSolicita=reputacionSolicita/numeroVotaciones;
+            console.log("actualizarActividad reputacionSolicita: " + reputacionSolicita);
+
+            let horas = Math.trunc(this.actividadCruda.usuarioSolicita[0].bolsaHora +1);
+            let idUsuario = this.actividadCruda.usuarioSolicita[0].usuario_id;
+            
+            
             this.actividad.id=  Number(this.id);
             this.actividad.horasReales = this.terminarForm.value.horasReales;
             this.actividad.puntuacionSolicita = this.terminarForm.value.puntuacionSolicita;
             this.actividad.finalizada = "1";
   
             this.tareasService.finalizarTarea(this.usuarioGuardado.getToken(),this.actividad).subscribe( data => {
-              data.data;
-              var myJSON = JSON.stringify(data.data);
+                data.data;
+                var myJSON = JSON.stringify(data.data);
   //            console.log("ActividadComponent.actualizarActividad() data.data: "+ myJSON);
+                this.usuarioService.actualizarValoracionUsuario(this.usuarioGuardado.getToken(),idUsuario, numeroVotaciones, reputacionSolicita,horas).subscribe( data => {
+                    data.data;
+                });
             });
             
-            //FALTA LLAMAR AL METODO EDITAR PUNTUACION USUARIO CON LOS DATOS  numeroVotaciones Y reputacionSolicita
-          break;
+                       break;
         case "Aceptar":
             //valora al usuario  que la realizó
+            console.log("actualizarActividad  var myJSON = JSON.stringify(this.actividad): " + JSON.stringify(this.actividad));      
+            let valoracion = this.actividadCruda.usuarioRealiza[0].reputacion;
+            let numeroVotaciones2 = this.actividadCruda.usuarioRealiza[0].numeroVotaciones;
+            numeroVotaciones2=numeroVotaciones2+1;
+            valoracion=(Number(valoracion)+Number(this.terminarForm.value.valoracion))/numeroVotaciones2;
+            let horas2 = Math.trunc(this.actividadCruda.usuarioRealiza[0].bolsaHora +1);
+            let idUsuario2 = this.actividadCruda.usuarioSolicita[0].usuario_id;
+
+
             this.actividad.id=  Number(this.id);
             this.actividad.valoracion = this.aceptarForm.value.valoracion;
             this.tareasService.finalizarTarea(this.usuarioGuardado.getToken(),this.actividad).subscribe( data => {
               data.data;
               var myJSON = JSON.stringify(data.data);
    //           console.log("ActividadComponent.actualizarActividad() data.data: "+ myJSON);
+                this.usuarioService.actualizarValoracionUsuario(this.usuarioGuardado.getToken(),idUsuario2, numeroVotaciones2, valoracion,horas2).subscribe( data => {
+                  data.data;
+              });
             });
           break;
         case "Consultar":
