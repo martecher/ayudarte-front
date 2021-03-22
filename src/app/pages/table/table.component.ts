@@ -76,7 +76,7 @@ export class TableComponent implements OnInit{
             this.dataRows.push(this.dataLine);
         }
         this.tableData1 = {
-            headerRow: [ 'ID', 'Actividad', 'Solicita', 'Observacion', 'Horas Estipuladas', 'Realizarla'],
+            headerRow: [   'Actividad', 'Solicita', 'Observacion', 'Horas Estipuladas', 'Realizarla'],
             dataRows: this.dataRows
         };
     });
@@ -94,7 +94,7 @@ export class TableComponent implements OnInit{
   for (var tarea of this.listaTareasNoAsignadasAux) {
       this.dataLine = [];
       this.dataLine.push(String(tarea.id));
-      this.dataLine.push(tarea.habilidad.descripcion);
+      this.dataLine.push(tarea.habilidad.descripcion   );
       this.dataLine.push(tarea.usuario_solicita.nombre.concat(
                           ' ',
                           tarea.usuario_solicita.apellido1,
@@ -107,7 +107,7 @@ export class TableComponent implements OnInit{
       this.dataRows.push(this.dataLine);
   }
   this.tableData1 = {
-      headerRow: [ 'ID', 'Actividad', 'Solicita', 'Observacion', 'Horas Estipuladas', 'Realizarla'],
+      headerRow: [  'Actividad', 'Solicita', 'Observacion', 'Horas Estipuladas', 'Realizarla'],
       dataRows: this.dataRows
   };
   this.router.navigateByUrl('/actividades');

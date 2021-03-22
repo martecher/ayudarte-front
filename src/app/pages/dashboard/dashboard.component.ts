@@ -89,7 +89,7 @@ export class DashboardComponent implements OnInit{
         }
 
         this.tableData1 = {
-            headerRow: [ 'ID', 'Actividad', 'Solicita', 'Observacion', 'Horas Estipuladas', 'Terminar'],
+            headerRow: [   'Actividad', 'Solicita', 'Observacion', 'Horas Estipuladas', 'Terminar'],
             dataRows: this.dataRows
         };
 
@@ -114,7 +114,7 @@ export class DashboardComponent implements OnInit{
             this.dataRows.push(this.dataLine);
         }
         this.tableData2 = {
-            headerRow: [ 'ID', 'Actividad', 'Solicita', 'Observacion', 'Horas Estipuladas', 'Aceptar'],
+            headerRow: [  'Actividad', 'Solicita', 'Observacion', 'Horas Estipuladas', 'Aceptar'],
             dataRows: this.dataRows
         };
     });
@@ -143,7 +143,7 @@ export class DashboardComponent implements OnInit{
         }
 
         this.tableData3 = {
-            headerRow: [ 'ID', 'Actividad', 'Solicita', 'Observacion', 'Horas Estipuladas', 'Consultar'],
+            headerRow: [   'Actividad', 'Solicita', 'Observacion', 'Horas Estipuladas', 'Consultar'],
             dataRows: this.dataRows
         };
 
