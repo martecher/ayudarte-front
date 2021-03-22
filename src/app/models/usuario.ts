@@ -11,5 +11,10 @@ export interface Usuario {
   email: string;
   password: string;
   numeroVotaciones: string;
+  numVotos5: string;
+  numVotos4: string;
+  numVotos3: string;
+  numVotos2: string;
+  numVotos1: string;
 }
 

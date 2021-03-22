@@ -64,7 +64,7 @@ export class UsuariosService {
     })
     return this.http.get("http://127.0.0.1:8000/api/usuarios/"+id, { headers: headers })
   }
-  actualizarValoracionUsuario(auth_token, id, numeroVotaciones, reputacionSolicita, horas): Observable<any> {
+  actualizarValoracionUsuario(auth_token, id, numeroVotaciones, reputacionSolicita, horas,nVotos5, nVotos4, nVotos3, nVotos2, nVotos1): Observable<any> {
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${auth_token}`
@@ -72,7 +72,12 @@ export class UsuariosService {
     const body = { 
       numeroVotaciones: numeroVotaciones,
       reputacion:reputacionSolicita,
-      bolsaHora:horas
+      bolsaHora:horas,     
+      numVotos5:nVotos5, 
+      numVotos4:nVotos4, 
+      numVotos3:nVotos3, 
+      numVotos2:nVotos2, 
+      numVotos1:nVotos1
    };
 
     return this.http.put("http://127.0.0.1:8000/api/usuarios/updateNoPass/"+id, body,  { headers: headers })

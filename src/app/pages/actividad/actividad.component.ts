@@ -164,25 +164,44 @@ export class ActividadComponent implements OnInit {
       switch (this.operacion) {
         case "Terminar":
             //indica las horasReales realizas  y la puntuacion al que solicító la tarea
-            console.log("actualizarActividad  var myJSON = JSON.stringify(this.actividad): " + JSON.stringify(this.actividad));      
             let reputacionSolicita = this.actividadCruda.usuarioSolicita[0].reputacion;
-            console.log("actualizarActividad reputacionSolicita: " + reputacionSolicita);
             let numeroVotaciones = this.actividadCruda.usuarioSolicita[0].numeroVotaciones;
-            console.log("actualizarActividad numeroVotaciones: " + numeroVotaciones);
             numeroVotaciones=numeroVotaciones+1;
-            console.log("actualizarActividad numeroVotaciones: " + numeroVotaciones);
             
-            console.log("this.terminarForm.value.puntuacionSolicita: " + this.terminarForm.value.puntuacionSolicita);
+            //reputacionSolicita=Number(reputacionSolicita)+ Number(this.terminarForm.value.puntuacionSolicita);
+            let nVotos5= Number(this.actividadCruda.usuarioSolicita[0].numVotos5) ;
+            let nVotos4=Number(this.actividadCruda.usuarioSolicita[0].numVotos4) ;
+            let nVotos3=Number(this.actividadCruda.usuarioSolicita[0].numVotos3) ;
+            let nVotos2=Number(this.actividadCruda.usuarioSolicita[0].numVotos2) ;
+            let nVotos1=Number(this.actividadCruda.usuarioSolicita[0].numVotos1) ;
 
-            reputacionSolicita=Number(reputacionSolicita)+ Number(this.terminarForm.value.puntuacionSolicita);
-            console.log("actualizarActividad reputacionSolicita: " + reputacionSolicita);
-            reputacionSolicita=reputacionSolicita/numeroVotaciones;
-            console.log("actualizarActividad reputacionSolicita: " + reputacionSolicita);
-
-            let horas = Math.trunc(this.actividadCruda.usuarioSolicita[0].bolsaHora +1);
+            switch(this.terminarForm.value.puntuacionSolicita){
+              case "5": 
+                    nVotos5 = nVotos5+1;
+                    break; 
+              case "4": 
+                     nVotos4 = nVotos4+1;
+                    break; 
+              case "3":
+                    nVotos3 = nVotos3+1;
+                    break; 
+              case "2": 
+                    nVotos2 = nVotos2+1; 
+                    break; 
+              case "1": 
+                    nVotos1 = nVotos1+1;           
+                    break;        
+                    default:
+                      // code...
+                      break;
+                  }
+            reputacionSolicita=(5*nVotos5) + (4*nVotos4)  +(3* nVotos3)+(2*nVotos2) + (1*nVotos1);
+            reputacionSolicita= reputacionSolicita/numeroVotaciones;
+            reputacionSolicita=Math.trunc(Math.round(reputacionSolicita));
+            
+            let horas = Number(this.actividadCruda.usuarioSolicita[0].bolsaHora)+  Number(this.terminarForm.value.horasReales);
             let idUsuario = this.actividadCruda.usuarioSolicita[0].usuario_id;
-            
-            
+             
             this.actividad.id=  Number(this.id);
             this.actividad.horasReales = this.terminarForm.value.horasReales;
             this.actividad.puntuacionSolicita = this.terminarForm.value.puntuacionSolicita;
@@ -192,21 +211,54 @@ export class ActividadComponent implements OnInit {
                 data.data;
                 var myJSON = JSON.stringify(data.data);
   //            console.log("ActividadComponent.actualizarActividad() data.data: "+ myJSON);
-                this.usuarioService.actualizarValoracionUsuario(this.usuarioGuardado.getToken(),idUsuario, numeroVotaciones, reputacionSolicita,horas).subscribe( data => {
+                this.usuarioService.actualizarValoracionUsuario(this.usuarioGuardado.getToken(),idUsuario, numeroVotaciones, reputacionSolicita,horas,
+                nVotos5, nVotos4, nVotos3, nVotos2, nVotos1).subscribe( data => {
                     data.data;
                 });
             });
             
-                       break;
+        break;
         case "Aceptar":
             //valora al usuario  que la realizó
             console.log("actualizarActividad  var myJSON = JSON.stringify(this.actividad): " + JSON.stringify(this.actividad));      
             let valoracion = this.actividadCruda.usuarioRealiza[0].reputacion;
             let numeroVotaciones2 = this.actividadCruda.usuarioRealiza[0].numeroVotaciones;
             numeroVotaciones2=numeroVotaciones2+1;
-            valoracion=(Number(valoracion)+Number(this.terminarForm.value.valoracion))/numeroVotaciones2;
+
+            //reputacionSolicita=Number(reputacionSolicita)+ Number(this.terminarForm.value.puntuacionSolicita);
+            let nVotos5b= Number(this.actividadCruda.usuarioRealiza[0].numVotos5) ;
+            let nVotos4b=Number(this.actividadCruda.usuarioRealiza[0].numVotos4) ;
+            let nVotos3b=Number(this.actividadCruda.usuarioRealiza[0].numVotos3) ;
+            let nVotos2b=Number(this.actividadCruda.usuarioRealiza[0].numVotos2) ;
+            let nVotos1b=Number(this.actividadCruda.usuarioRealiza[0].numVotos1) ;
+
+            switch(this.aceptarForm.value.valoracion){
+              case "5": 
+                    nVotos5b = nVotos5b+1;
+                    break; 
+              case "4": 
+                     nVotos4b = nVotos4b+1;
+                    break; 
+              case "3":
+                    nVotos3b = nVotos3b+1;
+                    break; 
+              case "2": 
+                    nVotos2b = nVotos2b+1; 
+                    break; 
+              case "1": 
+                    nVotos1b = nVotos1b+1;           
+                    break;        
+                    default:
+                      // code...
+                      break;
+                  }
+                  valoracion=(5*nVotos5b) + (4*nVotos4b)  +(3* nVotos3b)+(2*nVotos2b) + (1*nVotos1b);
+                  valoracion= valoracion/numeroVotaciones2;
+                  valoracion=Math.trunc(Math.round(valoracion));
+ 
+
             let horas2 = Math.trunc(this.actividadCruda.usuarioRealiza[0].bolsaHora +1);
-            let idUsuario2 = this.actividadCruda.usuarioSolicita[0].usuario_id;
+            let idUsuario2 = this.actividadCruda.usuarioRealiza[0].usuario_id;
 
 
             this.actividad.id=  Number(this.id);
@@ -215,7 +267,8 @@ export class ActividadComponent implements OnInit {
               data.data;
               var myJSON = JSON.stringify(data.data);
    //           console.log("ActividadComponent.actualizarActividad() data.data: "+ myJSON);
-                this.usuarioService.actualizarValoracionUsuario(this.usuarioGuardado.getToken(),idUsuario2, numeroVotaciones2, valoracion,horas2).subscribe( data => {
+                this.usuarioService.actualizarValoracionUsuario(this.usuarioGuardado.getToken(),idUsuario2, numeroVotaciones2, valoracion,horas2,
+                nVotos5b, nVotos4b, nVotos3b, nVotos2b, nVotos1b).subscribe( data => {
                   data.data;
               });
             });
