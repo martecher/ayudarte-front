@@ -18,6 +18,9 @@ import { AppRoutes } from './app.routing';
 
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 import { PublicoLayoutComponent } from './layouts/publico-layout/publico-layout.component';
+import { HabilidadComponent } from './pages/habilidad/habilidad.component';
+import { CategoriaComponent } from './pages/categoria/categoria.component';
+import { NuevaActividadComponent } from './pages/nueva-actividad/nueva-actividad.component';
 //import { ActividadComponent } from './pages/actividad/actividad.component';
  
 
@@ -26,6 +29,9 @@ import { PublicoLayoutComponent } from './layouts/publico-layout/publico-layout.
     AppComponent,
     AdminLayoutComponent,
     PublicoLayoutComponent,
+    HabilidadComponent,
+    CategoriaComponent,
+    NuevaActividadComponent,
 //    ActividadComponent 
  
   ],

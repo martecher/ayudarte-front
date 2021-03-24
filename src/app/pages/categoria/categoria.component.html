@@ -1,0 +1,12 @@
+<p>categoria works!</p>
+<form [formGroup]="nuevaCategoriaForm" (ngSubmit)="guardarCategoria()">
+    <div class="form-group">
+      <label igxLabel for="descripcion">descripcion</label>
+      <input type="text"
+             placeholder="descripcion"
+             name="descripcion"
+             formControlName="descripcion"            
+      >
+    </div>
+    <button type="submit">Guardar</button>
+  </form>
