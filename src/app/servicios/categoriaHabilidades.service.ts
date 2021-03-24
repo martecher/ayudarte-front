@@ -76,5 +76,7 @@ export class CategoriaHabilidadesService {
    return respuesta;
   }
 
-  
+  getCategorias$(): Observable<CategoriaHabilidad[]>{
+    return this.categorias$.asObservable();
+  }
 }

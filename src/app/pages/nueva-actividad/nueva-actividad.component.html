@@ -5,24 +5,20 @@
 
 
 <form [formGroup]="nuevaActividadForm" (ngSubmit)="guardarActividad()">
-  <div class="form-group">
-    <label igxLabel for="habilidad">listaHabilidades esto será un select</label>  
-    <select class="custom-select" formControlName="habilidad">
-           <option value="" disabled>Elige una habilidad</option>
-           <option *ngFor="let hab of habilidades" [ngValue]="hab">{{hab}}</option>
-    </select>
- </div>
- 
     <div class="form-group">
-
+      <label igxLabel for="habilidad">listaHabilidades esto será un select</label>  
+      <select class="custom-select" formControlName="habilidad">
+            <option value="" disabled>Elige una habilidad</option>
+            <option *ngFor="let hab of habilidades" [ngValue]="hab">{{hab}}</option>
+      </select>
+    </div>
+    <div class="form-group">
     <label igxLabel for="observacion">observacion</label>
       <input type="text"
               placeholder="observacion"
               formControlName="observacion"
       >
     </div>
-
     <button type="submit">Guardar</button>
     <button type="submit" (click)="volver()" >Volver</button>
-
-  </form>
+</form>

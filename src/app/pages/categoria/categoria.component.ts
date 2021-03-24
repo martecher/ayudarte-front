@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CategoriaHabilidadesService } from '../../servicios/categoriaHabilidades.service';
+import { UsuarioGuardadoService } from "../../servicios/usuarioguardado.service";
 import { FormControl, FormGroup,Validators, FormBuilder } from '@angular/forms';
 
 
@@ -14,12 +15,14 @@ export class CategoriaComponent implements OnInit {
 
   constructor(
     private categoriaHabilidadesService: CategoriaHabilidadesService,
+    public usuarioGuardado:UsuarioGuardadoService,
     private fb: FormBuilder
   ) { }
 
   ngOnInit(): void {
-    console.log("CategoriaComponent.ngOnInit");
-    this.createForm();
+      console.log("CategoriaComponent.ngOnInit");
+
+      this.createForm();
   }
 
   createForm() {

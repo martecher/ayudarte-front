@@ -56,11 +56,9 @@ export class DashboardComponent implements OnInit{
         });
 
         this.tareasService.realizadasPorUsuario(this.usuarioGuardado.getToken(),this.usuarioGuardado.getUsuarioId()).subscribe( data => {
-          this.listaTareasAsignadasPropias = data.data;
-  console.log("return listaTareasAsignadasPropias para tRealizadas= "+this.listaTareasAsignadasPropias.length);
-
-          this.tRealizadas = this.listaTareasAsignadasPropias.length;
-
+              this.listaTareasAsignadasPropias = data.data;
+              console.log("return listaTareasAsignadasPropias para tRealizadas= "+this.listaTareasAsignadasPropias.length);
+              this.tRealizadas = this.listaTareasAsignadasPropias.length;
         });
 
 
