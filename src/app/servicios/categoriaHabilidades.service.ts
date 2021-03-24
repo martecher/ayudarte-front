@@ -36,8 +36,12 @@ export class CategoriaHabilidadesService {
     //actualizar el array this.categorias con lo que traigo de bd
     //convirtiendo la respuesta al tipo CategoriaHabilidades
     var myJSON = JSON.stringify(respuesta);
-    console.log("CategoriaHabilidadesService.listaCategoriaHabilidades respuesta: " +  myJSON )
-    this.categorias$.next(this.categorias);
+    console.log("CategoriaHabilidadesService.listaCategoriaHabilidades respuesta: " +  myJSON );
+    // No puedo hacer la asignación directamente entre respuesta y categorias
+    //lo haré con un for o alguna forma así o puede que no haga falta nada y ya
+    //directamente lo muestre ya que insertar nueva categoria
+    //llama a que se actualice este metodo
+    //y los que esten subscritos se enteren.
     return respuesta;
   }
 
