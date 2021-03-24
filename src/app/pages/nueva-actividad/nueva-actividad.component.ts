@@ -9,7 +9,8 @@ import { FormControl, FormGroup,Validators, FormBuilder } from '@angular/forms';
 export class NuevaActividadComponent implements OnInit {
 
   public nuevaActividadForm: FormGroup;
- 
+  habilidades: any = ['Habiliad 1', 'habiliad 2', 'habilidad 3', 'habilidad 4'];
+
 
   constructor(
     private fb: FormBuilder,
@@ -37,7 +38,6 @@ export class NuevaActividadComponent implements OnInit {
   
     
     this.nuevaActividadForm = new FormGroup({
-      categoria: new FormControl(),
       habilidad: new FormControl(),   
       observacion: new FormControl(),
       });

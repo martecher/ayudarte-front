@@ -1,28 +1,21 @@
-<p>nueva-actividad works!</p>
-
+ 
 <app-categoria></app-categoria>
-
+ 
 <app-habilidad></app-habilidad>
 
+
 <form [formGroup]="nuevaActividadForm" (ngSubmit)="guardarActividad()">
-    <div class="form-group">
-      <label igxLabel for="categoria">categoria</label>
-      <input type="text"
-             placeholder="Tarea"
-             name="categoria"
-             formControlName="categoria"
-      >
-    </div>
-    <div class="form-group">
-    <label igxLabel for="habilidad">habilidad</label>
-      <input type="text"
-              placeholder="habilidad"
-              formControlName="habilidad"
-      >
-    </div>
+  <div class="form-group">
+    <label igxLabel for="habilidad">listaHabilidades esto será un select</label>  
+    <select class="custom-select" formControlName="habilidad">
+           <option value="" disabled>Elige una habilidad</option>
+           <option *ngFor="let hab of habilidades" [ngValue]="hab">{{hab}}</option>
+    </select>
+ </div>
+ 
     <div class="form-group">
 
-    <label igxLabel for="uobservacion">observacion</label>
+    <label igxLabel for="observacion">observacion</label>
       <input type="text"
               placeholder="observacion"
               formControlName="observacion"

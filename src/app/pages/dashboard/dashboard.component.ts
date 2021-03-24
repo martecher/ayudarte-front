@@ -348,4 +348,9 @@ export class DashboardComponent implements OnInit{
       console.log("prepararEditar: " + id + " " + operacion);
       this.router.navigateByUrl('/actividad/'+id+'/'+operacion);
     }
+
+    
+    prepararNuevaActividad() {
+      this.router.navigateByUrl('nueva-actividad');
+    }
 }

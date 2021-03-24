@@ -11,7 +11,7 @@ import { FormControl, FormGroup,Validators, FormBuilder } from '@angular/forms';
 export class HabilidadComponent implements OnInit {
 
   public nuevaHabilidadForm: FormGroup;
-
+  Categorias: any = ['Categoria 1', 'Categoria 2', 'Categoria 3', 'Categoria 4'];
   constructor(
     private habilidadesService: HabilidadesService,
     private categoriaHabilidadesService: CategoriaHabilidadesService,
@@ -33,7 +33,15 @@ export class HabilidadComponent implements OnInit {
     this.nuevaHabilidadForm = new FormGroup({
       descripcion: new FormControl(),
       horasEstipuladas: new FormControl(),
-      listaCategorias: new FormControl(),
+      categoria: new FormControl(),
       });
   }
+
+  /*
+  changeCity(e) {
+    this.listaCategorias.setValue(e.target.value, {
+      onlySelf: true
+    })
+  }
+  */
 }
