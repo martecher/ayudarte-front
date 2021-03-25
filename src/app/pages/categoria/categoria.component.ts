@@ -26,7 +26,7 @@ export class CategoriaComponent implements OnInit {
   }
 
   createForm() {
-    console.log("NuevaActividadComponent.createForm");
+    console.log("CategoriaComponent.createForm");
     /*
       descripcion: string;
     */
@@ -37,7 +37,11 @@ export class CategoriaComponent implements OnInit {
 
   
   guardarCategoria(): void {
-    console.log("CategoriaComponent.guardarCategoria");
+    console.log("CategoriaComponent.guardarCategoria descripcion: "+this.nuevaCategoriaForm.value.descripcion);
+    this.categoriaHabilidadesService.nuevaCategoriaHabilidad(this.nuevaCategoriaForm.value.descripcion).subscribe( data => {
+      console.log("CategoriaComponent.guardarCategoria: " + JSON.stringify (data) );
+      this.categoriaHabilidadesService.leerlistado(); 
+  });
  
   }  
 }

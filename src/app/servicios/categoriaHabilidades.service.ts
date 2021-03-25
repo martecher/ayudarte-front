@@ -21,6 +21,7 @@ export class CategoriaHabilidadesService {
   constructor(private http: HttpClient , private usuarioGuardadoServicio:UsuarioGuardadoService) {
     // this.categorias NO SE deberia inicializar a vacio
     // deberia hacerse una lectura de bd
+    console.log("CategoriaHabilidadesService.constructor");
     this.categorias = [];
     this.categorias$ = new Subject();
     const headers = new HttpHeaders({
@@ -44,7 +45,6 @@ export class CategoriaHabilidadesService {
   listaCategoriaHabilidades(): Observable<any> {
     
     console.log("CategoriaHabilidadesService.listaCategoriaHabilidades antes de hacer llamada: " +  JSON.stringify(this.categorias) );
-
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${this.usuarioGuardadoServicio.getToken()}`
@@ -63,6 +63,7 @@ export class CategoriaHabilidadesService {
   }
 
   getCategoriaHabilidad( id): Observable<any> {
+    console.log("CategoriaHabilidadesService.getCategoriaHabilidad ");
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${this.usuarioGuardadoServicio.getToken()}`
@@ -71,6 +72,7 @@ export class CategoriaHabilidadesService {
   } 
   
   actualizarCategoriaHabilidad( id, descripcion): Observable<any> {
+    console.log("CategoriaHabilidadesService.actualizarCategoriaHabilidad ");
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${this.usuarioGuardadoServicio.getToken()}`
@@ -79,12 +81,13 @@ export class CategoriaHabilidadesService {
       descripcion: descripcion
    };
    let respuesta = this.http.put("http://127.0.0.1:8000/api/categoriasHabilidades/"+id, body,  { headers: headers })
-   this.leerlistado();
+  // this.leerlistado();
 
    return respuesta;
   }
 
   nuevaCategoriaHabilidad(descripcion): Observable<any> {
+    console.log("CategoriaHabilidadesService.nuevaCategoriaHabilidad ");
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${this.usuarioGuardadoServicio.getToken()}`
@@ -92,12 +95,15 @@ export class CategoriaHabilidadesService {
     const body = { 
       descripcion: descripcion
    };
-   let respuesta = this.http.put("http://127.0.0.1:8000/api/categoriasHabilidades/", body,  { headers: headers })
-   this.leerlistado();   
+   let respuesta = this.http.post("http://127.0.0.1:8000/api/categoriasHabilidades/", body,  { headers: headers })
+ //  this.leerlistado();   
    return respuesta;
   }
 
   getCategorias$(): Observable<CategoriaHabilidad[]>{
+    console.log("CategoriaHabilidadesService.getCategorias$ ");
     return this.categorias$.asObservable();
   }
+
+  actualizarSubject(){}
 }
