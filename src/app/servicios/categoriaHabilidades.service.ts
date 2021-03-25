@@ -28,10 +28,9 @@ export class CategoriaHabilidadesService {
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${this.usuarioGuardadoServicio.getToken()}`
     })
-    this.leerlistado();
-
-     
+    this.leerlistado(); 
   }
+  
   leerlistado(){
     this.listaCategoriaHabilidades().subscribe( data => {
       this.categorias = data.data;
@@ -96,7 +95,6 @@ export class CategoriaHabilidadesService {
       descripcion: descripcion
    };
    let respuesta = this.http.post("http://127.0.0.1:8000/api/categoriasHabilidades/", body,  { headers: headers })
- //  this.leerlistado();   
    return respuesta;
   }
 
@@ -105,5 +103,4 @@ export class CategoriaHabilidadesService {
     return this.categorias$.asObservable();
   }
 
-  actualizarSubject(){}
 }

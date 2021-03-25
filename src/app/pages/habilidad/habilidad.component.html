@@ -1,10 +1,45 @@
-<form [formGroup]="nuevaHabilidadForm" (ngSubmit)="guardarCategoria()">
+<form [formGroup]="form"  (ngSubmit)="guardarHabilidad()"> 
+
+       <div class="form-group">
+              <label igxLabel for="categoria_ID">categoria</label>
+              <select formControlName="categoria_ID">
+              <option *ngFor="let categ of categoriasObjet" [ngValue]="categ">
+              {{ categ.descripcion }}
+              </option>
+              </select>
+       </div>
+       <div class="form-group">
+              <label igxLabel for="descripcion">descripcion</label>
+              <input type="text"
+                     placeholder="descripcion"
+                     name="descripcion"
+                     formControlName="descripcion"            
+              >
+       </div>
+       <div class="form-group">
+                <label igxLabel for="horasEstipuladas">horasEstipuladas</label>
+                <input type="text"
+                       placeholder="horasEstipuladas"
+                       name="horasEstipuladas"
+                       formControlName="horasEstipuladas"            
+                >
+       </div>
+       <button type="submit">Guardar</button>
+
+     </form>
+
+     <!-- 
+<form [formGroup]="nuevaHabilidadForm"   (ngSubmit)="guardarHabilidad()">
     <div class="form-group">
-       <label igxLabel for="listaCategorias">listaCategorias esto será un select</label>  
-       <select class="custom-select" formControlName="categoria">
-              <option value="" disabled>Elige una categoría</option>
-              <option *ngFor="let cat of categoriasObjet" [ngValue]="cat.id">{{cat.descripcion}}</option>
-       </select>
+       <label igxLabel for="categoria_ID">listaCategorias esto será un select</label>  
+       
+       <select formControlName="categoria_ID">
+              <option [ngValue]="null" disabled>Choose your categoria</option>
+              <option *ngFor="let cat of categoriasObjet" [ngValue]="cat.id">
+               {{ cat.descripcion }}
+              </option>
+            </select> 
+
     </div>
     <div class="form-group">
       <label igxLabel for="descripcion">descripcion</label>
@@ -24,3 +59,4 @@
       </div>
     <button type="submit">Guardar</button>
   </form>
+-->

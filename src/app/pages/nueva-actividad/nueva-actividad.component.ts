@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup,Validators, FormBuilder } from '@angular/forms';
+import { HabilidadesService } from '../../servicios/habilidades.service';
+import { Habilidad } from "../../models/Habilidad";
 
 @Component({
   selector: 'app-nueva-actividad',
@@ -10,16 +12,24 @@ export class NuevaActividadComponent implements OnInit {
 
   public nuevaActividadForm: FormGroup;
   habilidades: any = ['Habiliad 1', 'habiliad 2', 'habilidad 3', 'habilidad 4'];
+  habilidadesObjet: Habilidad[] = [];
 
 
   constructor(
     private fb: FormBuilder,
+    private habilidadesService: HabilidadesService
+
   ) { }
 
   ngOnInit(): void {
-    console.log("NuevaActividadComponent.ngOnInit");
-    this.createForm();
-
+    console.log("NuevaActividadComponent.ngOnInit");   
+    this.habilidadesService.getHabilidades$().subscribe( data => {
+      this.habilidadesObjet = data;
+      console.log("NuevaActividadComponent.ngOnInit  = "+JSON.stringify(this.habilidadesObjet));
+      // hay que meter esto en un observable para poder cargar esta lista
+      // automaticamente cuando de de alta la categoria
+      this.createForm();
+    });
   }
 
   createForm() {
@@ -39,7 +49,8 @@ export class NuevaActividadComponent implements OnInit {
     
     this.nuevaActividadForm = new FormGroup({
       habilidad: new FormControl(),   
-      observacion: new FormControl(),
+      descripcion: new FormControl(),
+      horasEstipuladas: new FormControl()
       });
   }
 

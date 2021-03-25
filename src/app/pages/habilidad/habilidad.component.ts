@@ -13,11 +13,18 @@ import { CategoriaHabilidad } from "../../models/categoriaHabilidad";
   styleUrls: ['./habilidad.component.css']
 })
 export class HabilidadComponent implements OnInit {
-
+  public form: FormGroup;
   public nuevaHabilidadForm: FormGroup;
   Categorias: any = ['Categoria 1', 'Categoria 2', 'Categoria 3', 'Categoria 4'];
   categoriasObjet: CategoriaHabilidad[] = [];
-
+  categoria: string;
+  states = [
+    {name: 'Arizona', abbrev: 'AZ'},
+    {name: 'California', abbrev: 'CA'},
+    {name: 'Colorado', abbrev: 'CO'},
+    {name: 'New York', abbrev: 'NY'},
+    {name: 'Pennsylvania', abbrev: 'PA'},
+  ];
   constructor(
     private habilidadesService: HabilidadesService,
     private categoriaHabilidadesService: CategoriaHabilidadesService,
@@ -37,24 +44,40 @@ export class HabilidadComponent implements OnInit {
   }
 
   createForm() {
-    console.log("NuevaActividadComponent.createForm");
+    console.log("HabilidadComponent.createForm");
     /*
       descripcion: string;
       horasEstipuladas: string;
       categoriaHabilidad: CategoriaHabilidad;
-    */
-    this.nuevaHabilidadForm = new FormGroup({
-      descripcion: new FormControl(),
-      horasEstipuladas: new FormControl(),
-      categoria: new FormControl(),
+  
+ 
+
+      this.nuevaHabilidadForm = this.fb.group({
+        descripcion: [null, [ Validators.required ] ],
+        horasEstipuladas: ['', [ Validators.required ] ],
+        categoria_ID:  [null, [ Validators.required ] ]
+      });
+        */
+      this.form = new FormGroup({
+        descripcion: new FormControl(),
+        horasEstipuladas:new FormControl(),
+        categoria_ID: new FormControl(this.categoriasObjet[3])
       });
   }
 
-  /*
-  changeCity(e) {
-    this.listaCategorias.setValue(e.target.value, {
-      onlySelf: true
-    })
-  }
-  */
+  
+
+  guardarHabilidad (): void {
+    console.log("HabilidadComponent.guardarHabilidad form: "+ JSON.stringify( this.form.value));
+    console.log("HabilidadComponent.guardarHabilidad idcategoria: "+  this.form.value.categoria_ID.id   );
+
+    this.habilidadesService.nuevaHabilidad(this.form.value.descripcion,
+      this.form.value.horasEstipuladas,
+      this.form.value.categoria_ID.id,
+      ).subscribe( data => {
+      console.log("HabilidadComponent.guardarHabilidad: " + JSON.stringify (data) );
+      this.habilidadesService.leerlistado(); 
+  });
+  
+ }
 }
