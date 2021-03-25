@@ -23,20 +23,37 @@ export class CategoriaHabilidadesService {
     // deberia hacerse una lectura de bd
     this.categorias = [];
     this.categorias$ = new Subject();
-  }
-
-
-  listaCategoriaHabilidades(auth_token): Observable<any> {
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
-      'Authorization': `Bearer ${auth_token}`
+      'Authorization': `Bearer ${this.usuarioGuardadoServicio.getToken()}`
+    })
+    this.leerlistado();
+
+     
+  }
+  leerlistado(){
+    this.listaCategoriaHabilidades().subscribe( data => {
+      this.categorias = data.data;
+      console.log("CategoriaHabilidadesService.leerlistado  = "+JSON.stringify(this.categorias));
+      this.categorias$.next(this.categorias);
+      // hay que meter esto en un observable para poder cargar esta lista
+      // automaticamente cuando de de alta la categoria
+     });
+  }
+
+  listaCategoriaHabilidades(): Observable<any> {
+    
+    console.log("CategoriaHabilidadesService.listaCategoriaHabilidades antes de hacer llamada: " +  JSON.stringify(this.categorias) );
+
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${this.usuarioGuardadoServicio.getToken()}`
     })
     let respuesta = this.http.get("http://127.0.0.1:8000/api/categoriasHabilidades", { headers: headers });
-    this.categorias = [];
-    //actualizar el array this.categorias con lo que traigo de bd
+     //actualizar el array this.categorias con lo que traigo de bd
     //convirtiendo la respuesta al tipo CategoriaHabilidades
-    var myJSON = JSON.stringify(respuesta);
-    console.log("CategoriaHabilidadesService.listaCategoriaHabilidades respuesta: " +  myJSON );
+  //  var myJSON = JSON.stringify(respuesta);
+  //  console.log("CategoriaHabilidadesService.listaCategoriaHabilidades respuesta: " +  myJSON );
     // No puedo hacer la asignación directamente entre respuesta y categorias
     //lo haré con un for o alguna forma así o puede que no haga falta nada y ya
     //directamente lo muestre ya que insertar nueva categoria
@@ -45,38 +62,38 @@ export class CategoriaHabilidadesService {
     return respuesta;
   }
 
-  getCategoriaHabilidad(auth_token, id): Observable<any> {
+  getCategoriaHabilidad( id): Observable<any> {
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
-      'Authorization': `Bearer ${auth_token}`
+      'Authorization': `Bearer ${this.usuarioGuardadoServicio.getToken()}`
     })
     return this.http.get("http://127.0.0.1:8000/api/categoriasHabilidades/"+id, { headers: headers })
   } 
   
-  actualizarCategoriaHabilidad(auth_token, id, descripcion): Observable<any> {
+  actualizarCategoriaHabilidad( id, descripcion): Observable<any> {
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
-      'Authorization': `Bearer ${auth_token}`
+      'Authorization': `Bearer ${this.usuarioGuardadoServicio.getToken()}`
     })
     const body = { 
       descripcion: descripcion
    };
    let respuesta = this.http.put("http://127.0.0.1:8000/api/categoriasHabilidades/"+id, body,  { headers: headers })
-   this.listaCategoriaHabilidades(auth_token);
-   
+   this.leerlistado();
+
    return respuesta;
   }
 
-  nuevaCategoriaHabilidad(auth_token,descripcion): Observable<any> {
+  nuevaCategoriaHabilidad(descripcion): Observable<any> {
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
-      'Authorization': `Bearer ${auth_token}`
+      'Authorization': `Bearer ${this.usuarioGuardadoServicio.getToken()}`
     })
     const body = { 
       descripcion: descripcion
    };
    let respuesta = this.http.put("http://127.0.0.1:8000/api/categoriasHabilidades/", body,  { headers: headers })
-   this.listaCategoriaHabilidades(auth_token);    
+   this.leerlistado();   
    return respuesta;
   }
 

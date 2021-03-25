@@ -27,8 +27,8 @@ export class HabilidadComponent implements OnInit {
 
   ngOnInit(): void {
     console.log("HabilidadComponent.ngOnInit");
-    this.categoriaHabilidadesService.listaCategoriaHabilidades(this.usuarioGuardado.getToken()).subscribe( data => {
-      this.categoriasObjet = data.data;
+    this.categoriaHabilidadesService.getCategorias$().subscribe( data => {
+      this.categoriasObjet = data;
       console.log("HabilidadComponent.ngOnInit  = "+JSON.stringify(this.categoriasObjet));
       // hay que meter esto en un observable para poder cargar esta lista
       // automaticamente cuando de de alta la categoria
