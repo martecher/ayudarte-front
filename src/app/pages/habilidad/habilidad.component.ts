@@ -76,7 +76,7 @@ export class HabilidadComponent implements OnInit {
       this.form.value.categoria_ID.id,
       ).subscribe( data => {
       console.log("HabilidadComponent.guardarHabilidad: " + JSON.stringify (data) );
-      this.habilidadesService.leerlistado(); 
+      this.habilidadesService.leerlistado(this.form.value.categoria_ID.id); 
   });
   
  }

@@ -6,6 +6,17 @@
 
 <form [formGroup]="nuevaActividadForm" (ngSubmit)="guardarActividad()">
     <div class="form-group">
+      <label igxLabel for="categoria_ID">categoria</label>
+      <select formControlName="categoria_ID" (change)="onChangeCategoriaActividad($event.target.value)">
+        <option *ngFor="let categ of categoriasObjet" [value]="categ.id">
+        {{ categ.descripcion }}
+        </option>
+      </select>
+
+
+    </div>
+    <div class="form-group">
+      <span>puede que no se reciba la habilidad y el combo habria que cargarlo con el change en Actividad</span>
       <label igxLabel for="habilidad">listaHabilidades</label>  
       <select class="custom-select" formControlName="habilidad">
             <option value="" disabled>Elige una habilidad</option>

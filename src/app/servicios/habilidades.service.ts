@@ -22,18 +22,27 @@ export class HabilidadesService {
     console.log("HabilidadesService.constructor");
     this.habilidades = [];
     this.habilidades$ = new Subject();
-    this.leerlistado(); 
+    this.leerlistado(1); 
+   
   }
 
-  leerlistado(){
+  leerlistado(idCategoria){
     console.log("HabilidadesService.leerlistado ");    
-    this.listaHabilidades().subscribe( data => {
+    this.listaHabilidadesCategoria(idCategoria).subscribe( data => {
       this.habilidades = data.data;
       console.log("HabilidadesService.leerlistado  = "+JSON.stringify(this.habilidades));
       this.habilidades$.next(this.habilidades);
      });
   }
 
+    listaHabilidadesCategoria(id): Observable<any> {
+    console.log("HabilidadesService.listaHabilidades ");    
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${this.usuarioGuardadoServicio.getToken()}`
+    })
+    return this.http.get("http://127.0.0.1:8000/api/habilidades/categoria/"+id, { headers: headers })
+  }
   listaHabilidades(): Observable<any> {
     console.log("HabilidadesService.listaHabilidades ");    
     const headers = new HttpHeaders({
