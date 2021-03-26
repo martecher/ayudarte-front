@@ -3,7 +3,7 @@
        <div class="form-group">
               <label igxLabel for="categoria_ID">categoria</label>
               <select formControlName="categoria_ID">
-                     <option value="">Elige una categoría</option>
+                     <option value="" disabled>Elige una categoría</option>
                      <option *ngFor="let categ of categoriasObjet" [ngValue]="categ">
                      {{ categ.descripcion }}
                      </option>
