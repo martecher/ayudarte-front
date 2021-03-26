@@ -27,7 +27,7 @@ export class NuevaActividadComponent implements OnInit {
 
   ngOnInit(): void {
     console.log("NuevaActividadComponent.ngOnInit"); 
-    
+    this.categoriaHabilidadesService.leerlistado();    
     this.categoriaHabilidadesService.getCategorias$().subscribe( data => {
       this.categoriasObjet = data;
        console.log("HabilidadComponent.ngOnInit  = "+JSON.stringify(this.categoriasObjet));

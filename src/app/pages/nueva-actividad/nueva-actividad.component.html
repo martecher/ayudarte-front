@@ -8,6 +8,7 @@
     <div class="form-group">
       <label igxLabel for="categoria_ID">categoria</label>
       <select formControlName="categoria_ID" (change)="onChangeCategoriaActividad($event.target.value)">
+        <option value="">Elige una categoría</option>
         <option *ngFor="let categ of categoriasObjet" [value]="categ.id">
         {{ categ.descripcion }}
         </option>
