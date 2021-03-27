@@ -102,7 +102,7 @@ export class NuevaActividadComponent implements OnInit {
     this.usuarioGuardado.getUsuarioId(),this.idHabilidadSelect).subscribe( data => {
        console.log("NuevaActividadComponent.onChangeActividad habilidadesObjet2 = "+JSON.stringify(data));
       // hay que meter esto en un observable para poder cargar esta lista
-      this.router.navigateByUrl('/panel');
+      this.router.navigateByUrl('/actividades');
 
    });  
   }

@@ -57,7 +57,6 @@ export class DashboardComponent implements OnInit{
 
         this.tareasService.realizadasPorUsuario(this.usuarioGuardado.getToken(),this.usuarioGuardado.getUsuarioId()).subscribe( data => {
               this.listaTareasAsignadasPropias = data.data;
-              console.log("return listaTareasAsignadasPropias para tRealizadas= "+this.listaTareasAsignadasPropias.length);
               this.tRealizadas = this.listaTareasAsignadasPropias.length;
         });
 
@@ -66,6 +65,8 @@ export class DashboardComponent implements OnInit{
         // Esta lista de tareas asignadas a mi sin terminar
         this.tareasService.actividadesEnRealizacion(this.usuarioGuardado.getToken(),this.usuarioGuardado.getUsuarioId()).subscribe( data => {
         this.listaTareasNoAsignadas = data.data;
+        console.log("DashboardComponent.ngOnInit() data.data= "+  JSON.stringify(data.data) );
+
         this.dataRows= [];
 
         for (var tarea of this.listaTareasNoAsignadas) {
@@ -83,7 +84,7 @@ export class DashboardComponent implements OnInit{
 
             this.dataLine.push(tarea.observacion);
             this.dataLine.push(tarea.habilidad.horasEstipuladas);
-            this.dataRows.push(this.dataLine);
+             this.dataRows.push(this.dataLine);
         }
 
         this.tableData1 = {
