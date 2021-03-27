@@ -130,7 +130,7 @@ export class TareasService {
   }
 
   nuevaActividad(auth_token,observacion,usuarioSolicita_id,habilidad_id): Observable<any> {
-    console.log("TareasService.nuevaActividad ");
+   // console.log("TareasService.nuevaActividad ");
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${auth_token}`

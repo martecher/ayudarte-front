@@ -41,11 +41,14 @@
     margin-bottom: .5em;
     font-weight: 400;
   }
-  
+  .card-title1 {
+    margin-bottom: -1.25rem !important;
+}
   .card-texto {
     font-size: 95%;
   }
   
+
   @media screen and (min-width: 40em) {
     .cards {
       display: flex;

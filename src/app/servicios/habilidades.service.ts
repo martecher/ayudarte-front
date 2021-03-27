@@ -19,7 +19,7 @@ export class HabilidadesService {
 
 
   constructor(private http: HttpClient , private usuarioGuardadoServicio:UsuarioGuardadoService) {
-    console.log("HabilidadesService.constructor");
+//    console.log("HabilidadesService.constructor");
     this.habilidades = [];
     this.habilidades$ = new Subject();
     this.leerlistado(0); 
@@ -27,16 +27,16 @@ export class HabilidadesService {
   }
 
   leerlistado(idCategoria){
-    console.log("HabilidadesService.leerlistado ");    
+//    console.log("HabilidadesService.leerlistado ");    
     this.listaHabilidadesCategoria(idCategoria).subscribe( data => {
       this.habilidades = data.data;
-      console.log("HabilidadesService.leerlistado  = "+JSON.stringify(this.habilidades));
+//      console.log("HabilidadesService.leerlistado  = "+JSON.stringify(this.habilidades));
       this.habilidades$.next(this.habilidades);
      });
   }
 
     listaHabilidadesCategoria(id): Observable<any> {
-    console.log("HabilidadesService.listaHabilidades ");    
+//    console.log("HabilidadesService.listaHabilidades ");    
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${this.usuarioGuardadoServicio.getToken()}`
@@ -44,7 +44,7 @@ export class HabilidadesService {
     return this.http.get("http://127.0.0.1:8000/api/habilidades/categoria/"+id, { headers: headers })
   }
   listaHabilidades(): Observable<any> {
-    console.log("HabilidadesService.listaHabilidades ");    
+//    console.log("HabilidadesService.listaHabilidades ");    
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${this.usuarioGuardadoServicio.getToken()}`
@@ -53,7 +53,7 @@ export class HabilidadesService {
   }
 
   getHabilidad(id): Observable<any> {
-    console.log("HabilidadesService.getHabilidad ");    
+//    console.log("HabilidadesService.getHabilidad ");    
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${this.usuarioGuardadoServicio.getToken()}`
@@ -62,7 +62,7 @@ export class HabilidadesService {
   } 
   
   actualizarHabilidad( id, descripcion, horasEstipuladas): Observable<any> {
-    console.log("HabilidadesService.actualizarHabilidad ");    
+//    console.log("HabilidadesService.actualizarHabilidad ");    
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${this.usuarioGuardadoServicio.getToken()}`
@@ -75,7 +75,7 @@ export class HabilidadesService {
   }
 
   nuevaHabilidad(descripcion, horasEstipuladas, categoria): Observable<any> {
-    console.log("HabilidadesService.nuevaHabilidad ");
+//    console.log("HabilidadesService.nuevaHabilidad ");
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${this.usuarioGuardadoServicio.getToken()}`
@@ -90,7 +90,7 @@ export class HabilidadesService {
   }
 
   getHabilidades$(): Observable<Habilidad[]>{
-    console.log("CategoriaHabilidadesService.getCategorias$ ");
+//    console.log("CategoriaHabilidadesService.getCategorias$ ");
     return this.habilidades$.asObservable();
   }
 }

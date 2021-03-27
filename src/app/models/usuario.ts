@@ -16,5 +16,6 @@ export interface Usuario {
   numVotos3: string;
   numVotos2: string;
   numVotos1: string;
+  token_acceso: string;
 }
 

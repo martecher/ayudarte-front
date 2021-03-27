@@ -37,7 +37,7 @@ export class HabilidadComponent implements OnInit {
     this.categoriaHabilidadesService.leerlistado();
     this.categoriaHabilidadesService.getCategorias$().subscribe( data => {
       this.categoriasObjet = data;
-      console.log("HabilidadComponent.ngOnInit  = "+JSON.stringify(this.categoriasObjet));
+   //   console.log("HabilidadComponent.ngOnInit  = "+JSON.stringify(this.categoriasObjet));
       // hay que meter esto en un observable para poder cargar esta lista
       // automaticamente cuando de de alta la categoria
       this.createForm();
@@ -45,7 +45,7 @@ export class HabilidadComponent implements OnInit {
   }
 
   createForm() {
-    console.log("HabilidadComponent.createForm");
+  //  console.log("HabilidadComponent.createForm");
     /*
       descripcion: string;
       horasEstipuladas: string;
@@ -69,14 +69,14 @@ export class HabilidadComponent implements OnInit {
   
 
   guardarHabilidad (): void {
-    console.log("HabilidadComponent.guardarHabilidad form: "+ JSON.stringify( this.form.value));
-    console.log("HabilidadComponent.guardarHabilidad idcategoria: "+  this.form.value.categoria_ID.id   );
+//    console.log("HabilidadComponent.guardarHabilidad form: "+ JSON.stringify( this.form.value));
+//    console.log("HabilidadComponent.guardarHabilidad idcategoria: "+  this.form.value.categoria_ID.id   );
 
     this.habilidadesService.nuevaHabilidad(this.form.value.descripcionHabilidad,
       this.form.value.horasEstipuladas,
       this.form.value.categoria_ID.id,
       ).subscribe( data => {
-      console.log("HabilidadComponent.guardarHabilidad: " + JSON.stringify (data) );
+//      console.log("HabilidadComponent.guardarHabilidad: " + JSON.stringify (data) );
       this.habilidadesService.leerlistado(this.form.value.categoria_ID.id); 
   });
   

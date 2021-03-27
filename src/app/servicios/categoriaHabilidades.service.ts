@@ -21,7 +21,7 @@ export class CategoriaHabilidadesService {
   constructor(private http: HttpClient , private usuarioGuardadoServicio:UsuarioGuardadoService) {
     // this.categorias NO SE deberia inicializar a vacio
     // deberia hacerse una lectura de bd
-    console.log("CategoriaHabilidadesService.constructor");
+ //   console.log("CategoriaHabilidadesService.constructor");
     this.categorias = [];
     this.categorias$ = new Subject();
     const headers = new HttpHeaders({
@@ -34,7 +34,7 @@ export class CategoriaHabilidadesService {
   leerlistado(){
     this.listaCategoriaHabilidades().subscribe( data => {
       this.categorias = data.data;
-      console.log("CategoriaHabilidadesService.leerlistado  = "+JSON.stringify(this.categorias));
+ //     console.log("CategoriaHabilidadesService.leerlistado  = "+JSON.stringify(this.categorias));
       this.categorias$.next(this.categorias);
       // hay que meter esto en un observable para poder cargar esta lista
       // automaticamente cuando de de alta la categoria
@@ -43,7 +43,7 @@ export class CategoriaHabilidadesService {
 
   listaCategoriaHabilidades(): Observable<any> {
     
-    console.log("CategoriaHabilidadesService.listaCategoriaHabilidades antes de hacer llamada: " +  JSON.stringify(this.categorias) );
+ //   console.log("CategoriaHabilidadesService.listaCategoriaHabilidades antes de hacer llamada: " +  JSON.stringify(this.categorias) );
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${this.usuarioGuardadoServicio.getToken()}`
@@ -54,7 +54,7 @@ export class CategoriaHabilidadesService {
   }
 
   getCategoriaHabilidad( id): Observable<any> {
-    console.log("CategoriaHabilidadesService.getCategoriaHabilidad ");
+//    console.log("CategoriaHabilidadesService.getCategoriaHabilidad ");
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${this.usuarioGuardadoServicio.getToken()}`
@@ -63,7 +63,7 @@ export class CategoriaHabilidadesService {
   } 
   
   actualizarCategoriaHabilidad( id, descripcion): Observable<any> {
-    console.log("CategoriaHabilidadesService.actualizarCategoriaHabilidad ");
+//    console.log("CategoriaHabilidadesService.actualizarCategoriaHabilidad ");
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${this.usuarioGuardadoServicio.getToken()}`
@@ -76,7 +76,7 @@ export class CategoriaHabilidadesService {
   }
 
   nuevaCategoriaHabilidad(descripcion): Observable<any> {
-    console.log("CategoriaHabilidadesService.nuevaCategoriaHabilidad ");
+ //   console.log("CategoriaHabilidadesService.nuevaCategoriaHabilidad ");
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${this.usuarioGuardadoServicio.getToken()}`
@@ -89,7 +89,7 @@ export class CategoriaHabilidadesService {
   }
 
   getCategorias$(): Observable<CategoriaHabilidad[]>{
-    console.log("CategoriaHabilidadesService.getCategorias$ ");
+ //   console.log("CategoriaHabilidadesService.getCategorias$ ");
     return this.categorias$.asObservable();
   }
 

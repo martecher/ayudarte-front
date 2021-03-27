@@ -65,7 +65,10 @@
   color: #fff;
   z-index: 1;
 }
-
+.h4Panel{
+  font-size: 95%;
+  color: #51bcda;
+}
 @media all and (min-width: 992px) {
   .sidebar .nav>li.active-pro {
     position: absolute;

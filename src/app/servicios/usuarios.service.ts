@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
 import {UsuarioGuardadoService} from './usuarioguardado.service';
 import { map } from 'rxjs/operators';
 import { HttpHeaders } from '@angular/common/http';
+import { Usuario } from '../models/usuario';
 
 
 @Injectable({
@@ -33,12 +34,15 @@ export class UsuariosService {
               this.usuarioGuardadoServicio.setUsuarioId( resp.usuario_id );
           		this.usuarioGuardadoServicio.setTipoToken(resp.tipo_token);
               this.usuarioGuardadoServicio.setNumeroVotaciones(resp.numeroVotaciones);
-
+              
+              localStorage.setItem('token_acceso', resp.token_acceso);
+              /*
               console.log("-----");
               console.log("UsuariosService.login()");
           		console.log("Usuario guardado: ");
           		console.log(this.usuarioGuardadoServicio.toString());
               console.log("-----");
+              */
               return resp;
         	})
       );

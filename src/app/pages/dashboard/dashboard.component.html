@@ -113,14 +113,16 @@
 
 <div class="row">
   <div>
-    <span class=" ">Tareas realizando</span>
+    <span class="h4Panel">Tareas realizando</span>
   </div>
 </div>
 <div class="row">
   <div  *ngFor="let dataRows of tableData1.dataRows"  class="col-lg-3 col-md-6 col-sm-6">
     <div class="card card-stats">
       <div class="card-header">
-        <h4 class="card-title">{{dataRows[1]}}</h4>
+        <div class="contenidoCentrado">
+          <h4 class="card-title" style=" margin-bottom: -1.25rem !important;">{{dataRows[1]}}</h4>
+        </div>
       </div>
       <div class="card-body">
              <div class="">
@@ -135,119 +137,82 @@
        </div>
       <div class="card-footer ">
         <hr>
-        <div class="stats">
           <div class="contenidoCentrado">
-            <button type="button" (click)="prepararEditar(dataRows[0], 'Terminar')" class="btn btn-info"><i class="nc-icon nc-paper"></i></button>
+            <button type="button" (click)="prepararEditar(dataRows[0], 'Terminar')" class="btn btn-info"><i class="nc-icon nc-paper"> Terminar</i></button>
           </div>        
-        </div>
       </div>
     </div>
   </div>
 </div>
 
 <div class="row">
-  <div class="col-md-12">
-    <div class="card">
+  <div>
+    <span class="h4Panel">Tareas Solicitadas</span>
+  </div>
+</div>
+<div class="row">
+  <div  *ngFor="let dataRows of tableData2.dataRows"  class="col-lg-3 col-md-6 col-sm-6">
+    <div class="card card-stats">
       <div class="card-header">
-        <h4 class="card-title">Solicitadas</h4>
+        <div class="contenidoCentrado">
+        <h4 class="card-title" style=" margin-bottom: -1.25rem !important;">{{dataRows[1]}}</h4>
+        </div>
       </div>
       <div class="card-body">
-        <div class="table-responsive">
-          <table class="table">
-            <thead class=" text-primary">
-              <th *ngFor="let header of tableData2.headerRow">
-                <div class="contenidoCentrado">
-                  <span>{{header}}</span>
-                </div>
-              </th>
-             </thead>
-            <tbody>
-              <tr *ngFor="let dataRows of tableData2.dataRows">
-      
-                <td>
-                  <div class="contenidoCentrado">
-                    <span>{{dataRows[1]}}</span>
-                  </div>
-                </td>
-                <td>
-                  <div class="contenidoCentrado">
-                    <span>{{dataRows[2]}}</span>
-                  </div>
-                </td>
-                <td>
-                  <div class="contenidoCentrado">
-                    <span>{{dataRows[3]}}</span>
-                  </div>
-                </td>
-                <td>
-                  <div class="contenidoCentrado">
-                    <span>{{dataRows[4]}}</span>
-                  </div>
-                </td>
-                <td>
-                  <div class="contenidoCentrado">
-                    <button type="button" (click)="prepararEditar(dataRows[0],'Aceptar')" class="btn btn-info"><i class="nc-icon nc-book-bookmark"></i></button>
-                  </div>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+             <div class="">
+              <hr>
+              <p class="usuario-tarjeta">{{dataRows[3]}}<p>
+            </div>
+           <div class=" ">
+            <div class="contenidoCentrado">
+              <p class="hora-tarjeta">{{dataRows[2]}}<p>
+            </div>
+          </div>
+       </div>
+      <div class="card-footer ">
+        <hr>
+          <div class="contenidoCentrado">
+            <button type="button" (click)="prepararEditar(dataRows[0],'Aceptar')" class="btn btn-info"><i class="nc-icon nc-book-bookmark"> Aceptar</i></button>
+          </div>        
       </div>
     </div>
   </div>
 </div>
 
-
-<div class="row">
-  <div class="col-md-12">
-    <div class="card">
-      <div class="card-header">
-        <h4 class="card-title">Terminadas</h4>
-      </div>
-      <div class="card-body">
-        <div class="table-responsive">
-          <table class="table">
-            <thead class=" text-primary">
-              <th *ngFor="let header of tableData3.headerRow">
-                <div class="contenidoCentrado">
-                  <span>{{header}}</span>
-                </div>
-              </th>
-             </thead>
-            <tbody>
-              <tr *ngFor="let dataRows of tableData3.dataRows">
  
-                <td>
-                  <div class="contenidoCentrado">
-                    <span>{{dataRows[1]}}</span>
-                  </div>
-                </td>
-                <td>
-                  <div class="contenidoCentrado">
-                    <span>{{dataRows[2]}}</span>
-                  </div>
-                </td>
-                <td>
-                  <div class="contenidoCentrado">
-                    <span>{{dataRows[3]}}</span>
-                  </div>
-                </td>
-                <td>
-                  <div class="contenidoCentrado">
-                    <span>{{dataRows[4]}}</span>
-                  </div>
-                </td>
-                <td>
-                  <div class="contenidoCentrado">
-                    <button type="button" (click)="prepararEditar(dataRows[0], 'Consultar')" class="btn btn-info"><i class="nc-icon nc-zoom-split"></i></button>
-                  </div>
-                </td>
-              </tr>
-            </tbody>
-          </table>
+<div class="row">
+  <div>
+    <span class="h4Panel">Tareas Terminadas</span>
+  </div>
+</div>
+<div class="row">
+  <div  *ngFor="let dataRows of tableData3.dataRows"  class="col-lg-3 col-md-6 col-sm-6">
+    <div class="card card-stats">
+      <div class="card-header">
+        <div class="contenidoCentrado">
+          <h4 class="card-title" style=" margin-bottom: -1.25rem !important;">{{dataRows[1]}}</h4>
         </div>
+      </div>
+      <div class="card-body">
+             <div class="">
+              <hr>
+              <p class="usuario-tarjeta">{{dataRows[3]}}<p>
+            </div>
+           <div class=" ">
+            <div class="contenidoCentrado">
+              <p class="hora-tarjeta">{{dataRows[2]}}<p>
+            </div>
+          </div>
+       </div>
+      <div class="card-footer ">
+        <hr>
+          <div class="contenidoCentrado">
+            <button type="button" (click)="prepararEditar(dataRows[0], 'Consultar')" class="btn btn-info"><i class="nc-icon nc-zoom-split">Consultar</i></button>
+          </div>        
       </div>
     </div>
   </div>
 </div>
+
+
+ 

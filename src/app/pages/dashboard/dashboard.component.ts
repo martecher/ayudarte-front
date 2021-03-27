@@ -46,7 +46,7 @@ export class DashboardComponent implements OnInit{
      ) { }
 
     ngOnInit(){
-        console.log("DashboardComponent.ngOnInit()");
+//        console.log("DashboardComponent.ngOnInit()");
         this.horas =this.usuarioGuardado.getBolsaHora();
         this.valoracion =this.usuarioGuardado.getReputacion();
 
@@ -65,7 +65,7 @@ export class DashboardComponent implements OnInit{
         // Esta lista de tareas asignadas a mi sin terminar
         this.tareasService.actividadesEnRealizacion(this.usuarioGuardado.getToken(),this.usuarioGuardado.getUsuarioId()).subscribe( data => {
         this.listaTareasNoAsignadas = data.data;
-        console.log("DashboardComponent.ngOnInit() data.data= "+  JSON.stringify(data.data) );
+//        console.log("DashboardComponent.ngOnInit() data.data= "+  JSON.stringify(data.data) );
 
         this.dataRows= [];
 
@@ -337,14 +337,14 @@ export class DashboardComponent implements OnInit{
       });
 
     this.usuarioService.listaUsuarios(this.usuarioGuardado.getToken()).subscribe( data => {
-      console.log("lista usuarios");
-      console.log(data.data);
+ //     console.log("lista usuarios");
+ //     console.log(data.data);
     });
     }
 
 
     prepararEditar(id, operacion) {
-      console.log("prepararEditar: " + id + " " + operacion);
+//      console.log("prepararEditar: " + id + " " + operacion);
       this.router.navigateByUrl('/actividad/'+id+'/'+operacion);
     }
 

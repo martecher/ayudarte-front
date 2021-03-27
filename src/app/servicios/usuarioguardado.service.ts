@@ -28,7 +28,9 @@ export class UsuarioGuardadoService {
   }
 
   getToken() {
-    return this._token;
+    let token_acceso = localStorage.getItem('token_acceso');
+    return token_acceso;
+    //return this._token;
   }
 
   setNombreUsuario(nombreUsuario: string) {
@@ -81,18 +83,23 @@ export class UsuarioGuardadoService {
 
   setBolsaHora(bolsaHora: string) {
     this._bolsaHora = bolsaHora;
+    localStorage.setItem('_bolsaHora', this._bolsaHora);
+
   }
 
   getBolsaHora() {
-    return this._bolsaHora;
+    return  localStorage.getItem('_bolsaHora');
+    
   }
 
   setReputacion(reputacion: string) {
     this._reputacion = reputacion;
+    localStorage.setItem('_reputacion', this._reputacion);
   }
 
   getReputacion() {
-    return this._reputacion;
+    return  localStorage.getItem('_reputacion');
+
   }
 
   setAdministrador(administrador: string) {
@@ -121,32 +128,42 @@ export class UsuarioGuardadoService {
 
   setUsuarioId(id: string) {
     this._usuario_id = id;
+     localStorage.setItem('idUsuario', this._usuario_id);
+
   }
 
   getUsuarioId() {
-    return this._usuario_id;
+    return   localStorage.getItem('idUsuario');
+     
   }
 
   setNumeroVotaciones(numeroVotaciones: string) {
     this._numeroVotaciones = numeroVotaciones;
+    localStorage.setItem('_numeroVotaciones', this._numeroVotaciones);
+
   }
 
   getNumeroVotaciones() {
-    return this._numeroVotaciones;
+    return localStorage.getItem('_numeroVotaciones');
   }
 
   isLoggedIn() {
-    console.log("isLoggedIn()");
-    console.log(this.getToken());
-    return this.getToken() != null;
+    console.log("UsuarioGuardadoService.isLoggedIn()");
+    let token_acceso = localStorage.getItem('token_acceso');
+    console.log(token_acceso);
+
+    return token_acceso != null;
+//    return this.getToken() != null;
   }
 
   logOut(){
     this.setToken(null);
     this.setNombreUsuario(null);
+    localStorage.removeItem('token_acceso');
   }
 
   toString(){
+    /*
     console.log("UsuarioGuardadoService.toString()");
     console.log("_token: "+this. getToken());
     console.log("_nombreUsuario: "+this. getNombreUsuario());
@@ -162,7 +179,7 @@ export class UsuarioGuardadoService {
     console.log("_id: "+this. getUsuarioId());
     console.log("_tipoToken: "+this. getTipoToken());
     console.log("_numeroVotaciones: "+this. getNumeroVotaciones());
-
+*/
 
   }
 

@@ -220,7 +220,7 @@ export class ActividadComponent implements OnInit {
         break;
         case "Aceptar":
             //valora al usuario  que la realizó
-            console.log("actualizarActividad  var myJSON = JSON.stringify(this.actividad): " + JSON.stringify(this.actividad));      
+//            console.log("actualizarActividad  var myJSON = JSON.stringify(this.actividad): " + JSON.stringify(this.actividad));      
             let valoracion = this.actividadCruda.usuarioRealiza[0].reputacion;
             let numeroVotaciones2 = this.actividadCruda.usuarioRealiza[0].numeroVotaciones;
             numeroVotaciones2=numeroVotaciones2+1;
