@@ -22,7 +22,7 @@ export class HabilidadesService {
     console.log("HabilidadesService.constructor");
     this.habilidades = [];
     this.habilidades$ = new Subject();
-    this.leerlistado(1); 
+    this.leerlistado(0); 
    
   }
 

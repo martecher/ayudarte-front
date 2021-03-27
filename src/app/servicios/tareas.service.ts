@@ -122,12 +122,25 @@ export class TareasService {
   }
 
   actividadNombre(auth_token, nombre,valor): Observable<any> {
-
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${auth_token}`
     })
-
     return this.http.get("http://127.0.0.1:8000/api/actividadesRealizadas/actividadNombre/"+nombre+"/finalizada/"+valor, { headers: headers})
+  }
+
+  nuevaActividad(auth_token,observacion,usuarioSolicita_id,habilidad_id): Observable<any> {
+    console.log("TareasService.nuevaActividad ");
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${auth_token}`
+    })
+    const body = { 
+      observacion: observacion,
+      usuarioSolicita_id: usuarioSolicita_id,
+      habilidad_id: habilidad_id
+   };
+   let respuesta = this.http.post("http://127.0.0.1:8000/api/actividadesRealizadas/", body,  { headers: headers })
+   return respuesta;
   }
 }

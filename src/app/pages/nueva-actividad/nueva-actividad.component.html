@@ -2,28 +2,29 @@
 <app-categoria></app-categoria>
  
 <app-habilidad></app-habilidad>
-
+ 
 
 <form [formGroup]="nuevaActividadForm" (ngSubmit)="guardarActividad()">
     <div class="form-group">
-      <label igxLabel for="categoria_ID">categoria</label>
-      <select formControlName="categoria_ID" (change)="onChangeCategoriaActividad($event.target.value)">
-        <option value="" disabled>Elige una categoría</option>
-        <option *ngFor="let categ of categoriasObjet" [value]="categ.id">
-        {{ categ.descripcion }}
+      <label igxLabel for="categoria_ID2">categoria</label>
+      <select formControlName="categoria_ID2" (change)="onChangeCategoriaActividad($event.target.value)">
+        <option value="-1" >Elige una categoría</option>
+        <option *ngFor="let categ2 of categoriasObjet2" [value]="categ2.id">
+        {{ categ2.descripcion }}
         </option>
       </select>
-
-
     </div>
     <div class="form-group">
-      <span>puede que no se reciba la habilidad y el combo habria que cargarlo con el change en Actividad</span>
-      <label igxLabel for="habilidad">listaHabilidades</label>  
-      <select class="custom-select" formControlName="habilidad">
-            <option value="" disabled>Elige una habilidad</option>
-            <option *ngFor="let hab of habilidadesObjet" [ngValue]="hab.id">{{hab.descripcion}}</option>
+      <label igxLabel for="habilidad_ID2">habilidad</label>
+      <select formControlName="habilidad_ID2" (change)="onChangeCategoriaHabilidad($event.target.value)">
+        <option value="-1" >Elige una habilidad</option>
+        <option *ngFor="let hab2 of habilidadesObjet2" [value]="hab2.habilidad_id">
+        {{ hab2.descripcion }}
+        </option>
       </select>
     </div>
+
+  
     <div class="form-group">
     <label igxLabel for="descripcion">descripcion</label>
       <input type="text"
@@ -31,6 +32,7 @@
               formControlName="descripcion"
       >
     </div>
+    <!--
     <div class="form-group">
       <label igxLabel for="horasEstipuladas">horasEstipuladas</label>
         <input type="text"
@@ -38,6 +40,8 @@
                 formControlName="horasEstipuladas"
         >
       </div>
+
+    --> 
     <button type="submit">Guardar</button>
     <button type="submit" (click)="volver()" >Volver</button>
 </form>
