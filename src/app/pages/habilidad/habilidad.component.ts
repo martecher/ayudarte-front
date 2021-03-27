@@ -60,7 +60,7 @@ export class HabilidadComponent implements OnInit {
       });
         */
       this.form = new FormGroup({
-        descripcion: new FormControl(),
+        descripcionHabilidad: new FormControl(),
         horasEstipuladas:new FormControl(),
         categoria_ID: new FormControl(this.categoriasObjet[3])
       });
@@ -72,7 +72,7 @@ export class HabilidadComponent implements OnInit {
     console.log("HabilidadComponent.guardarHabilidad form: "+ JSON.stringify( this.form.value));
     console.log("HabilidadComponent.guardarHabilidad idcategoria: "+  this.form.value.categoria_ID.id   );
 
-    this.habilidadesService.nuevaHabilidad(this.form.value.descripcion,
+    this.habilidadesService.nuevaHabilidad(this.form.value.descripcionHabilidad,
       this.form.value.horasEstipuladas,
       this.form.value.categoria_ID.id,
       ).subscribe( data => {

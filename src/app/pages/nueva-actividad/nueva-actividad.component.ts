@@ -65,7 +65,7 @@ export class NuevaActividadComponent implements OnInit {
   this.nuevaActividadForm = this.fb.group({
     categoria_ID2: [],
     habilidad_ID2: [],
-    descripcion:  []
+    descripcionTarea:  []
   });
     
 
@@ -98,7 +98,7 @@ export class NuevaActividadComponent implements OnInit {
     console.log("NuevaActividadComponent.guardarActividad  = "+JSON.stringify(this.nuevaActividadForm.value));
     console.log("NuevaActividadComponent.guardarActividad  idHabilidadSelect= "+this.idHabilidadSelect);
     console.log("NuevaActividadComponent.guardarActividad  idActividadSelect= "+this.idActividadSelect);
-    this.tareasService.nuevaActividad(this.usuarioGuardado.getToken(),this.nuevaActividadForm.value.descripcion,
+    this.tareasService.nuevaActividad(this.usuarioGuardado.getToken(),this.nuevaActividadForm.value.descripcionTarea,
     this.usuarioGuardado.getUsuarioId(),this.idHabilidadSelect).subscribe( data => {
        console.log("NuevaActividadComponent.onChangeActividad habilidadesObjet2 = "+JSON.stringify(data));
       // hay que meter esto en un observable para poder cargar esta lista
