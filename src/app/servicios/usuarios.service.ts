@@ -36,13 +36,13 @@ export class UsuariosService {
               this.usuarioGuardadoServicio.setNumeroVotaciones(resp.numeroVotaciones);
               
               localStorage.setItem('token_acceso', resp.token_acceso);
-              /*
+               
               console.log("-----");
               console.log("UsuariosService.login()");
-          		console.log("Usuario guardado: ");
-          		console.log(this.usuarioGuardadoServicio.toString());
+          		console.log("Usuario guardado: " +  resp.token_acceso);
+//          		console.log(this.usuarioGuardadoServicio.toString());
               console.log("-----");
-              */
+               
               return resp;
         	})
       );

@@ -10,6 +10,7 @@ import { NotificationsComponent } from '../../pages/notifications/notifications.
 import { UpgradeComponent } from '../../pages/upgrade/upgrade.component';
 import { ActividadComponent }       from '../../pages/actividad/actividad.component';
 import { NuevaActividadComponent }       from '../../pages/nueva-actividad/nueva-actividad.component';
+import { RankingUsuariosComponent }       from '../../pages/ranking-usuarios/ranking-usuarios.component';
 
 export const AdminLayoutRoutes: Routes = [
     { path: 'panel',      component: DashboardComponent },
@@ -22,4 +23,6 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'upgrade',        component: UpgradeComponent },
     { path: 'actividad/:id/:operacion',        component: ActividadComponent },
     { path: 'nueva-actividad',        component: NuevaActividadComponent},
+    { path: 'rankingUsuarios',        component: RankingUsuariosComponent},
+    
 ];

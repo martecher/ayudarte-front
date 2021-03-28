@@ -13,6 +13,7 @@ export const ROUTES: RouteInfo[] = [
     { path: '/usuario',          title: 'Cuenta Usuario',      icon:'nc-single-02',  class: '' },
     { path: '/actividades',         title: 'Actividades',        icon:'nc-tile-56',    class: '' },
     { path: '/rankingUsuarios',         title: 'Ranking Usuarios',        icon:'nc-user-run',    class: '' },
+    { path: '/logout',         title: 'Salir',        icon:'nc-button-power',    class: '' },
     { path: '/icons',         title: 'Iconos',        icon:'nc-tile-56',    class: '' },
 
 ];
