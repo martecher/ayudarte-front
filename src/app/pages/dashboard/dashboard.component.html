@@ -111,14 +111,14 @@
 </div>
 
 
-<div class="row">
-  <div>
+<div class="row separacionTitulo">
     <span class="h4Panel">Tareas realizando</span>
-  </div>
 </div>
 <div class="row">
 
   <div  *ngFor="let dataRows of tableData1.dataRows"  class="col-lg-3 col-md-6 col-sm-6">
+    
+    <!--
     <div class="card card-stats">
       <div class="card-header">
         <div class="contenidoCentrado">
@@ -143,62 +143,42 @@
           </div>        
       </div>
     </div>
-  
+    -->
           <!-- Team member -->
-          <div>
             <div class="image-flip" ontouchstart="this.classList.toggle('hover');">
                 <div class="mainflip">
                     <div class="frontside">
-                  <!--    <div class="card-header">-->
                         <div class="contenidoCentrado">
-                          <h4 class="card-title" style=" margin-bottom: -1.25rem !important;"> delante {{dataRows[1]}}</h4>
+                          <h5 class="card-title" > delante {{dataRows[1]}}</h5>
                         </div>
-                    <!--  </div>-->
-                      <div class="card-body">
-                     <!--        <div class="">-->
-                      <!--        <hr>-->
-                              <p class="usuario-tarjeta">{{dataRows[3]}}<p>
-                       <!--     </div>-->
-                        <!--     <div class=" "> -->
-                            <div class="contenidoCentrado">
-                              <p class="hora-tarjeta">{{dataRows[2]}}<p>
+                        <div class="card-body">
+                             <div class="contenidoCentrado">
+                              <p class="hora-tarjeta">{{dataRows[2]}}</p>
                             </div>
-                        <!--    </div> -->
-                       </div>
-                      <div class="card-footer ">
-                        <hr>
+                        </div>
+                      <div class="card-footer fondoFooter">
                           <div class="contenidoCentrado">
-                            <button type="button" (click)="prepararEditar(dataRows[0], 'Terminar')" class="btn btn-info"><i class="nc-icon nc-paper"> Terminar</i></button>
+                            <button type="button" (click)="prepararEditar(dataRows[0], 'Terminar')" class="btn colorBoton"><i class="nc-icon nc-paper"> Terminar</i></button>
                           </div>        
                       </div>
                     </div>
                     <div class="backside">
-                      <div class="card-header">
                         <div class="contenidoCentrado">
-                          <h4 class="card-title" style=" margin-bottom: -1.25rem !important;"> detras {{dataRows[1]}}</h4>
+                          <h5 class="card-title" > detras {{dataRows[1]}}</h5>
                         </div>
-                      </div>
                       <div class="card-body">
-                             <div class="">
-                              <hr>
-                              <p class="usuario-tarjeta">{{dataRows[3]}}<p>
+                             <div class="contenidoCentrado">
+                              <p class="hora-tarjeta">{{dataRows[3]}}</p>
                             </div>
-                           <div class=" ">
-                            <div class="contenidoCentrado">
-                              <p class="hora-tarjeta">{{dataRows[2]}}<p>
-                            </div>
-                          </div>
                        </div>
-                      <div class="card-footer ">
-                        <hr>
+                      <div class="card-footer fondoFooter ">
                           <div class="contenidoCentrado">
-                            <button type="button" (click)="prepararEditar(dataRows[0], 'Terminar')" class="btn btn-info"><i class="nc-icon nc-paper"> Terminar</i></button>
+                            <button type="button" (click)="prepararEditar(dataRows[0], 'Terminar')" class="btn btn-primary"><i class="nc-icon nc-paper"> Terminar</i></button>
                           </div>        
                       </div>
                     </div>
                 </div>
             </div>
-        </div>
         <!-- ./Team member -->
 
       </div>

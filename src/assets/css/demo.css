@@ -66,7 +66,7 @@
   z-index: 1;
 }
 .h4Panel{
-  font-size: 30px;
+  font-size: 25px;
   color: #51bcda;
 }
 @media all and (min-width: 992px) {
@@ -327,10 +327,12 @@ section .section-title {
     -moz-transform: rotateY(180deg);
     -o-transform: rotateY(180deg);
     transform: rotateY(180deg);
+    border-radius: .25rem;
+
 }
 
 .mainflip {
-    -webkit-transition: 1s;
+     -webkit-transition: 1s;
     -webkit-transform-style: preserve-3d;
     -ms-transition: 1s;
     -moz-transition: 1s;
@@ -348,6 +350,8 @@ section .section-title {
     -ms-transform: rotateY(0deg);
     z-index: 2;
     margin-bottom: 30px;
+    background: white;
+    border-radius: 5px;
 }
 
 .backside {
@@ -402,5 +406,14 @@ section .section-title {
     width: 120px;
     height: 120px;
     border-radius: 50%;
+}
+.fondoFooter {
+  background-color: #dadad8 !important;
+}
+.colorBoton {
+  background-color: #51bcda !important}
+ 
+.separacionTitulo{
+  margin: 40px;
 }
     /* termina card flip*/
