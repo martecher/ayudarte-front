@@ -106,13 +106,13 @@
 </div>
 <div class="row">
 <span>                    
-  <button type="button" (click)="prepararNuevaActividad()" class="btn btn-info"><i class="nc-icon nc-zoom-split"></i></button>
+  <button type="button" (click)="prepararNuevaActividad()" class="btn btn-secondary"><i class="nc-icon nc-simple-add"> </i>  Nueva tarea</button>
 </span>
 </div>
 
 
 <div class="row separacionTitulo">
-    <span class="h4Panel">Tareas realizando</span>
+    <span class="h4Panel">  Tareas realizando</span>
 </div>
 <div class="row">
 
@@ -144,7 +144,7 @@
       </div>
     </div>
     -->
-          <!-- Team member -->
+          <!-- tarjeta -->
             <div class="image-flip" ontouchstart="this.classList.toggle('hover');">
                 <div class="mainflip">
                     <div class="frontside">
@@ -158,7 +158,7 @@
                         </div>
                       <div class="card-footer fondoFooter">
                           <div class="contenidoCentrado">
-                            <button type="button" (click)="prepararEditar(dataRows[0], 'Terminar')" class="btn colorBoton"><i class="nc-icon nc-paper"> Terminar</i></button>
+                            <button type="button" (click)="prepararEditar(dataRows[0], 'Terminar')" class="btn btn-link botonTerminar">TERMINAR</button>
                           </div>        
                       </div>
                     </div>
@@ -173,25 +173,60 @@
                        </div>
                       <div class="card-footer fondoFooter ">
                           <div class="contenidoCentrado">
-                            <button type="button" (click)="prepararEditar(dataRows[0], 'Terminar')" class="btn btn-primary"><i class="nc-icon nc-paper"> Terminar</i></button>
+                            <button type="button" (click)="prepararEditar(dataRows[0], 'Terminar')" class="btn btn-link botonTerminar">TERMINAR</button>
                           </div>        
                       </div>
                     </div>
                 </div>
             </div>
-        <!-- ./Team member -->
-
+        <!-- ./TARJETA -->
       </div>
-
 </div>
 
-<div class="row">
+<div class="row separacionTitulo">
   <div>
     <span class="h4Panel">Tareas Solicitadas</span>
   </div>
 </div>
 <div class="row">
   <div  *ngFor="let dataRows of tableData2.dataRows"  class="col-lg-3 col-md-6 col-sm-6">
+          <!-- tarjeta -->
+          <div class="image-flip" ontouchstart="this.classList.toggle('hover');">
+            <div class="mainflip">
+                <div class="frontside">
+                    <div class="contenidoCentrado">
+                      <h5 class="card-title" > delante {{dataRows[1]}}</h5>
+                    </div>
+                    <div class="card-body">
+                         <div class="contenidoCentrado">
+                          <p class="hora-tarjeta">{{dataRows[2]}}</p>
+                        </div>
+                    </div>
+                  <div class="card-footer fondoFooter">
+                      <div class="contenidoCentrado">
+                        <button type="button" (click)="prepararEditar(dataRows[0], 'Aceptar')" class="btn btn-link botonAceptar">ACEPTAR</button>
+                      </div>        
+                  </div>
+                </div>
+                <div class="backside">
+                    <div class="contenidoCentrado">
+                      <h5 class="card-title" > detras {{dataRows[1]}}</h5>
+                    </div>
+                  <div class="card-body">
+                         <div class="contenidoCentrado">
+                          <p class="hora-tarjeta">{{dataRows[3]}}</p>
+                        </div>
+                   </div>
+                  <div class="card-footer fondoFooter ">
+                      <div class="contenidoCentrado">
+                        <button type="button" (click)="prepararEditar(dataRows[0], 'Aceptar')" class="btn btn-link botonAceptar">ACEPTAR</button>
+                      </div>        
+                  </div>
+                </div>
+            </div>
+        </div>
+    <!-- ./TARJETA -->
+    <!-- 
     <div class="card card-stats">
       <div class="card-header">
         <div class="contenidoCentrado">
@@ -216,17 +251,22 @@
           </div>        
       </div>
     </div>
+     -->
+
+
   </div>
 </div>
 
  
-<div class="row">
+<div class="row separacionTitulo">
   <div>
     <span class="h4Panel">Tareas Terminadas</span>
   </div>
 </div>
 <div class="row">
   <div  *ngFor="let dataRows of tableData3.dataRows"  class="col-lg-3 col-md-6 col-sm-6">
+    
+    <!--  
     <div class="card card-stats">
       <div class="card-header">
         <div class="contenidoCentrado">
@@ -251,6 +291,44 @@
           </div>        
       </div>
     </div>
+     -->
+          <!-- tarjeta -->
+          <div class="image-flip" ontouchstart="this.classList.toggle('hover');">
+            <div class="mainflip">
+                <div class="frontside">
+                    <div class="contenidoCentrado">
+                      <h5 class="card-title" > delante {{dataRows[1]}}</h5>
+                    </div>
+                    <div class="card-body">
+                         <div class="contenidoCentrado">
+                          <p class="hora-tarjeta">{{dataRows[2]}}</p>
+                        </div>
+                    </div>
+                  <div class="card-footer fondoFooter">
+                      <div class="contenidoCentrado">
+                        <button type="button" (click)="prepararEditar(dataRows[0], 'Consultar')" class="btn btn-link botonConsultar">CONSULTAR</button>
+                      </div>        
+                  </div>
+                </div>
+                <div class="backside">
+                    <div class="contenidoCentrado">
+                      <h5 class="card-title" > detras {{dataRows[1]}}</h5>
+                    </div>
+                  <div class="card-body">
+                         <div class="contenidoCentrado">
+                          <p class="hora-tarjeta">{{dataRows[3]}}</p>
+                        </div>
+                   </div>
+                  <div class="card-footer fondoFooter ">
+                      <div class="contenidoCentrado">
+                        <button type="button" (click)="prepararEditar(dataRows[0], 'Consultar')" class="btn btn-link botonConsultar">CONSULTAR</button>
+                      </div>        
+                  </div>
+                </div>
+            </div>
+        </div>
+    <!-- ./TARJETA -->
+
   </div>
 </div>
 

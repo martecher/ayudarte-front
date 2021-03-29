@@ -67,8 +67,20 @@
 }
 .h4Panel{
   font-size: 25px;
-  color: #51bcda;
+ }
+
+ .botonTerminar{
+   color: #fbc658  !important;
+ }
+
+.botonAceptar{
+  color: #6bd098   !important;
 }
+
+.botonConsultar{
+  color: #51cbce   !important;
+}
+
 @media all and (min-width: 992px) {
   .sidebar .nav>li.active-pro {
     position: absolute;
@@ -352,6 +364,9 @@ section .section-title {
     margin-bottom: 30px;
     background: white;
     border-radius: 5px;
+    -webkit-box-shadow: 5px 7px 9px -4px rgb(158, 158, 158);
+    -moz-box-shadow: 5px 7px 9px -4px rgb(158, 158, 158);
+    box-shadow: 5px 7px 9px -4px rgb(158, 158, 158);    
 }
 
 .backside {
@@ -408,7 +423,7 @@ section .section-title {
     border-radius: 50%;
 }
 .fondoFooter {
-  background-color: #dadad8 !important;
+  background-color: #f9f9f5 !important;
 }
 .colorBoton {
   background-color: #51bcda !important}
