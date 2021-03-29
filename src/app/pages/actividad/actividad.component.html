@@ -11,7 +11,7 @@
     <div *ngIf="operacion=='Terminar'">
       <form  class="form-horizontal fondoFormulario" [formGroup]="terminarForm" (ngSubmit)="actualizarActividad()">
         <div class="form-group">
-          <label class="control-label col-sm-2 labelFormulario" for="descripcionTarea">Tarea:</label>
+          <label class="control-label .col labelFormulario" for="descripcionTarea">Tarea:</label>
           <input type="text"
                  placeholder="Tarea"
                  name="descripcionTarea"
@@ -21,7 +21,7 @@
           >
         </div>
         <div class="form-group">
-        <label class="control-label col-sm-2 labelFormulario" for="usuario_solicita">Usuario solicitante:</label>
+        <label class="control-label .col labelFormulario" for="usuario_solicita">Solicita:</label>
           <input type="text"
                   placeholder="Usuario que solicita"
                   formControlName="usuario_solicita"
@@ -31,7 +31,7 @@
         </div>
         <div class="form-group">
 
-        <label class="control-label col-sm-2 labelFormulario" for="usuario_solicita">Usuario que realiza:</label>
+        <label class="control-label .col labelFormulario" for="usuario_solicita">Realiza:</label>
           <input type="text"
                   placeholder="Usuario que realiza"
                   formControlName="usuario_realiza"
@@ -41,7 +41,7 @@
         </div>
         <div class="form-group">
 
-        <label class="control-label col-sm-2 labelFormulario" for="observacion">Observación:</label>
+        <label class="control-label .col labelFormulario" for="observacion">Observación:</label>
           <input type="textarea"
                   placeholder="observacion"
                   formControlName="observacion"
@@ -50,7 +50,7 @@
           >
         </div>
         <div class="form-group">
-          <label class="control-label col-sm-2 labelFormulario"  for="horasReales">Horas reales:</label>
+          <label class="control-label .col labelFormulario"  for="horasReales">Horas reales:</label>
           <input type="number"
                   placeholder="Horas Reales"
                   formControlName="horasReales"
@@ -59,7 +59,7 @@
           >
         </div>
         <div class="form-group">
-          <label class="control-label col-sm-2 labelFormulario" for="puntuacionSolicita">Puntúa al usuario:</label>
+          <label class="control-label .col labelFormulario" for="puntuacionSolicita">Puntúa al usuario:</label>
           <p class="clasificacion">
             <input class="radioEstrella" id="radio1" type="radio" formControlName="puntuacionSolicita" value="5"  >
             <label class="estrella" for="radio1">★</label>
@@ -85,7 +85,7 @@
     <div *ngIf="operacion=='Consultar'">
       <form [formGroup]="consultarForm"  class="form-horizontal fondoFormulario" (ngSubmit)="actualizarActividad()">
         <div class="form-group">
-          <label class="control-label col-sm-2 labelFormulario" for="descripcionTarea">Tarea</label>
+          <label class="control-label .col labelFormulario" for="descripcionTarea">Tarea</label>
           <input type="text"
                  placeholder="Tarea"
                  name="descripcionTarea"
@@ -95,7 +95,7 @@
           >
         </div>
         <div class="form-group">
-          <label class="control-label col-sm-2 labelFormulario" for="usuario_solicita">Usuario solicitante</label>
+          <label class="control-label .col labelFormulario" for="usuario_solicita">Solicita</label>
           <input type="text"
                   placeholder="Usuario que solicita"
                   formControlName="usuario_solicita"
@@ -104,7 +104,7 @@
           >
         </div>
         <div class="form-group">
-            <label class="control-label col-sm-2 labelFormulario" for="usuario_solicita">Usuario que realiza</label>
+            <label class="control-label .col labelFormulario" for="usuario_solicita">Realiza</label>
             <input type="text"
                     placeholder="Usuario que realiza"
                     formControlName="usuario_realiza"
@@ -113,7 +113,7 @@
             >
           </div>
           <div class="form-group">
-            <label class="control-label col-sm-2 labelFormulario" for="observacion">observacion</label>
+            <label class="control-label .col labelFormulario" for="observacion">Observacion</label>
             <input type="text"
                     placeholder="observacion"
                     formControlName="observacion"
@@ -122,7 +122,7 @@
             >
           </div>
           <div class="form-group">
-            <label  class="control-label col-sm-2 labelFormulario" for="puntuacionSolicita">Puntuación solicita</label>
+            <label  class="control-label .col labelFormulario" for="puntuacionSolicita">Puntuación solicita</label>
             <input  type="text"
                     placeholder="puntuacionSolicita"
                     formControlName="puntuacionSolicita"
@@ -131,7 +131,7 @@
             >
           </div>
           <div class="form-group">
-            <label class="control-label col-sm-2 labelFormulario" for="valoracion">Puntuación realiza</label>
+            <label class="control-label .col labelFormulario" for="valoracion">Puntuación realiza</label>
             <input type="text"
                     placeholder="valoracion"
                     formControlName="valoracion"
@@ -150,7 +150,7 @@
     <div *ngIf="operacion=='Aceptar'">
       <form [formGroup]="aceptarForm" class="form-horizontal fondoFormulario" (ngSubmit)="actualizarActividad()">
         <div class="form-group">
-          <label class="control-label col-sm-2 labelFormulario" for="descripcionTarea">Tarea</label>
+          <label class="control-label .col labelFormulario" for="descripcionTarea">Tarea</label>
           <input type="text"
                  placeholder="Tarea"
                  name="descripcionTarea"
@@ -160,7 +160,7 @@
           >
         </div>
         <div class="form-group">
-          <label class="control-label col-sm-2 labelFormulario" for="usuario_solicita">Usuario solicitante</label>
+          <label class="control-label .col labelFormulario" for="usuario_solicita">Solicita</label>
           <input type="text"
                   placeholder="Usuario que solicita"
                   formControlName="usuario_solicita"
@@ -169,7 +169,7 @@
           >
         </div>
         <div class="form-group">
-          <label class="control-label col-sm-2 labelFormulario" for="usuario_solicita">Usuario que realiza</label>
+          <label class="control-label .col labelFormulario" for="usuario_solicita">Realiza</label>
           <input type="text"
                   placeholder="Usuario que realiza"
                   formControlName="usuario_realiza"
@@ -178,7 +178,7 @@
           >
         </div>
         <div class="form-group">
-          <label class="control-label col-sm-2 labelFormulario" for="observacion">observacion</label>
+          <label class="control-label .col labelFormulario" for="observacion">observacion</label>
           <input type="text"
                   placeholder="observacion"
                   formControlName="observacion"
@@ -187,7 +187,7 @@
           >
         </div>
         <div class="form-group">
-          <label class="control-label col-sm-2 labelFormulario" for="horasReales">Horas reales</label>
+          <label class="control-label .col labelFormulario" for="horasReales">Horas reales</label>
           <input type="number"
                   placeholder="Horas Reales"
                   formControlName="horasReales"
@@ -196,7 +196,7 @@
           >
         </div>
         <div class="form-group">
-          <label class="control-label col-sm-2 labelFormulario" for="valoracion">Puntua al usuario que realiza</label>
+          <label class="control-label .col labelFormulario" for="valoracion">Realiza</label>
           <p class="clasificacion">
             <input class="radioEstrella" id="radio1" type="radio" formControlName="valoracion" value="5"  >
             <label class="estrella" for="radio1">★</label>
