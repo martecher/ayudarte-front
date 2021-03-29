@@ -11,6 +11,7 @@ import { UpgradeComponent } from '../../pages/upgrade/upgrade.component';
 import { ActividadComponent }       from '../../pages/actividad/actividad.component';
 import { NuevaActividadComponent }       from '../../pages/nueva-actividad/nueva-actividad.component';
 import { RankingUsuariosComponent }       from '../../pages/ranking-usuarios/ranking-usuarios.component';
+import { LogoutComponent }       from '../../pages/logout/logout.component';
 
 export const AdminLayoutRoutes: Routes = [
     { path: 'panel',      component: DashboardComponent },
@@ -24,5 +25,6 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'actividad/:id/:operacion',        component: ActividadComponent },
     { path: 'nueva-actividad',        component: NuevaActividadComponent},
     { path: 'rankingUsuarios',        component: RankingUsuariosComponent},
+    { path: 'logout',        component: LogoutComponent},
     
 ];

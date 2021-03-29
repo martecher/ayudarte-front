@@ -22,6 +22,7 @@ import { HabilidadComponent } from './pages/habilidad/habilidad.component';
 import { CategoriaComponent } from './pages/categoria/categoria.component';
 import { NuevaActividadComponent } from './pages/nueva-actividad/nueva-actividad.component';
 import { RankingUsuariosComponent } from './pages/ranking-usuarios/ranking-usuarios.component';
+import { LogoutComponent } from './pages/logout/logout.component';
 //import { ActividadComponent } from './pages/actividad/actividad.component';
  
 
@@ -34,6 +35,7 @@ import { RankingUsuariosComponent } from './pages/ranking-usuarios/ranking-usuar
     CategoriaComponent,
     NuevaActividadComponent,
     RankingUsuariosComponent,
+    LogoutComponent,
 //    ActividadComponent 
  
   ],
