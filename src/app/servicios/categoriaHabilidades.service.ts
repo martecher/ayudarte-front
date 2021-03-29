@@ -7,6 +7,7 @@ import {UsuarioGuardadoService} from './usuarioguardado.service';
 import { map } from 'rxjs/operators';
 import { HttpHeaders } from '@angular/common/http';
 import { CategoriaHabilidad } from '../models/categoriaHabilidad';
+import { environment } from "environments/environment";
 
 
 @Injectable({
@@ -48,7 +49,7 @@ export class CategoriaHabilidadesService {
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${this.usuarioGuardadoServicio.getToken()}`
     })
-    let respuesta = this.http.get("http://127.0.0.1:8000/api/categoriasHabilidades", { headers: headers });
+    let respuesta = this.http.get(environment.ipBackend + "/api/categoriasHabilidades", { headers: headers });
 
     return respuesta;
   }
@@ -59,7 +60,7 @@ export class CategoriaHabilidadesService {
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${this.usuarioGuardadoServicio.getToken()}`
     })
-    return this.http.get("http://127.0.0.1:8000/api/categoriasHabilidades/"+id, { headers: headers })
+    return this.http.get(environment.ipBackend + "/api/categoriasHabilidades/"+id, { headers: headers })
   } 
   
   actualizarCategoriaHabilidad( id, descripcion): Observable<any> {
@@ -71,7 +72,7 @@ export class CategoriaHabilidadesService {
     const body = { 
       descripcion: descripcion
    };
-   let respuesta = this.http.put("http://127.0.0.1:8000/api/categoriasHabilidades/"+id, body,  { headers: headers })
+   let respuesta = this.http.put(environment.ipBackend + "/api/categoriasHabilidades/"+id, body,  { headers: headers })
    return respuesta;
   }
 
@@ -84,7 +85,7 @@ export class CategoriaHabilidadesService {
     const body = { 
       descripcion: descripcion
    };
-   let respuesta = this.http.post("http://127.0.0.1:8000/api/categoriasHabilidades/", body,  { headers: headers })
+   let respuesta = this.http.post(environment.ipBackend + "/api/categoriasHabilidades/", body,  { headers: headers })
    return respuesta;
   }
 

@@ -7,6 +7,7 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { HttpHeaders } from '@angular/common/http';
 import { HttpParams } from '@angular/common/http';
+import { environment } from "environments/environment";
 
 
 @Injectable({
@@ -24,7 +25,7 @@ export class TareasService {
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${auth_token}`
     })
-    return this.http.get("http://127.0.0.1:8000/api/actividadesRealizadas/asignadas/"+estado, { headers: headers })
+    return this.http.get(environment.ipBackend + "/api/actividadesRealizadas/asignadas/"+estado, { headers: headers })
   }
 
     // estado = 0 para no finalizadas
@@ -34,7 +35,7 @@ export class TareasService {
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${auth_token}`
     })
-    return this.http.get("http://127.0.0.1:8000/api/actividadesRealizadas/finalizadas/"+estado, { headers: headers })
+    return this.http.get(environment.ipBackend + "/api/actividadesRealizadas/finalizadas/"+estado, { headers: headers })
   }
 
 
@@ -45,7 +46,7 @@ export class TareasService {
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${auth_token}`
     })
-    return this.http.get("http://127.0.0.1:8000/api/actividadesRealizadas/actividadesEnRealizacion/"+id, { headers: headers })
+    return this.http.get(environment.ipBackend + "/api/actividadesRealizadas/actividadesEnRealizacion/"+id, { headers: headers })
   }
 
   actividadesEnSolicitud(auth_token, id): Observable<any> {
@@ -55,7 +56,7 @@ export class TareasService {
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${auth_token}`
     })
-    return this.http.get("http://127.0.0.1:8000/api/actividadesRealizadas/actividadesEnSolicitud/"+id, { headers: headers })
+    return this.http.get(environment.ipBackend + "/api/actividadesRealizadas/actividadesEnSolicitud/"+id, { headers: headers })
   }
 
   actividadesEnTerminadas(auth_token, id): Observable<any> {
@@ -65,7 +66,7 @@ export class TareasService {
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${auth_token}`
     })
-    return this.http.get("http://127.0.0.1:8000/api/actividadesRealizadas/actividadesTerminadas/"+id, { headers: headers })
+    return this.http.get(environment.ipBackend + "/api/actividadesRealizadas/actividadesTerminadas/"+id, { headers: headers })
   }
 
 
@@ -77,7 +78,7 @@ export class TareasService {
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${auth_token}`
     })
-    return this.http.get("http://127.0.0.1:8000/api/actividadesRealizadas/solicitadasPorUsuario/"+id, { headers: headers })
+    return this.http.get(environment.ipBackend + "/api/actividadesRealizadas/solicitadasPorUsuario/"+id, { headers: headers })
   }
 
   realizadasPorUsuario(auth_token, id): Observable<any> {
@@ -87,7 +88,7 @@ export class TareasService {
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${auth_token}`
     })
-    return this.http.get("http://127.0.0.1:8000/api/actividadesRealizadas/realizadasPorUsuario/"+id, { headers: headers })
+    return this.http.get(environment.ipBackend + "/api/actividadesRealizadas/realizadasPorUsuario/"+id, { headers: headers })
   }
 
   getTarea(auth_token, id): Observable<any> {
@@ -97,7 +98,7 @@ export class TareasService {
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${auth_token}`
     })
-    return this.http.get("http://127.0.0.1:8000/api/actividadesRealizadas/"+id, { headers: headers })
+    return this.http.get(environment.ipBackend + "/api/actividadesRealizadas/"+id, { headers: headers })
   }
 
   asignarTarea(auth_token, idTarea, idUsuario): Observable<any> {
@@ -107,7 +108,7 @@ export class TareasService {
       'Authorization': `Bearer ${auth_token}`
     })
     
-    return this.http.put("http://127.0.0.1:8000/api/actividadesRealizadas/"+idTarea+"/usuarioId/"+idUsuario, { headers: headers})
+    return this.http.put(environment.ipBackend + "/api/actividadesRealizadas/"+idTarea+"/usuarioId/"+idUsuario, { headers: headers})
   }
 
 
@@ -118,7 +119,7 @@ export class TareasService {
       'Authorization': `Bearer ${auth_token}`
     })
     
-    return this.http.put("http://127.0.0.1:8000/api/actividadesRealizadas/"+tarea.id+"?finalizada=1&puntuacionSolicita="+tarea.puntuacionSolicita+"&horasReales="+tarea.horasReales, { headers: headers})
+    return this.http.put(environment.ipBackend + "/api/actividadesRealizadas/"+tarea.id+"?finalizada=1&puntuacionSolicita="+tarea.puntuacionSolicita+"&horasReales="+tarea.horasReales, { headers: headers})
   }
 
   actividadNombre(auth_token, nombre,valor): Observable<any> {
@@ -126,7 +127,7 @@ export class TareasService {
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${auth_token}`
     })
-    return this.http.get("http://127.0.0.1:8000/api/actividadesRealizadas/actividadNombre/"+nombre+"/finalizada/"+valor, { headers: headers})
+    return this.http.get(environment.ipBackend + "/api/actividadesRealizadas/actividadNombre/"+nombre+"/finalizada/"+valor, { headers: headers})
   }
 
   nuevaActividad(auth_token,observacion,usuarioSolicita_id,habilidad_id): Observable<any> {
@@ -140,7 +141,7 @@ export class TareasService {
       usuarioSolicita_id: usuarioSolicita_id,
       habilidad_id: habilidad_id
    };
-   let respuesta = this.http.post("http://127.0.0.1:8000/api/actividadesRealizadas/", body,  { headers: headers })
+   let respuesta = this.http.post(environment.ipBackend + "/api/actividadesRealizadas/", body,  { headers: headers })
    return respuesta;
   }
 }

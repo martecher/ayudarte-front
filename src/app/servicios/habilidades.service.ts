@@ -7,6 +7,7 @@ import {UsuarioGuardadoService} from './usuarioguardado.service';
 import { map } from 'rxjs/operators';
 import { HttpHeaders } from '@angular/common/http';
 import { Habilidad } from '../models/habilidad';
+import { environment } from "environments/environment";
 
 
 @Injectable({
@@ -41,7 +42,7 @@ export class HabilidadesService {
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${this.usuarioGuardadoServicio.getToken()}`
     })
-    return this.http.get("http://127.0.0.1:8000/api/habilidades/categoria/"+id, { headers: headers })
+    return this.http.get(environment.ipBackend + "/api/habilidades/categoria/"+id, { headers: headers })
   }
   listaHabilidades(): Observable<any> {
 //    console.log("HabilidadesService.listaHabilidades ");    
@@ -49,7 +50,7 @@ export class HabilidadesService {
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${this.usuarioGuardadoServicio.getToken()}`
     })
-    return this.http.get("http://127.0.0.1:8000/api/habilidades", { headers: headers })
+    return this.http.get(environment.ipBackend + "/api/habilidades", { headers: headers })
   }
 
   getHabilidad(id): Observable<any> {
@@ -58,7 +59,7 @@ export class HabilidadesService {
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${this.usuarioGuardadoServicio.getToken()}`
     })
-    return this.http.get("http://127.0.0.1:8000/api/habilidades/"+id, { headers: headers })
+    return this.http.get(environment.ipBackend + "/api/habilidades/"+id, { headers: headers })
   } 
   
   actualizarHabilidad( id, descripcion, horasEstipuladas): Observable<any> {
@@ -71,7 +72,7 @@ export class HabilidadesService {
       descripcion: descripcion,
       horasEstipuladas:horasEstipuladas
    };
-    return this.http.put("http://127.0.0.1:8000/api/habilidades/"+id, body,  { headers: headers })
+    return this.http.put(environment.ipBackend + "/api/habilidades/"+id, body,  { headers: headers })
   }
 
   nuevaHabilidad(descripcion, horasEstipuladas, categoria): Observable<any> {
@@ -85,7 +86,7 @@ export class HabilidadesService {
       horasEstipuladas: horasEstipuladas,
 		  categoria_Habilidad_id: categoria
    };
-   let respuesta = this.http.post("http://127.0.0.1:8000/api/habilidades/", body,  { headers: headers })
+   let respuesta = this.http.post(environment.ipBackend + "/api/habilidades/", body,  { headers: headers })
    return respuesta;
   }
 

@@ -7,6 +7,7 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { HttpHeaders } from '@angular/common/http';
 import { HttpParams } from '@angular/common/http';
+import { environment } from "environments/environment";
 
 
 @Injectable({
@@ -22,7 +23,7 @@ export class MensajesService {
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${auth_token}`
     })
-    return this.http.get("http://127.0.0.1:8000/api/mensajesTarea/tarea/"+id, { headers: headers })
+    return this.http.get(environment.ipBackend + "/api/mensajesTarea/tarea/"+id, { headers: headers })
   }
 
   marcarLeidosMensajesTarea(auth_token, id): Observable<any> {
@@ -30,7 +31,7 @@ export class MensajesService {
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${auth_token}`
     })
-    return this.http.put("http://127.0.0.1:8000/api/mensajes/tarea/marcarleidos/"+id, { headers: headers })
+    return this.http.put(environment.ipBackend + "/api/mensajes/tarea/marcarleidos/"+id, { headers: headers })
   }
 
   nuevoMensaje(auth_token, texto, idUsuarioEnvia, idUsuarioRecibe, idTarea, orden): Observable<any> {
@@ -51,7 +52,7 @@ export class MensajesService {
     /*        
 &usuarioRecibe_id="+idUsuarioRecibe
     */
-    return this.http.post("http://127.0.0.1:8000/api/mensajes" , body, { headers: headers })
+    return this.http.post(environment.ipBackend + "/api/mensajes" , body, { headers: headers })
   }
   
 

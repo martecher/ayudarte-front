@@ -6,7 +6,7 @@ import { PublicoLayoutComponent } from './layouts/publico-layout/publico-layout.
 import { AuthGuard } from './guardas/authGuard';
 
 export const AppRoutes: Routes = [
-  { path: '', redirectTo: '/home', pathMatch: 'full' }, 
+  { path: '', redirectTo: 'home', pathMatch: 'full' }, 
   {
     path: '',
     component: PublicoLayoutComponent,

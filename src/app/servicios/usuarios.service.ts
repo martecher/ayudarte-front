@@ -7,6 +7,7 @@ import {UsuarioGuardadoService} from './usuarioguardado.service';
 import { map } from 'rxjs/operators';
 import { HttpHeaders } from '@angular/common/http';
 import { Usuario } from '../models/usuario';
+import { environment } from "environments/environment";
 
 
 @Injectable({
@@ -17,7 +18,7 @@ export class UsuariosService {
 
   login(user: any): Observable<any> {
     return this.http.
-    	post("http://127.0.0.1:8000/api/login", user).
+    	post( environment.ipBackend + "/api/login", user).
     	pipe(
         	map((resp: any) => {
           		this.usuarioGuardadoServicio.setToken( resp.token_acceso );
@@ -49,7 +50,7 @@ export class UsuariosService {
   }
 
   registro(user: any): Observable<any> {
-    return this.http.post("https://reqres.in/api/register", user);
+    return this.http.post(environment.ipBackend + "/api/register", user);
   }
 
 
@@ -58,7 +59,7 @@ export class UsuariosService {
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${auth_token}`
     })
-    return this.http.get("http://127.0.0.1:8000/api/usuarios", { headers: headers })
+    return this.http.get(environment.ipBackend + "/api/usuarios", { headers: headers })
   }
 
   getUsuario(auth_token, id): Observable<any> {
@@ -66,7 +67,7 @@ export class UsuariosService {
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${auth_token}`
     })
-    return this.http.get("http://127.0.0.1:8000/api/usuarios/"+id, { headers: headers })
+    return this.http.get(environment.ipBackend + "/api/usuarios/"+id, { headers: headers })
   }
   actualizarValoracionUsuario(auth_token, id, numeroVotaciones, reputacionSolicita, horas,nVotos5, nVotos4, nVotos3, nVotos2, nVotos1): Observable<any> {
     const headers = new HttpHeaders({
@@ -84,6 +85,6 @@ export class UsuariosService {
       numVotos1:nVotos1
    };
 
-    return this.http.put("http://127.0.0.1:8000/api/usuarios/updateNoPass/"+id, body,  { headers: headers })
+    return this.http.put(environment.ipBackend + "/api/usuarios/updateNoPass/"+id, body,  { headers: headers })
   }
 }
