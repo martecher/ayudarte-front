@@ -114,73 +114,51 @@
 <div class="row separacionTitulo">
     <span class="h4Panel">  Tareas realizando</span>
 </div>
-<div class="row">
-
-  <div  *ngFor="let dataRows of tableData1.dataRows"  class="col-lg-3 col-md-6 col-sm-6">
+<div class="row" id="team">
     
-    <!--
-    <div class="card card-stats">
-      <div class="card-header">
-        <div class="contenidoCentrado">
-          <h4 class="card-title" style=" margin-bottom: -1.25rem !important;">{{dataRows[1]}}</h4>
-        </div>
-      </div>
-      <div class="card-body">
-             <div class="">
-              <hr>
-              <p class="usuario-tarjeta">{{dataRows[3]}}<p>
-            </div>
-           <div class=" ">
-            <div class="contenidoCentrado">
-              <p class="hora-tarjeta">{{dataRows[2]}}<p>
-            </div>
-          </div>
-       </div>
-      <div class="card-footer ">
-        <hr>
-          <div class="contenidoCentrado">
-            <button type="button" (click)="prepararEditar(dataRows[0], 'Terminar')" class="btn btn-info"><i class="nc-icon nc-paper"> Terminar</i></button>
-          </div>        
-      </div>
-    </div>
-    -->
-          <!-- tarjeta -->
-            <div class="image-flip" ontouchstart="this.classList.toggle('hover');">
-                <div class="mainflip">
-                    <div class="frontside">
-                        <div class="contenidoCentrado">
-                          <h5 class="card-title" > delante {{dataRows[1]}}</h5>
-                        </div>
-                        <div class="card-body">
-                             <div class="contenidoCentrado">
-                              <p class="hora-tarjeta">{{dataRows[2]}}</p>
-                            </div>
-                        </div>
-                      <div class="card-footer fondoFooter">
-                          <div class="contenidoCentrado">
-                            <button type="button" (click)="prepararEditar(dataRows[0], 'Terminar')" class="btn btn-link botonTerminar">TERMINAR</button>
-                          </div>        
-                      </div>
-                    </div>
-                    <div class="backside">
-                        <div class="contenidoCentrado">
-                          <h5 class="card-title" > detras {{dataRows[1]}}</h5>
-                        </div>
-                      <div class="card-body">
-                             <div class="contenidoCentrado">
-                              <p class="hora-tarjeta">{{dataRows[3]}}</p>
-                            </div>
-                       </div>
-                      <div class="card-footer fondoFooter ">
-                          <div class="contenidoCentrado">
-                            <button type="button" (click)="prepararEditar(dataRows[0], 'Terminar')" class="btn btn-link botonTerminar">TERMINAR</button>
-                          </div>        
-                      </div>
-                    </div>
+  <div  *ngFor="let dataRows of tableData1.dataRows"  class="col-lg-3 col-md-6 col-sm-6">
+   
+    <!-- tarjeta -->
+    <div class="image-flip" ontouchstart="this.classList.toggle('hover');">
+      <div class="mainflip">
+        <div class="frontside">
+          <div class="card">
+            <div class="card-body">
+                <div class="contenidoCentrado">
+                    <h5 class="card-titleYellow" > delante {{dataRows[1]}}</h5>
+                </div>
+                <div class="contenidoCentrado">
+                    <p class="hora-tarjeta">{{dataRows[2]}}</p>
+                </div>
+                <div class="card-footer fondoFooter">
+                  <div class="contenidoCentrado">
+                      <button type="button" (click)="prepararEditar(dataRows[0], 'Terminar')" class="btn btn-link">TERMINAR</button>
+                  </div>        
                 </div>
             </div>
-        <!-- ./TARJETA -->
+          </div>
+        </div>
+        <div class="backside">
+          <div class="card">
+            <div class="card-body">
+              <div class="contenidoCentrado">
+                <h5 class="card-titleYellow" > detras {{dataRows[1]}}</h5>
+              </div>
+              <div class="contenidoCentrado">
+                <p class="hora-tarjeta">{{dataRows[3]}}</p>
+              </div>
+              <div class="card-footer fondoFooter ">
+                <div class="contenidoCentrado">
+                  <button type="button" (click)="prepararEditar(dataRows[0], 'Terminar')" class="btn btn-link">TERMINAR</button>
+                </div>        
+              </div>
+            </div>                      
+          </div>
+        </div>
       </div>
+    </div>
+  </div>
+  <!-- ./TARJETA -->
 </div>
 
 <div class="row separacionTitulo">
