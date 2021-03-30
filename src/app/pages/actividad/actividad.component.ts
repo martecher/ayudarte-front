@@ -105,33 +105,33 @@ export class ActividadComponent implements OnInit {
         case "Terminar":
           this.terminarForm = this.fb.group({
             descripcionTarea: [actividad.habilidad[0].descripcion],
-            horasReales: [  [Validators.required, Validators.maxLength(5)]],
-            usuario_solicita: [actividad.usuarioSolicita[0].nombre],
-            usuario_realiza: [actividad.usuarioRealiza[0].nombre],
-            puntuacionSolicita: [actividad.usuarioSolicita[0].reputacion],
-            observacion: [actividad.observacion]
+            horasReales: [  ,[Validators.required]],
+            usuario_solicita: [actividad.usuarioSolicita[0].nombre,[Validators.required]],
+            usuario_realiza: [actividad.usuarioRealiza[0].nombre,[Validators.required]],
+            puntuacionSolicita: [,[Validators.required]],
+            observacion: [actividad.observacion,[Validators.required]]
           });
           break;
         case "Aceptar":
           this.aceptarForm = this.fb.group({
-            descripcionTarea: [actividad.habilidad[0].descripcion],
-            horasReales: [actividad.horasReales],
-            usuario_solicita: [actividad.usuarioSolicita[0].nombre],
-            usuario_realiza: [actividad.usuarioRealiza[0].nombre],
-            puntuacionSolicita: [actividad.puntuacionSolicita],
-            observacion: [actividad.observacion],
-            valoracion : [],
+            descripcionTarea: [actividad.habilidad[0].descripcion,[Validators.required]],
+            horasReales: [actividad.horasReales,[Validators.required]],
+            usuario_solicita: [actividad.usuarioSolicita[0].nombre,[Validators.required]],
+            usuario_realiza: [actividad.usuarioRealiza[0].nombre,[Validators.required]],
+            puntuacionSolicita: [actividad.puntuacionSolicita,[Validators.required]],
+            observacion: [actividad.observacion,[Validators.required]],
+            valoracion : [,[Validators.required]],
           });
           break;
         case "Consultar":
           this.consultarForm = this.fb.group({
-            descripcionTarea: [actividad.habilidad[0].descripcion],
+            descripcionTarea: [actividad.habilidad[0].descripcion,[Validators.required]],
             horasReales: [actividad.horasReales],
-            usuario_solicita: [actividad.usuarioSolicita[0].nombre],
-            usuario_realiza: [actividad.usuarioRealiza[0].nombre],
-            puntuacionSolicita: [actividad.usuarioSolicita[0].reputacion],
-            observacion: [actividad.observacion],
-            valoracion : [actividad.valoracion]
+            usuario_solicita: [actividad.usuarioSolicita[0].nombre,[Validators.required]],
+            usuario_realiza: [actividad.usuarioRealiza[0].nombre,[Validators.required]],
+            puntuacionSolicita: [actividad.usuarioSolicita[0].reputacion,[Validators.required]],
+            observacion: [actividad.observacion,[Validators.required]],
+            valoracion : [actividad.valoracion,[Validators.required]]
           });
           break;
 
@@ -163,8 +163,9 @@ export class ActividadComponent implements OnInit {
 
       switch (this.operacion) {
         case "Terminar":
-          console.log("ActividadComponent.actualizarActividad this.terminarForm.valid "+this.terminarForm.valid);
-          if( this.terminarForm.valid){  
+          console.log("ActividadComponent.actualizarActividad this.terminarForm.value "+ JSON.stringify(this.terminarForm.value));
+          if( this.terminarForm.valid){ 
+                console.log("ActividadComponent.actualizarActividad this.terminarForm.valid "+this.terminarForm.valid);
                 //indica las horasReales realizas  y la puntuacion al que solicító la tarea
                 let reputacionSolicita = this.actividadCruda.usuarioSolicita[0].reputacion;
                 let numeroVotaciones = this.actividadCruda.usuarioSolicita[0].numeroVotaciones;
@@ -216,15 +217,20 @@ export class ActividadComponent implements OnInit {
                     this.usuarioService.actualizarValoracionUsuario(this.usuarioGuardado.getToken(),idUsuario, numeroVotaciones, reputacionSolicita,horas,
                     nVotos5, nVotos4, nVotos3, nVotos2, nVotos1).subscribe( data => {
                         data.data;
-                    });
+                        this.router.navigateByUrl('/panel');
+                      });
                 });
           }else{
-              alert("FILL ALL FIELDS") 
+              alert("Hay errores en el formulario. Revise los datos.") 
           }
         break;
         case "Aceptar":
             //valora al usuario  que la realizó
 //            console.log("actualizarActividad  var myJSON = JSON.stringify(this.actividad): " + JSON.stringify(this.actividad));      
+
+          console.log("ActividadComponent.actualizarActividad this.aceptarForm.value "+ JSON.stringify(this.aceptarForm.value));
+          if( this.aceptarForm.valid){ 
+            console.log("ActividadComponent.actualizarActividad this.aceptarForm.valid "+this.aceptarForm.valid);
             let valoracion = this.actividadCruda.usuarioRealiza[0].reputacion;
             let numeroVotaciones2 = this.actividadCruda.usuarioRealiza[0].numeroVotaciones;
             numeroVotaciones2=numeroVotaciones2+1;
@@ -276,6 +282,9 @@ export class ActividadComponent implements OnInit {
                   data.data;
               });
             });
+          }else{
+            alert("Hay errores en el formulario. Revise los datos.") 
+        }
           break;
         case "Consultar":
             // Este no hace nada. Puede dirigir al dashboard 
