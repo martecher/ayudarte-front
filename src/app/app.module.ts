@@ -23,6 +23,7 @@ import { CategoriaComponent } from './pages/categoria/categoria.component';
 import { NuevaActividadComponent } from './pages/nueva-actividad/nueva-actividad.component';
 import { RankingUsuariosComponent } from './pages/ranking-usuarios/ranking-usuarios.component';
 import { LogoutComponent } from './pages/logout/logout.component';
+import { RegistroComponent } from './pages/registro/registro.component';
 //import { ActividadComponent } from './pages/actividad/actividad.component';
  
 
@@ -36,6 +37,7 @@ import { LogoutComponent } from './pages/logout/logout.component';
     NuevaActividadComponent,
     RankingUsuariosComponent,
     LogoutComponent,
+    RegistroComponent,
 //    ActividadComponent 
  
   ],

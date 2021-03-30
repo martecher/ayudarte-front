@@ -229,8 +229,10 @@
       <div class="d-flex justify-content-center h-100">
           <form [formGroup]="mensajeForm" class="form_search">
             <input   
-                    type="textarea" formControlName="texto"
-                    placeholder="Escriba su mensaje">
+                rows="4" cols="50"
+                type="textarea" 
+                formControlName="texto"
+                placeholder="Escriba su mensaje">
             <a (click)="enviarMensaje()" class="search_icon"><i class="nc-icon nc-send"></i></a>
           </form>
       </div>
