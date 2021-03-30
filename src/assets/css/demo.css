@@ -445,6 +445,13 @@ overflow: hidden;
   color: #ef8157 !important;
 }
  
+.frontside .card .card-titleAzul,
+.backside .card .card-titleAzul {
+  color: #51cbce !important;
+}
+ 
+ 
+
 .frontside .card .card-body img {
     width: 120px;
     height: 120px;

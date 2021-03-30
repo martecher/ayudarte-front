@@ -11,10 +11,58 @@
   </div>
 </div>
 
-<div class="row"></div>
+<div class="row separacionTitulo">
+  <span class="h4Panel">Actividades disponibles</span>
+</div>
+<div class="row" id="team">
+  <div  *ngFor="let dataRows of tableData1.dataRows"  class="col-lg-3 col-md-6 col-sm-6">  
+    <!-- tarjeta -->
+    <div class="image-flip" ontouchstart="this.classList.toggle('hover');">
+      <div class="mainflip">
+        <div class="frontside">
+          <div class="card">
+            <div class="card-body">
+                <div class="contenidoCentrado">
+                    <h5 class="card-titleAzul" >{{dataRows[1]}}</h5>
+                </div>
+                <div class="contenidoCentrado">
+                    <p class="hora-tarjeta">{{dataRows[2]}}</p>
+                </div>
+                <div class="card-footer fondoFooter">
+                  <div class="contenidoCentrado">
+                      <button type="button" (click)="asignar(dataRows[0])" class="btn btn-link">SELECCIONAR</button>
+                  </div>        
+                </div>
+            </div>
+          </div>
+        </div>
+        <div class="backside">
+          <div class="card">
+            <div class="card-body">
+              <div class="contenidoCentrado">
+                <h5 class="card-titleAzul" >{{dataRows[1]}}</h5>
+              </div>
+              <div class="contenidoCentrado">
+                <p class="hora-tarjeta">{{dataRows[3]}}</p>
+              </div>
+              <div class="card-footer fondoFooter ">
+                <div class="contenidoCentrado">
+                  <button type="button" (click)="asignar(dataRows[0])" class="btn btn-link">SELECCIONAR</button>
+                </div>        
+              </div>
+            </div>                      
+          </div>
+        </div>
+      </div>
+    </div>
+      <!-- ./TARJETA -->
+  </div>
+</div>
 
+<!-- 
 <div class="row">
   <div class="col-md-12">
+    
     <div class="card">
       <div class="card-header">
         <h4 class="card-title"> Actividades disponibles</h4>
@@ -55,3 +103,4 @@
   </div>
 </div>
 
+-->
