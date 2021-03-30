@@ -434,6 +434,16 @@ overflow: hidden;
 .backside .card .card-titleYellow {
     color: #fbc658 !important;
 }
+
+.frontside .card .card-titleVerde,
+.backside .card .card-titleVerde {
+  color: #27a844 !important;
+}
+
+.frontside .card .card-titleRojo,
+.backside .card .card-titleRojo {
+  color: #ef8157 !important;
+}
  
 .frontside .card .card-body img {
     width: 120px;

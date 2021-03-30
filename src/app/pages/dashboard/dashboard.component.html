@@ -115,9 +115,7 @@
     <span class="h4Panel">  Tareas realizando</span>
 </div>
 <div class="row" id="team">
-    
-  <div  *ngFor="let dataRows of tableData1.dataRows"  class="col-lg-3 col-md-6 col-sm-6">
-   
+  <div  *ngFor="let dataRows of tableData1.dataRows"  class="col-lg-3 col-md-6 col-sm-6">  
     <!-- tarjeta -->
     <div class="image-flip" ontouchstart="this.classList.toggle('hover');">
       <div class="mainflip">
@@ -157,8 +155,8 @@
         </div>
       </div>
     </div>
+      <!-- ./TARJETA -->
   </div>
-  <!-- ./TARJETA -->
 </div>
 
 <div class="row separacionTitulo">
@@ -168,73 +166,48 @@
 </div>
 <div class="row">
   <div  *ngFor="let dataRows of tableData2.dataRows"  class="col-lg-3 col-md-6 col-sm-6">
-          <!-- tarjeta -->
-          <div class="image-flip" ontouchstart="this.classList.toggle('hover');">
-            <div class="mainflip">
-                <div class="frontside">
-                    <div class="contenidoCentrado">
-                      <h5 class="card-title" > delante {{dataRows[1]}}</h5>
-                    </div>
-                    <div class="card-body">
-                         <div class="contenidoCentrado">
-                          <p class="hora-tarjeta">{{dataRows[2]}}</p>
-                        </div>
-                    </div>
-                  <div class="card-footer fondoFooter">
-                      <div class="contenidoCentrado">
-                        <button type="button" (click)="prepararEditar(dataRows[0], 'Aceptar')" class="btn btn-link botonAceptar">ACEPTAR</button>
-                      </div>        
-                  </div>
+    <!-- tarjeta -->
+    <div class="image-flip" ontouchstart="this.classList.toggle('hover');">
+      <div class="mainflip">
+        <div class="frontside">
+          <div class="card">
+            <div class="card-body">
+                <div class="contenidoCentrado">
+                    <h5 class="card-titleRojo" > delante {{dataRows[1]}}</h5>
                 </div>
-                <div class="backside">
-                    <div class="contenidoCentrado">
-                      <h5 class="card-title" > detras {{dataRows[1]}}</h5>
-                    </div>
-                  <div class="card-body">
-                         <div class="contenidoCentrado">
-                          <p class="hora-tarjeta">{{dataRows[3]}}</p>
-                        </div>
-                   </div>
-                  <div class="card-footer fondoFooter ">
-                      <div class="contenidoCentrado">
-                        <button type="button" (click)="prepararEditar(dataRows[0], 'Aceptar')" class="btn btn-link botonAceptar">ACEPTAR</button>
-                      </div>        
-                  </div>
+                <div class="contenidoCentrado">
+                    <p class="hora-tarjeta">{{dataRows[2]}}</p>
                 </div>
-            </div>
-        </div>
-    <!-- ./TARJETA -->
-    <!-- 
-    <div class="card card-stats">
-      <div class="card-header">
-        <div class="contenidoCentrado">
-        <h4 class="card-title" style=" margin-bottom: -1.25rem !important;">{{dataRows[1]}}</h4>
-        </div>
-      </div>
-      <div class="card-body">
-             <div class="">
-              <hr>
-              <p class="usuario-tarjeta">{{dataRows[3]}}<p>
-            </div>
-           <div class=" ">
-            <div class="contenidoCentrado">
-              <p class="hora-tarjeta">{{dataRows[2]}}<p>
+                <div class="card-footer fondoFooter">
+                  <div class="contenidoCentrado">
+                      <button type="button" (click)="prepararEditar(dataRows[0], 'Aceptar')" class="btn btn-link">ACEPTAR</button>
+                  </div>        
+                </div>
             </div>
           </div>
-       </div>
-      <div class="card-footer ">
-        <hr>
-          <div class="contenidoCentrado">
-            <button type="button" (click)="prepararEditar(dataRows[0],'Aceptar')" class="btn btn-info"><i class="nc-icon nc-book-bookmark"> Aceptar</i></button>
-          </div>        
+        </div>
+        <div class="backside">
+          <div class="card">
+            <div class="card-body">
+              <div class="contenidoCentrado">
+                <h5 class="card-titleRojo" > detras {{dataRows[1]}}</h5>
+              </div>
+              <div class="contenidoCentrado">
+                <p class="hora-tarjeta">{{dataRows[3]}}</p>
+              </div>
+              <div class="card-footer fondoFooter ">
+                <div class="contenidoCentrado">
+                  <button type="button" (click)="prepararEditar(dataRows[0], 'Aceptar')" class="btn btn-link">ACEPTAR</button>
+                </div>        
+              </div>
+            </div>                      
+          </div>
+        </div>
       </div>
     </div>
-     -->
-
-
+      <!-- ./TARJETA --> 
   </div>
 </div>
-
  
 <div class="row separacionTitulo">
   <div>
@@ -243,70 +216,46 @@
 </div>
 <div class="row">
   <div  *ngFor="let dataRows of tableData3.dataRows"  class="col-lg-3 col-md-6 col-sm-6">
-    
-    <!--  
-    <div class="card card-stats">
-      <div class="card-header">
-        <div class="contenidoCentrado">
-          <h4 class="card-title" style=" margin-bottom: -1.25rem !important;">{{dataRows[1]}}</h4>
-        </div>
-      </div>
-      <div class="card-body">
-             <div class="">
-              <hr>
-              <p class="usuario-tarjeta">{{dataRows[3]}}<p>
-            </div>
-           <div class=" ">
-            <div class="contenidoCentrado">
-              <p class="hora-tarjeta">{{dataRows[2]}}<p>
+    <!-- tarjeta -->
+    <div class="image-flip" ontouchstart="this.classList.toggle('hover');">
+      <div class="mainflip">
+        <div class="frontside">
+          <div class="card">
+            <div class="card-body">
+                <div class="contenidoCentrado">
+                    <h5 class="card-titleVerde" > delante {{dataRows[1]}}</h5>
+                </div>
+                <div class="contenidoCentrado">
+                    <p class="hora-tarjeta">{{dataRows[2]}}</p>
+                </div>
+                <div class="card-footer fondoFooter">
+                  <div class="contenidoCentrado">
+                      <button type="button" (click)="prepararEditar(dataRows[0], 'Consultar')" class="btn btn-link">CONSULTAR</button>
+                  </div>        
+                </div>
             </div>
           </div>
-       </div>
-      <div class="card-footer ">
-        <hr>
-          <div class="contenidoCentrado">
-            <button type="button" (click)="prepararEditar(dataRows[0], 'Consultar')" class="btn btn-info"><i class="nc-icon nc-zoom-split">Consultar</i></button>
-          </div>        
+        </div>
+        <div class="backside">
+          <div class="card">
+            <div class="card-body">
+              <div class="contenidoCentrado">
+                <h5 class="card-titleVerde" > detras {{dataRows[1]}}</h5>
+              </div>
+              <div class="contenidoCentrado">
+                <p class="hora-tarjeta">{{dataRows[3]}}</p>
+              </div>
+              <div class="card-footer fondoFooter ">
+                <div class="contenidoCentrado">
+                  <button type="button" (click)="prepararEditar(dataRows[0], 'Consultar')" class="btn btn-link">CONSULTAR</button>
+                </div>        
+              </div>
+            </div>                      
+          </div>
+        </div>
       </div>
     </div>
-     -->
-          <!-- tarjeta -->
-          <div class="image-flip" ontouchstart="this.classList.toggle('hover');">
-            <div class="mainflip">
-                <div class="frontside">
-                    <div class="contenidoCentrado">
-                      <h5 class="card-title" > delante {{dataRows[1]}}</h5>
-                    </div>
-                    <div class="card-body">
-                         <div class="contenidoCentrado">
-                          <p class="hora-tarjeta">{{dataRows[2]}}</p>
-                        </div>
-                    </div>
-                  <div class="card-footer fondoFooter">
-                      <div class="contenidoCentrado">
-                        <button type="button" (click)="prepararEditar(dataRows[0], 'Consultar')" class="btn btn-link botonConsultar">CONSULTAR</button>
-                      </div>        
-                  </div>
-                </div>
-                <div class="backside">
-                    <div class="contenidoCentrado">
-                      <h5 class="card-title" > detras {{dataRows[1]}}</h5>
-                    </div>
-                  <div class="card-body">
-                         <div class="contenidoCentrado">
-                          <p class="hora-tarjeta">{{dataRows[3]}}</p>
-                        </div>
-                   </div>
-                  <div class="card-footer fondoFooter ">
-                      <div class="contenidoCentrado">
-                        <button type="button" (click)="prepararEditar(dataRows[0], 'Consultar')" class="btn btn-link botonConsultar">CONSULTAR</button>
-                      </div>        
-                  </div>
-                </div>
-            </div>
-        </div>
-    <!-- ./TARJETA -->
-
+      <!-- ./TARJETA --> 
   </div>
 </div>
 
