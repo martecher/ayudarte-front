@@ -255,11 +255,11 @@
                  </thead>
                 <tbody>
                   <tr>
-                    <td>
-                      <div class="contenidoIzquierda" style="width: 49%;">                      
-                        <span >{{usuarioOtro.nombreUsuario}} </span>
+                    <td style="background-color: #e8e8e5;">
+                      <div class="contenidoIzquierda" style="width: 49%; float: left;">                      
+                        <span >{{usuarioOtro.nombreUsuario}}</span>
                       </div>
-                      <div class="contenidoDerecha" style="width: 49%;">
+                      <div class="contenidoDerecha" style="width: 49%;  float: right">
                     <span >{{usuarioPropio.nombreUsuario}}</span>
                       </div>  
                    </td>
@@ -268,7 +268,7 @@
                   <tr *ngFor="let dataRows of tableData1.dataRows">
                     <td>
                          
-                        <div [ngStyle] ="{'text-align': dataRows[2].idUsuario==usuarioPropio.idUsuario?'right':'left'}">
+                        <div [ngStyle] ="{'text-align': dataRows[6]==usuarioPropio.idUsuario?'right':'left'}">
                          
                           <span>{{dataRows[2]}}<i class="nc-icon nc-check-2"></i> </span>
                       </div>
