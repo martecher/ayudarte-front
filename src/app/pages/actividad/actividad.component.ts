@@ -26,6 +26,7 @@ declare interface TableData {
 declare interface UsuarioMensaje {
   idUsuario: string;
   nombreUsuario: string;
+  rutaImagen: string;
 }
 
 @Component({
@@ -70,8 +71,9 @@ export class ActividadComponent implements OnInit {
  
       this.usuarioPropio = {
         idUsuario: this.usuarioGuardado.getUsuarioId(),
-        nombreUsuario: this.usuarioGuardado.getNombreUsuario()+" "+      
-        this.usuarioGuardado.getApellido1()+" "+this.usuarioGuardado.getApellido2()+" "
+        nombreUsuario: this.usuarioGuardado.getNombre(),
+        rutaImagen: "assets/img/faces/"+this.usuarioGuardado.getUsuarioId()+".jpg"
+
     };
 
  
@@ -92,22 +94,16 @@ export class ActividadComponent implements OnInit {
           if(this.usuarioPropio.idUsuario!=  String(this.mensajesTarea[0].usuario_envia.usuario_id)){
             this.usuarioOtro = {
               idUsuario: String(this.mensajesTarea[0].usuario_envia.usuario_id),
-              nombreUsuario: this.mensajesTarea[0].usuario_envia.nombre.concat(
-                ' ',
-                this.mensajesTarea[0].usuario_envia.apellido1,
-                ' ',
-                this.mensajesTarea[0].usuario_envia.apellido2)
+              nombreUsuario: this.mensajesTarea[0].usuario_envia.nombre, 
+              rutaImagen: "assets/img/faces/"+String(this.mensajesTarea[0].usuario_envia.usuario_id+".jpg")
           };
 
           }else{
 
             this.usuarioOtro = {
               idUsuario: String(this.mensajesTarea[0].usuario_recibe.usuario_id),
-              nombreUsuario: this.mensajesTarea[0].usuario_recibe.nombre.concat(
-                ' ',
-                this.mensajesTarea[0].usuario_recibe.apellido1,
-                ' ',
-                this.mensajesTarea[0].usuario_recibe.apellido2)
+              nombreUsuario: this.mensajesTarea[0].usuario_recibe.nombre, 
+              rutaImagen: "assets/img/faces/"+String(this.mensajesTarea[0].usuario_recibe.usuario_id+".jpg")
           };
 
           } 
