@@ -5,6 +5,7 @@ import { FormControl, FormGroup,Validators, FormBuilder } from '@angular/forms';
 import { UsuarioGuardadoService } from "../../servicios/usuarioguardado.service";
 
 import { CategoriaHabilidad } from "../../models/categoriaHabilidad";
+import swal from 'sweetalert';
 
 
 @Component({
@@ -77,6 +78,7 @@ export class HabilidadComponent implements OnInit {
       this.form.value.categoria_ID.id,
       ).subscribe( data => {
 //      console.log("HabilidadComponent.guardarHabilidad: " + JSON.stringify (data) );
+        swal("Habilidad almacenada correctamente", " ", "success");
       this.habilidadesService.leerlistado(this.form.value.categoria_ID.id); 
   });
   

@@ -227,10 +227,36 @@
 .labelFormulario{
   width: 30%   !important;
   float: left  !important;
+  text-align: right;
+  padding-right: 2%;
 }
+
 .campoFormulario{
   width: 50%  !important;
 }
+
+
+.labelFormularioInline{
+  width: 45%   !important;
+  float: left  !important;
+  text-align: right;
+  padding-right: 2%;
+}
+.campoFormularioInline{
+  width: 50%  !important;
+}
+
+
+.labelFormulario2{
+  width: 20%   !important;
+  float: left  !important;
+  text-align: right;
+  padding-right: 2%;
+}
+.campoFormulario2{
+  width: 50%  !important;
+}
+
 .estrella{
  color:grey;
  font-size: 40px;
@@ -423,6 +449,7 @@ overflow: hidden;
 .frontside .card,
 .backside .card {
     min-height: 150px;
+    min-width: 200px;
 }
 
 .backside .card a {

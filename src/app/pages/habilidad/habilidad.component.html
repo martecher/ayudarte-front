@@ -1,32 +1,33 @@
-<form [formGroup]="form"  (ngSubmit)="guardarHabilidad()"> 
-
+<h4 class="card-title tituloFormulario">Nueva habilidad</h4>
+<form [formGroup]="form"  (ngSubmit)="guardarHabilidad()" class="form-horizontal" id="form"> 
        <div class="form-group">
-              <label igxLabel for="categoria_ID">categoria</label>
-              <select formControlName="categoria_ID">
+              <label class="control-label .col labelFormulario2"  for="categoria_ID">Categoría</label>
+              <select  class="form-control campoFormulario" formControlName="categoria_ID">
                      <option value="" disabled>Elige una categoría</option>
                      <option *ngFor="let categ of categoriasObjet" [ngValue]="categ">
                      {{ categ.descripcion }}
                      </option>
               </select>
        </div>
+      
        <div class="form-group">
-              <label igxLabel for="descripcionHabilidad">descripcionHabilidad</label>
+              <label class="control-label .col labelFormulario2"  for="descripcionHabilidad">Habilidad</label>
               <input type="text"
-                     placeholder="descripcionHabilidad"
+                     placeholder="Descripcion habilidad"
                      name="descripcionHabilidad"
                      formControlName="descripcionHabilidad"            
               >
        </div>
+       
        <div class="form-group">
-                <label igxLabel for="horasEstipuladas">horasEstipuladas</label>
+                <label class="control-label .col labelFormulario2"  for="horasEstipuladas">Horas</label>
                 <input type="text"
-                       placeholder="horasEstipuladas"
+                       placeholder="horas Estipuladas"
                        name="horasEstipuladas"
                        formControlName="horasEstipuladas"            
                 >
        </div>
-       <button type="submit">Guardar</button>
-
+       <button type="submit"  class="btn btn-link">Guardar </button>
      </form>
 
      <!-- 

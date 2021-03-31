@@ -15,6 +15,8 @@ import { UsuariosService } from '../../servicios/usuarios.service';
 import { Router } from '@angular/router';
 import { FormControl, FormGroup,Validators, FormBuilder } from '@angular/forms';
 
+import swal from 'sweetalert';
+
 declare interface TableData {
   headerRow: string[];
   dataRows: string[][];
@@ -221,7 +223,7 @@ export class ActividadComponent implements OnInit {
                       });
                 });
           }else{
-              alert("Hay errores en el formulario. Revise los datos.") 
+              swal("Hay errores en el formulario", "Revise los datos", "error");
           }
         break;
         case "Aceptar":
@@ -283,8 +285,8 @@ export class ActividadComponent implements OnInit {
               });
             });
           }else{
-            alert("Hay errores en el formulario. Revise los datos.") 
-        }
+            swal("Hay errores en el formulario", "Revise los datos", "error");
+          }
           break;
         case "Consultar":
             // Este no hace nada. Puede dirigir al dashboard 

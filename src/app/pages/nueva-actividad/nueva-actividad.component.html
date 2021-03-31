@@ -1,47 +1,78 @@
  
-<app-categoria></app-categoria>
- 
-<app-habilidad></app-habilidad>
- 
+<main role="main">
 
-<form [formGroup]="nuevaActividadForm" (ngSubmit)="guardarActividad()">
-    <div class="form-group">
-      <label igxLabel for="categoria_ID2">categoria</label>
-      <select formControlName="categoria_ID2" (change)="onChangeCategoriaActividad($event.target.value)">
-        <option value="-1" >Elige una categoría</option>
-        <option *ngFor="let categ2 of categoriasObjet2" [value]="categ2.id">
-        {{ categ2.descripcion }}
-        </option>
-      </select>
-    </div>
-    <div class="form-group">
-      <label igxLabel for="habilidad_ID2">habilidad</label>
-      <select formControlName="habilidad_ID2" (change)="onChangeCategoriaHabilidad($event.target.value)">
-        <option value="-1" >Elige una habilidad</option>
-        <option *ngFor="let hab2 of habilidadesObjet2" [value]="hab2.habilidad_id">
-        {{ hab2.descripcion }}
-        </option>
-      </select>
-    </div>
-
-  
-    <div class="form-group">
-    <label igxLabel for="descripcionTarea">descripcion</label>
-      <input type="text"
-              placeholder="descripcion Tarea"
-              formControlName="descripcionTarea"
-      >
-    </div>
-    <!--
-    <div class="form-group">
-      <label igxLabel for="horasEstipuladas">horasEstipuladas</label>
-        <input type="text"
-                placeholder="horasEstipuladas"
-                formControlName="horasEstipuladas"
-        >
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-body">
+         
+          <app-categoria></app-categoria>
+          
+          <app-habilidad></app-habilidad>   
+               
+          <div class="card-header">
+            <h4 class="card-title tituloFormulario">Nueva tarea</h4>
+          </div>          
+          <form [formGroup]="nuevaTareaForm" (ngSubmit)="guardarActividad()" class="form-horizontal"  id="nuevaActividadForm"> 
+              <div class="form-group">
+                <label class="control-label .col labelFormulario2" for="categoria_ID2">Categoría</label>
+                <select   class="form-control campoFormulario"  
+                formControlName="categoria_ID2" (change)="onChangeCategoriaActividad($event.target.value)">
+                  <option value="-1" >Elige una categoría</option>
+                  <option *ngFor="let categ2 of categoriasObjet2" [value]="categ2.id">
+                  {{ categ2.descripcion }}
+                  </option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label class="control-label .col labelFormulario2" for="habilidad_ID2">Habilidad</label>
+                <select class="form-control campoFormulario" formControlName="habilidad_ID2" (change)="onChangeCategoriaHabilidad($event.target.value)">
+                  <option value="-1" >Elige una habilidad</option>
+                  <option *ngFor="let hab2 of habilidadesObjet2" [value]="hab2.habilidad_id">
+                  {{ hab2.descripcion }}
+                  </option>
+                </select>
+              </div>
+              <div class="form-group">
+              <label class="control-label .col labelFormulario2" for="descripcionTarea">Descripción</label>
+                <input class="form-control campoFormulario" type="text"
+                         formControlName="descripcionTarea"
+                >
+              </div>
+              <button type="submit"  class="btn btn-link">Guardar </button>
+              <button type="submit" (click)="volver()"  class="btn btn-link">Volver </button>
+          </form>         
+ 
+        </div>
       </div>
+    </div>
+  </div>   
+</main>
+ 
 
-    --> 
-    <button type="submit">Guardar</button>
-    <button type="submit" (click)="volver()" >Volver</button>
-</form>
+<!--
+<main role="main">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-body">
+
+          <h4 class="card-title tituloFormulario">Nueva categoría</h4>
+          <form [formGroup]="nuevaTareaForm" (ngSubmit)="guardarActividad()" class="form-inline" id="nuevaCategoriaForm"> 
+              <div class="form-group">
+                <label class="control-label .col labelFormularioInline"  for="descripcion">Nueva categoría</label>
+                <input type="text"
+                      placeholder="Descripcion categoria"
+                      name="descripcionTarea"
+                      formControlName="descripcionTarea"
+                      class="form-control campoFormularioInline"  
+                >
+              </div>
+              <button type="submit"  class="btn btn-link">Guardar </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>   
+</main>
+-->

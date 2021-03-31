@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CategoriaHabilidadesService } from '../../servicios/categoriaHabilidades.service';
 import { UsuarioGuardadoService } from "../../servicios/usuarioguardado.service";
 import { FormControl, FormGroup,Validators, FormBuilder } from '@angular/forms';
+import swal from 'sweetalert';
 
 
 @Component({
@@ -21,28 +22,28 @@ export class CategoriaComponent implements OnInit {
 
   ngOnInit(): void {
       console.log("CategoriaComponent.ngOnInit");
-
       this.createForm();
   }
 
   createForm() {
     console.log("CategoriaComponent.createForm");
-    /*
-      descripcion: string;
-    */
     this.nuevaCategoriaForm = new FormGroup({
-      descripcion: new FormControl()
+      descripcionCategoria: new FormControl( null, [
+        Validators.required,
+        Validators.minLength(4)])
       });
   }
 
-  
   guardarCategoria(): void {
-    console.log("CategoriaComponent.guardarCategoria descripcion: "+this.nuevaCategoriaForm.value.descripcion);
- 
-    this.categoriaHabilidadesService.nuevaCategoriaHabilidad(this.nuevaCategoriaForm.value.descripcion).subscribe( data => {
-      console.log("CategoriaComponent.guardarCategoria: " + JSON.stringify (data) );
-      this.categoriaHabilidadesService.leerlistado(); 
-  });
-  
+      if( this.nuevaCategoriaForm.valid){ 
+      console.log("CategoriaComponent.guardarCategoria descripcionCategoria: "+this.nuevaCategoriaForm.value.descripcionCategoria);
+      this.categoriaHabilidadesService.nuevaCategoriaHabilidad(this.nuevaCategoriaForm.value.descripcionCategoria).subscribe( data => {
+        console.log("CategoriaComponent.guardarCategoria: " + JSON.stringify (data) );
+        this.categoriaHabilidadesService.leerlistado(); 
+        swal("Categoría almacenada correctamente", " ", "success");
+      });
+    }else{
+      swal("Hay errores en el formulario", "Revise la categoría", "error");
+    } 
   }  
 }

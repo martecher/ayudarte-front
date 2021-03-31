@@ -7,6 +7,7 @@ import { CategoriaHabilidadesService } from '../../servicios/categoriaHabilidade
 import { TareasService } from '../../servicios/tareas.service';
 import { UsuarioGuardadoService } from "../../servicios/usuarioguardado.service";
 import { Router } from '@angular/router';
+import swal from 'sweetalert';
 
 @Component({
   selector: 'app-nueva-actividad',
@@ -15,7 +16,7 @@ import { Router } from '@angular/router';
 })
 export class NuevaActividadComponent implements OnInit {
 
-  public nuevaActividadForm: FormGroup;
+  public nuevaTareaForm: FormGroup;
   habilidades: any = ['Habiliad 1', 'habiliad 2', 'habilidad 3', 'habilidad 4'];
   habilidadesObjet2: Habilidad[] = [];
   categoriasObjet2: CategoriaHabilidad[] = [];
@@ -33,6 +34,7 @@ export class NuevaActividadComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+ 
   //  console.log("NuevaActividadComponent.ngOnInit"); 
     this.categoriaHabilidadesService.leerlistado();    
     this.categoriaHabilidadesService.getCategorias$().subscribe( data => {
@@ -44,39 +46,30 @@ export class NuevaActividadComponent implements OnInit {
  //       console.log("NuevaActividadComponent.ngOnInit  = "+JSON.stringify(this.habilidadesObjet2));
         // hay que meter esto en un observable para poder cargar esta lista
         // automaticamente cuando de de alta la categoria
-        this.createForm();
+ //       this.createForm();
+      });
     });
-  });
-  }
+    this.createForm();
 
-  createForm() {
-  //  console.log("NuevaActividadComponent.createForm");
-
-    /*
-      observacion: string;
-  horasReales: string;
-  valoracion: string;
-  usuario_solicita: Usuario;
-  usuario_realiza: Usuario;
-  habilidad: Habilidad;
-  puntuacionSolicita: string;
-  finalizada: string;
-    */
-  this.nuevaActividadForm = this.fb.group({
-    categoria_ID2: [],
-    habilidad_ID2: [],
-    descripcionTarea:  []
-  });
     
 
   }
 
-  /*
-  changeClassesLevel(id: number) {
-    console.log("Hit");
-    console.log(id);
+  createForm() {
+    console.log("CategoriaComponent.createForm");
+    this.nuevaTareaForm = new FormGroup({
+      descripcionTarea: new FormControl( null, [ Validators.required, Validators.minLength(4)]),
+      categoria_ID2: new FormControl( null, [ Validators.required] ), 
+      habilidad_ID2: new FormControl( null, [ Validators.required] )     
+      });
   }
-*/
+
+  guardarActividadOLD(): void {
+    console.log("CategoriaComponent.createForm; "+ JSON.stringify(this.nuevaTareaForm.value));
+     
+  }  
+
+  
  
   onChangeCategoriaActividad(idActividad: number){
 //    console.log("NuevaActividadComponent.onChangeActividad");
@@ -93,17 +86,23 @@ export class NuevaActividadComponent implements OnInit {
 //    console.log("NuevaActividadComponent.onChangeCategoriaHabilidad: " +idHabilidad);
     this.idHabilidadSelect=idHabilidad;
   }
-  guardarActividad(){
-//    console.log("NuevaActividadComponent.guardarActividad");
-//    console.log("NuevaActividadComponent.guardarActividad  = "+JSON.stringify(this.nuevaActividadForm.value));
-//    console.log("NuevaActividadComponent.guardarActividad  idHabilidadSelect= "+this.idHabilidadSelect);
-//    console.log("NuevaActividadComponent.guardarActividad  idActividadSelect= "+this.idActividadSelect);
-    this.tareasService.nuevaActividad(this.usuarioGuardado.getToken(),this.nuevaActividadForm.value.descripcionTarea,
-    this.usuarioGuardado.getUsuarioId(),this.idHabilidadSelect).subscribe( data => {
-//       console.log("NuevaActividadComponent.onChangeActividad habilidadesObjet2 = "+JSON.stringify(data));
-      // hay que meter esto en un observable para poder cargar esta lista
-      this.router.navigateByUrl('/actividades');
 
-   });  
+
+  guardarActividad(){
+    console.log("NuevaActividadComponent.guardarActividad");
+    console.log("NuevaActividadComponent.guardarActividad  = "+JSON.stringify(this.nuevaTareaForm.value));
+    console.log("NuevaActividadComponent.guardarActividad  idHabilidadSelect= "+this.idHabilidadSelect);
+    console.log("NuevaActividadComponent.guardarActividad  idActividadSelect= "+this.idActividadSelect);
+    if(this.nuevaTareaForm.valid){
+    this.tareasService.nuevaActividad(this.usuarioGuardado.getToken(),this.nuevaTareaForm.value.descripcionTarea,
+    this.usuarioGuardado.getUsuarioId(),this.idHabilidadSelect).subscribe( data => {
+       console.log("NuevaActividadComponent.onChangeActividad habilidadesObjet2 = "+JSON.stringify(data));
+      // hay que meter esto en un observable para poder cargar esta lista
+      swal("Habilidad almacenada correctamente", " ", "success");
+      this.router.navigateByUrl('/actividades');
+    });  
+    }else{
+      swal("Errores en el formulario", "Revise los datos", "error");
+    }
   }
 }

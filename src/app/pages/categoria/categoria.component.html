@@ -1,11 +1,15 @@
-<form [formGroup]="nuevaCategoriaForm" (ngSubmit)="guardarCategoria()">
+<h4 class="card-title tituloFormulario">Nueva categoría</h4>
+<form [formGroup]="nuevaCategoriaForm" (ngSubmit)="guardarCategoria()" class="form-inline" id="nuevaCategoriaForm"> 
     <div class="form-group">
-      <label igxLabel for="descripcion">descripcion</label>
+      <label class="control-label .col labelFormularioInline"  for="descripcion">Nueva categoría</label>
       <input type="text"
-             placeholder="descripcion"
-             name="descripcion"
-             formControlName="descripcion"            
+             placeholder="Descripcion categoria"
+             name="descripcionCategoria"
+             formControlName="descripcionCategoria"
+             class="form-control campoFormularioInline"  
       >
     </div>
-    <button type="submit">Guardar</button>
+    <button type="submit"  class="btn btn-link">Guardar </button>
 </form>
+
+ 
