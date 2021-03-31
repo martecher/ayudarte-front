@@ -7,7 +7,7 @@ import { CategoriaHabilidadesService } from '../../servicios/categoriaHabilidade
 import { TareasService } from '../../servicios/tareas.service';
 import { UsuarioGuardadoService } from "../../servicios/usuarioguardado.service";
 import { Router } from '@angular/router';
-import swal from 'sweetalert';
+import Swal from 'sweetalert2'
 
 @Component({
   selector: 'app-nueva-actividad',
@@ -98,11 +98,11 @@ export class NuevaActividadComponent implements OnInit {
     this.usuarioGuardado.getUsuarioId(),this.idHabilidadSelect).subscribe( data => {
        console.log("NuevaActividadComponent.onChangeActividad habilidadesObjet2 = "+JSON.stringify(data));
       // hay que meter esto en un observable para poder cargar esta lista
-      swal("Habilidad almacenada correctamente", " ", "success");
+      Swal.fire("Habilidad almacenada correctamente", " ", "success");
       this.router.navigateByUrl('/actividades');
     });  
     }else{
-      swal("Errores en el formulario", "Revise los datos", "error");
+      Swal.fire("Errores en el formulario", "Revise los datos", "error");
     }
   }
 }

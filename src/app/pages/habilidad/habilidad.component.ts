@@ -5,7 +5,7 @@ import { FormControl, FormGroup,Validators, FormBuilder } from '@angular/forms';
 import { UsuarioGuardadoService } from "../../servicios/usuarioguardado.service";
 
 import { CategoriaHabilidad } from "../../models/categoriaHabilidad";
-import swal from 'sweetalert';
+import Swal from 'sweetalert2'
 
 
 @Component({
@@ -61,8 +61,12 @@ export class HabilidadComponent implements OnInit {
       });
         */
       this.form = new FormGroup({
-        descripcionHabilidad: new FormControl(),
-        horasEstipuladas:new FormControl(),
+        descripcionHabilidad: new FormControl( null, [
+          Validators.required,
+          Validators.minLength(4)]),
+        horasEstipuladas:new FormControl( null, [
+          Validators.required,
+          Validators.minLength(4)]),
         categoria_ID: new FormControl(this.categoriasObjet[3])
       });
   }
@@ -72,15 +76,17 @@ export class HabilidadComponent implements OnInit {
   guardarHabilidad (): void {
 //    console.log("HabilidadComponent.guardarHabilidad form: "+ JSON.stringify( this.form.value));
 //    console.log("HabilidadComponent.guardarHabilidad idcategoria: "+  this.form.value.categoria_ID.id   );
-
+if( this.form.valid){ 
     this.habilidadesService.nuevaHabilidad(this.form.value.descripcionHabilidad,
       this.form.value.horasEstipuladas,
       this.form.value.categoria_ID.id,
       ).subscribe( data => {
 //      console.log("HabilidadComponent.guardarHabilidad: " + JSON.stringify (data) );
-        swal("Habilidad almacenada correctamente", " ", "success");
+       Swal.fire("Habilidad almacenada correctamente", " ", "success");
       this.habilidadesService.leerlistado(this.form.value.categoria_ID.id); 
   });
-  
+}else{
+  Swal.fire("Hay errores en el formulario", "Revise la habilidad", "error");
+} 
  }
 }

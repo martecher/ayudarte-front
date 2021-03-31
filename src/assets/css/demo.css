@@ -223,7 +223,12 @@
 .contenidoCentrado{
   text-align: center;
 }
-
+.contenidoDerecha{
+  text-align: right;
+}
+.contenidoIzquierda{
+  text-align: left;
+}
 .labelFormulario{
   width: 30%   !important;
   float: left  !important;

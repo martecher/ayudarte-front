@@ -35,34 +35,48 @@ export class UsuarioGuardadoService {
 
   setNombreUsuario(nombreUsuario: string) {
     this._nombreUsuario = nombreUsuario;
+    localStorage.setItem('_nombreUsuario', this._nombreUsuario);
   }
 
   getNombreUsuario() {
-    return this._nombreUsuario;
+    //return this._nombreUsuario;
+    return   localStorage.getItem('_nombreUsuario');
+
   }
 
   setNombre(nombre: string) {
     this._nombre = nombre;
+     localStorage.setItem('_nombre', this._nombre);
   }
 
   getNombre() {
-    return this._nombre;
+    //return this._nombre;
+    return   localStorage.getItem('_nombre');
+
   }
 
   setApellido1(apellido1: string) {
     this._apellido1 = apellido1;
+    localStorage.setItem('_apellido1', this._apellido1);
+
   }
 
   getApellido1() {
-    return this._apellido1;
+    //return this._apellido1;
+    return   localStorage.getItem('_apellido1');
+
   }
 
   setApellido2(apellido2: string) {
     this._apellido2 = apellido2;
+    localStorage.setItem('_apellido2', this._apellido2);
+
   }
 
   getApellido2() {
-    return this._apellido2;
+   // return this._apellido2;
+   return   localStorage.getItem('_apellido2');
+
   }
 
   setFechaNacimiento(fechaNacimiento: string) {

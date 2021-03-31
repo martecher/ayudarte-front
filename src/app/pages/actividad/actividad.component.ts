@@ -15,11 +15,17 @@ import { UsuariosService } from '../../servicios/usuarios.service';
 import { Router } from '@angular/router';
 import { FormControl, FormGroup,Validators, FormBuilder } from '@angular/forms';
 
-import swal from 'sweetalert';
+//import swal from 'sweetalert';
+import Swal from 'sweetalert2'
 
 declare interface TableData {
   headerRow: string[];
   dataRows: string[][];
+}
+
+declare interface UsuarioMensaje {
+  idUsuario: string;
+  nombreUsuario: string;
 }
 
 @Component({
@@ -44,7 +50,10 @@ export class ActividadComponent implements OnInit {
   public aceptarForm: FormGroup;
   public consultarForm: FormGroup;
   public mensajeForm: FormGroup;
-  
+
+  public usuarioPropio: UsuarioMensaje;
+  public usuarioOtro: UsuarioMensaje;
+
   public puntuacionRecibida: string;
   constructor( 
       private router: Router,
@@ -58,6 +67,15 @@ export class ActividadComponent implements OnInit {
   ngOnInit(): void {
       this.id = this.rutaActiva.snapshot.params.id;
       this.operacion = this.rutaActiva.snapshot.params.operacion;
+ 
+      this.usuarioPropio = {
+        idUsuario: this.usuarioGuardado.getUsuarioId(),
+        nombreUsuario: this.usuarioGuardado.getNombreUsuario()+" "+      
+        this.usuarioGuardado.getApellido1()+" "+this.usuarioGuardado.getApellido2()+" "
+    };
+
+ 
+
       this.tareasService.getTarea(this.usuarioGuardado.getToken(),this.id).subscribe( data => {
       this.actividad = data.data;
       this.actividadCruda = data.data;
@@ -69,14 +87,42 @@ export class ActividadComponent implements OnInit {
       this.mensajesService.listaMensajesTarea(this.usuarioGuardado.getToken(),this.id).subscribe( data => {
         this.mensajesTarea = data.data;
         var myJSON = JSON.stringify(data.data);
+  //      console.log("ActividadOninit: "+ myJSON)
           this.dataRows= [];
+          if(this.usuarioPropio.idUsuario!=  String(this.mensajesTarea[0].usuario_envia.usuario_id)){
+            this.usuarioOtro = {
+              idUsuario: String(this.mensajesTarea[0].usuario_envia.usuario_id),
+              nombreUsuario: this.mensajesTarea[0].usuario_envia.nombre.concat(
+                ' ',
+                this.mensajesTarea[0].usuario_envia.apellido1,
+                ' ',
+                this.mensajesTarea[0].usuario_envia.apellido2)
+          };
 
+          }else{
+
+            this.usuarioOtro = {
+              idUsuario: String(this.mensajesTarea[0].usuario_recibe.usuario_id),
+              nombreUsuario: this.mensajesTarea[0].usuario_recibe.nombre.concat(
+                ' ',
+                this.mensajesTarea[0].usuario_recibe.apellido1,
+                ' ',
+                this.mensajesTarea[0].usuario_recibe.apellido2)
+          };
+
+          } 
+          
+   //       console.log("this.usuarioPropio "+ JSON.stringify(this.usuarioPropio));
+  //        console.log("this.usuarioOtro "+ JSON.stringify(this.usuarioOtro));
+         
           for (var mensaje of this.mensajesTarea) {
             this.dataLine = [];
             this.dataLine.push(String(mensaje.id));
             this.dataLine.push(String(mensaje.orden));
             this.dataLine.push(mensaje.texto);
- 
+            
+
+
             this.dataLine.push(mensaje.usuario_envia.nombre.concat(
                                 ' ',
                                 mensaje.usuario_envia.apellido1,
@@ -223,7 +269,7 @@ export class ActividadComponent implements OnInit {
                       });
                 });
           }else{
-              swal("Hay errores en el formulario", "Revise los datos", "error");
+            Swal.fire("Hay errores en el formulario", "Revise los datos", "error");
           }
         break;
         case "Aceptar":
@@ -285,7 +331,7 @@ export class ActividadComponent implements OnInit {
               });
             });
           }else{
-            swal("Hay errores en el formulario", "Revise los datos", "error");
+            Swal.fire("Hay errores en el formulario", "Revise los datos", "error");
           }
           break;
         case "Consultar":

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CategoriaHabilidadesService } from '../../servicios/categoriaHabilidades.service';
 import { UsuarioGuardadoService } from "../../servicios/usuarioguardado.service";
 import { FormControl, FormGroup,Validators, FormBuilder } from '@angular/forms';
-import swal from 'sweetalert';
+import Swal from 'sweetalert2'
 
 
 @Component({
@@ -40,10 +40,10 @@ export class CategoriaComponent implements OnInit {
       this.categoriaHabilidadesService.nuevaCategoriaHabilidad(this.nuevaCategoriaForm.value.descripcionCategoria).subscribe( data => {
         console.log("CategoriaComponent.guardarCategoria: " + JSON.stringify (data) );
         this.categoriaHabilidadesService.leerlistado(); 
-        swal("Categoría almacenada correctamente", " ", "success");
+        Swal.fire("Categoría almacenada correctamente", " ", "success");
       });
     }else{
-      swal("Hay errores en el formulario", "Revise la categoría", "error");
+      Swal.fire("Hay errores en el formulario", "Revise la categoría", "error");
     } 
   }  
 }

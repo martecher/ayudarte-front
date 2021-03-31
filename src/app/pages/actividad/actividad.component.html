@@ -251,32 +251,22 @@
             <div class="table-responsive">
               <table class="table">
                 <thead class=" text-primary">
-                  <th *ngFor="let header of tableData1.headerRow">
-                    <div class="contenidoCentrado">
-                      <span>{{header}}</span>
-                    </div>
-                  </th>
+ 
                  </thead>
                 <tbody>
+                  <tr>
+                    <td>
+                      <span class="contenidoIzquierda">{{usuarioOtro.nombreUsuario}} </span>
+                    <span class="contenidoDerecha">{{usuarioPropio.nombreUsuario}}</span>
+                   </td>
+
+                  </tr>  
                   <tr *ngFor="let dataRows of tableData1.dataRows">
                     <td>
-                      <div class="contenidoCentrado">
-                        <span>{{dataRows[2]}}</span>
-                      </div>
-                    </td>
-                    <td>
-                      <div class="contenidoCentrado">
-                        <span>{{dataRows[3]}}</span>
-                      </div>
-                    </td>
-                    <td>
-                      <div class="contenidoCentrado">
-                        <span>{{dataRows[4]}}</span>
-                      </div>
-                    </td>
-                    <td>
-                      <div class="contenidoCentrado">
-                        <i class="nc-icon nc-check-2"></i>                      
+                         
+                        <div [ngStyle] ="{'text-align': dataRows[2].idUsuario==usuarioPropio.idUsuario?'right':'left'}">
+                         
+                          <span>{{dataRows[2]}}<i class="nc-icon nc-check-2"></i> </span>
                       </div>
                     </td>
                   </tr>
