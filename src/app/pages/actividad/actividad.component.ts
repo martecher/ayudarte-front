@@ -89,7 +89,7 @@ export class ActividadComponent implements OnInit {
       this.mensajesService.listaMensajesTarea(this.usuarioGuardado.getToken(),this.id).subscribe( data => {
         this.mensajesTarea = data.data;
         var myJSON = JSON.stringify(data.data);
-          console.log("ActividadOninit: "+ myJSON)
+         // console.log("ActividadOninit: "+ myJSON)
           this.dataRows= [];
           if(this.usuarioPropio.idUsuario!=  String(this.mensajesTarea[0].usuario_envia.usuario_id)){
             this.usuarioOtro = {

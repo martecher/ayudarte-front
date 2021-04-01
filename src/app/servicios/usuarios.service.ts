@@ -2,7 +2,7 @@
 
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
-import { Observable } from 'rxjs';
+import { Observable,Subject } from 'rxjs';
 import {UsuarioGuardadoService} from './usuarioguardado.service';
 import { map } from 'rxjs/operators';
 import { HttpHeaders } from '@angular/common/http';
@@ -14,7 +14,27 @@ import { environment } from "environments/environment";
   providedIn: "root"
 })
 export class UsuariosService {
-  constructor(private http: HttpClient , private usuarioGuardadoServicio:UsuarioGuardadoService) {}
+
+  private usuariosRanking: Usuario[];
+  private usuariosRanking$: Subject<Usuario[]>;
+
+  constructor(private http: HttpClient , private usuarioGuardadoServicio:UsuarioGuardadoService) {
+    console.log("UsuariosService.constructor")
+    this.usuariosRanking = [];
+    this.usuariosRanking$ = new Subject();
+    this.leerRanking(); 
+
+  }
+
+  leerRanking(){
+    this.rankingUsuarios().subscribe( data => {
+      this.usuariosRanking = data.data;
+ //     console.log("CategoriaHabilidadesService.leerlistado  = "+JSON.stringify(this.categorias));
+      this.usuariosRanking$.next(this.usuariosRanking);
+      // hay que meter esto en un observable para poder cargar esta lista
+      // automaticamente cuando de de alta la categoria
+     });
+  }
 
   login(user: any): Observable<any> {
     return this.http.
@@ -62,6 +82,14 @@ export class UsuariosService {
     return this.http.get(environment.ipBackend + "/api/usuarios", { headers: headers })
   }
 
+  rankingUsuarios(): Observable<any> {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${this.usuarioGuardadoServicio.getToken()}`
+    }) 
+    return this.http.get(environment.ipBackend + "/api/rankingUsuarios", { headers: headers })
+  }
+
   getUsuario(auth_token, id): Observable<any> {
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
@@ -87,4 +115,9 @@ export class UsuariosService {
 
     return this.http.put(environment.ipBackend + "/api/usuarios/updateNoPass/"+id, body,  { headers: headers })
   }
+
+  getRanking$(): Observable<Usuario[]>{
+    //   console.log("CategoriaHabilidadesService.getCategorias$ ");
+       return this.usuariosRanking$.asObservable();
+     }
 }
