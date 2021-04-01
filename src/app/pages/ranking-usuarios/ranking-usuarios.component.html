@@ -1,7 +1,7 @@
 <!-- Team -->
 <section id="team" class="pb-5">
     <div class="container">
-        <h5 class="section-title h1">Ranking de usuarios</h5>
+        <h5 class="h4Panel contenidoCentrado">Ranking de usuarios</h5>
         <div class="row">
             <!-- Team member -->
             <div class="col-xs-12 col-sm-6 col-md-4"  *ngFor="let usuario of rankingUsuarios" >
@@ -11,17 +11,23 @@
                             <div class="card">
                                 <div class="card-body text-center">
                                     <p><img class=" img-fluid" src="assets/img/faces/{{usuario.usuario_id}}.jpg" alt="card image"></p>
-                                    <h4 class="card-title">Sunlimetech</h4>
-                                    <p class="card-text">This is basic card with image on top, title, description and button.</p>
-                                    <a href="#" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i></a>
+                                    <h4 class="card-title">{{usuario.nombre}}</h4>
+                                    <h4 class="card-title">{{usuario.apellido1}} {{usuario.apellido2}}</h4>
+                                    <h3 class="card-title">                                     
+                                        <p class="estrellaDorada" *ngIf="usuario.reputacion==1" >★</p>
+                                        <p class="estrellaDorada" *ngIf="usuario.reputacion==2" >★★</p>
+                                        <p class="estrellaDorada" *ngIf="usuario.reputacion==3" >★★★</p>
+                                        <p class="estrellaDorada" *ngIf="usuario.reputacion==4" >★★★★</p>
+                                        <p class="estrellaDorada" *ngIf="usuario.reputacion==5" >★★★★★</p>
+                                    </h3>
                                 </div>
                             </div>
                         </div>
                         <div class="backside">
                             <div class="card">
                                 <div class="card-body text-center mt-4">
-                                    <h4 class="card-title">Sunlimetech</h4>
-                                    <p class="card-text">This is basic card with image on top, title, description and button.This is basic card with image on top, title, description and button.This is basic card with image on top, title, description and button.</p>
+                                    <h4 class="card-title">{{usuario.nombre}}</h4>
+                                    <h4 class="card-title">{{usuario.apellido1}} {{usuario.apellido2}}</h4>                                    <p class="card-text">falta lista de habilidades.</p>
                                     <ul class="list-inline">
                                         <li class="list-inline-item">
                                             <a class="social-icon text-xs-center" target="_blank" href="#">

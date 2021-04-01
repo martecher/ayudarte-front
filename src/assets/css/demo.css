@@ -267,6 +267,10 @@
  font-size: 40px;
 
 }
+.estrellaDorada{
+  color:orange !important;
+  font-size: 40px  !important;
+}
 .estrella:hover{color:orange;}
 .estrella:hover ~ .estrella{color:orange;}
 .radioEstrella{
