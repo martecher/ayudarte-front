@@ -345,8 +345,8 @@
 
 .btn-primary {
     color: #fff;
-    background-color: #007b5e;
-    border-color: #007b5e;
+    background-color: #27a844;
+    border-color: #27a844;
 }
 
 section {
@@ -355,9 +355,9 @@ section {
 
 section .section-title {
     text-align: center;
-    color: #007b5e;
+    color: #27a844;
     margin-bottom: 50px;
-    text-transform: uppercase;
+     
 }
 
  
@@ -463,7 +463,7 @@ overflow: hidden;
 
 .backside .card a {
     font-size: 18px;
-    color: #007b5e !important;
+    color: #27a844 !important;
 }
 
 .frontside .card .card-titleYellow,
