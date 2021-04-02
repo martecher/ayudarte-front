@@ -11,8 +11,8 @@
                             <div class="card">
                                 <div class="card-body text-center">
                                     <p><img class=" img-fluid" src="assets/img/faces/{{usuario.usuario_id}}.jpg" alt="card image"></p>
-                                    <h4 class="card-title">{{usuario.nombre}}</h4>
-                                    <h4 class="card-title">{{usuario.apellido1}} {{usuario.apellido2}}</h4>
+                                    <h4 class="card-title h4Card">{{usuario.nombre}}</h4>
+                                    <h4 class="card-title h4Card">{{usuario.apellido1}} {{usuario.apellido2}}</h4>
                                     <h3 class="card-title">                                     
                                         <p class="estrellaDorada" *ngIf="usuario.reputacion==1" >★</p>
                                         <p class="estrellaDorada" *ngIf="usuario.reputacion==2" >★★</p>
@@ -26,30 +26,27 @@
                         <div class="backside">
                             <div class="card">
                                 <div class="card-body text-center mt-4">
-                                    <h4 class="card-title">{{usuario.nombre}}</h4>
-                                    <h4 class="card-title">{{usuario.apellido1}} {{usuario.apellido2}}</h4>                                    <p class="card-text">falta lista de habilidades.</p>
-                                    <ul class="list-inline">
-                                        <li class="list-inline-item">
-                                            <a class="social-icon text-xs-center" target="_blank" href="#">
-                                                <i class="fa fa-facebook"></i>
-                                            </a>
-                                        </li>
-                                        <li class="list-inline-item">
-                                            <a class="social-icon text-xs-center" target="_blank" href="#">
-                                                <i class="fa fa-twitter"></i>
-                                            </a>
-                                        </li>
-                                        <li class="list-inline-item">
-                                            <a class="social-icon text-xs-center" target="_blank" href="#">
-                                                <i class="fa fa-skype"></i>
-                                            </a>
-                                        </li>
-                                        <li class="list-inline-item">
-                                            <a class="social-icon text-xs-center" target="_blank" href="#">
-                                                <i class="fa fa-google"></i>
-                                            </a>
+                                                                         
+                                    <h4 class="card-title h4Card">{{usuario.nombre}}</h4>
+                                    <h4 class="card-title h4Card">{{usuario.apellido1}} {{usuario.apellido2}}</h4>                                    
+                                                                        
+                                    <p class="card-textHabilidades">Habilidades</p>
+                                    <div *ngFor="let habilidad of usuario.habilidades">
+                                        <span>                
+                                            <i class="nc-icon nc-satisfied"></i>
+                                            {{habilidad.descripcion}}
+                                        </span>
+                                    </div>
+                                    <!--  
+                                    <ul class="ulHabilidades">
+                                        <li class="liHabilidades" *ngFor="let habilidad of usuario.habilidades">
+                                            <span>                
+                                                <i class="nc-icon nc-satisfied"></i>
+                                                {{habilidad.descripcion}}
+                                            </span>
                                         </li>
                                     </ul>
+                                    -->
                                 </div>
                             </div>
                         </div>
