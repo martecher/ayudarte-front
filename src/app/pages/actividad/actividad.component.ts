@@ -76,8 +76,6 @@ export class ActividadComponent implements OnInit {
 
     };
 
- 
-
       this.tareasService.getTarea(this.usuarioGuardado.getToken(),this.id).subscribe( data => {
       this.actividad = data.data;
       this.actividadCruda = data.data;
@@ -262,7 +260,7 @@ export class ActividadComponent implements OnInit {
                     this.usuarioService.actualizarValoracionUsuario(this.usuarioGuardado.getToken(),idUsuario, numeroVotaciones, reputacionSolicita,horas,
                     nVotos5, nVotos4, nVotos3, nVotos2, nVotos1).subscribe( data => {
                         data.data;
-                        this.router.navigateByUrl('/panel');
+                         this.router.navigateByUrl('/panel');
                       });
                 });
           }else{
@@ -325,6 +323,8 @@ export class ActividadComponent implements OnInit {
                 this.usuarioService.actualizarValoracionUsuario(this.usuarioGuardado.getToken(),idUsuario2, numeroVotaciones2, valoracion,horas2,
                 nVotos5b, nVotos4b, nVotos3b, nVotos2b, nVotos1b).subscribe( data => {
                   data.data;
+                                          //faltaria restar la bolsa de horas del otro usuario
+
               });
             });
           }else{
