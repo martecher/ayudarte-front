@@ -538,6 +538,11 @@ overflow: hidden;
   color: #26a743;
   font-size: 15px;
 }
+
+.cardRegistro{
+  margin-top: 50px !important;
+}
+
 .ulHabilidades {
   list-style-type: none;
 }

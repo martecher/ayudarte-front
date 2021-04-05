@@ -69,8 +69,31 @@ export class UsuariosService {
       );
   }
 
-  registro(user: any): Observable<any> {
-    return this.http.post(environment.ipBackend + "/api/register", user);
+  registro(auth_token, usuario: Usuario): Observable<any> {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${auth_token}`
+    })
+ 
+    /*
+      nombre: string;
+      apellido1: string;
+      apellido2: string;
+      fechaNacimiento: string;
+      email: string;
+      password: string;
+
+   */
+
+    const body = { 
+      nombre: usuario.nombre,
+      apellido1:usuario.apellido1,
+      apellido2:usuario.apellido2,    
+      fechaNacimiento:usuario.fechaNacimiento, 
+      email:usuario.email, 
+      password:usuario.password,
+   };
+    return this.http.post(environment.ipBackend + "/api/register", body,  { headers: headers })
   }
 
 
