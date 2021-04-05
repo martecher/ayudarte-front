@@ -16,11 +16,12 @@ export class RankingUsuariosComponent implements OnInit {
 
   ngOnInit(): void {
     console.log("RankingUsuariosComponent.ngOnInit: ")  ;
-    this.usuariosService.getRanking$().subscribe( data => {
-//      console.log("RankingUsuariosComponent.ngOnInit: "+ JSON.stringify(data))  ;
-      this.rankingUsuarios = data;
-      console.log("RankingUsuariosComponent.ngOnInit: "+ JSON.stringify(this.rankingUsuarios))  ;
-
+      this.usuariosService.rankingUsuarios().subscribe( data => {
+     // console.log("RankingUsuariosComponent.ngOnInit data: "+ JSON.stringify(data))  ;
+      if(data.status=="ok"){ 
+        this.rankingUsuarios = data.data;
+      //console.log("RankingUsuariosComponent.ngOnInit rankingUsuarios: "+ JSON.stringify(this.rankingUsuarios))  ;
+      }
     });
   }
 
