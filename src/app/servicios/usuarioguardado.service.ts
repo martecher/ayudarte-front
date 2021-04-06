@@ -21,6 +21,8 @@ export class UsuarioGuardadoService {
 
   private _tipoToken: string = null;
 
+  private _sobreMi: string = null;
+
   constructor() { }
 
   setToken(token: string) {
@@ -81,10 +83,12 @@ export class UsuarioGuardadoService {
 
   setFechaNacimiento(fechaNacimiento: string) {
     this._fechaNacimiento = fechaNacimiento;
+    localStorage.setItem('_fechaNacimiento', this._fechaNacimiento);
+
   }
 
   getFechaNacimiento() {
-    return this._fechaNacimiento;
+    return localStorage.getItem('_fechaNacimiento');
   }
 
   setExento(exento: string) {
@@ -126,10 +130,14 @@ export class UsuarioGuardadoService {
 
   setEmail(email: string) {
     this._email = email;
+    localStorage.setItem('_email', this._email);
+
   }
 
   getEmail() {
-    return this._email;
+    //return this._email;
+    return  localStorage.getItem('_email');
+
   }
 
   setTipoToken(tipoToken: string) {
@@ -143,13 +151,23 @@ export class UsuarioGuardadoService {
   setUsuarioId(id: string) {
     this._usuario_id = id;
      localStorage.setItem('idUsuario', this._usuario_id);
-
   }
 
   getUsuarioId() {
     return   localStorage.getItem('idUsuario');
-     
   }
+
+  getSobreMi() {
+    return localStorage.getItem('sobreMi');
+
+  }
+
+  setSobreMi(sobreMi: string) {
+    this._sobreMi = sobreMi;
+    localStorage.setItem('sobreMi', this._sobreMi);
+
+  }
+
 
   setNumeroVotaciones(numeroVotaciones: string) {
     this._numeroVotaciones = numeroVotaciones;
@@ -162,9 +180,9 @@ export class UsuarioGuardadoService {
   }
 
   isLoggedIn() {
-    console.log("UsuarioGuardadoService.isLoggedIn()");
+//    console.log("UsuarioGuardadoService.isLoggedIn()");
     let token_acceso = localStorage.getItem('token_acceso');
-    console.log(token_acceso);
+//    console.log(token_acceso);
 
     return token_acceso != null;
 //    return this.getToken() != null;
@@ -177,7 +195,7 @@ export class UsuarioGuardadoService {
   }
 
   toString(){
-    /*
+    
     console.log("UsuarioGuardadoService.toString()");
     console.log("_token: "+this. getToken());
     console.log("_nombreUsuario: "+this. getNombreUsuario());
@@ -193,7 +211,8 @@ export class UsuarioGuardadoService {
     console.log("_id: "+this. getUsuarioId());
     console.log("_tipoToken: "+this. getTipoToken());
     console.log("_numeroVotaciones: "+this. getNumeroVotaciones());
-*/
+    console.log("sobreMi: "+this. getSobreMi());
+
 
   }
 

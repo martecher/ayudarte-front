@@ -7,39 +7,37 @@
       <div class="card-body">
         <div class="author">
           <a href="#">
-            <img class="avatar border-gray" src="assets/img/mike.jpg" alt="...">
-            <h5 class="title">Chet Faker</h5>
+            <img class="avatar border-gray" src="assets/img/faces/{{usuario.usuario_id}}.jpg" src="assets/img/mike.jpg" alt="...">
+            <h5 class="title">{{usuario.nombre}} {{usuario.apellido1}} </h5>
           </a>
           <p class="description">
-            @chetfaker
+            {{usuario.sobreMi}}
           </p>
         </div>
         <p class="description text-center">
-          "I like the way you work it
-          <br> No diggity
-          <br> I wanna bag it up"
+          
         </p>
       </div>
       <div class="card-footer">
         <hr>
         <div class="button-container">
           <div class="row">
-            <div class="col-lg-3 col-md-6 col-6 ml-auto">
+            <div class="col-lg-4 col-md-6 col-6 ml-auto">
               <h5>{{tareas}}
                 <br>
-                <small>Tareas</small>
+                <small><i class="nc-icon nc-calendar-60"></i></small>
               </h5>
             </div>
             <div class="col-lg-4 col-md-6 col-6 ml-auto mr-auto">
-              <h5>{{valoracion}}
+              <h5>{{usuario.reputacion}}<span class="estrellaDoradaPeque" >★</span>
                 <br>
-                <small>Reputación</small>
+                <small><i class="nc-icon nc-satisfied"></i></small>
               </h5>
             </div>
-            <div class="col-lg-3 mr-auto">
-              <h5>{{horas}}
+            <div class="col-lg-4 mr-auto">
+              <h5>{{usuario.bolsaHora}}
                 <br>
-                <small>Horas</small>
+                <small><i class="nc-icon nc-watch-time"></i></small>
               </h5>
             </div>
           </div>
@@ -48,7 +46,7 @@
     </div>
     <div class="card">
       <div class="card-header">
-        <h4 class="card-title">Team Members</h4>
+        <h4 class="card-title">Chat</h4>
       </div>
       <div class="card-body">
         <ul class="list-unstyled team-members">
@@ -111,7 +109,7 @@
           </li>
         </ul>
       </div>
-    </div>
+    </div> 
   </div>
   <div class="col-md-8">
     <div class="card card-user">
@@ -119,90 +117,98 @@
         <h5 class="card-title">Editar Usuario</h5>
       </div>
       <div class="card-body">
-        <form>
+        <form [formGroup]="actualizarUsuarioForm" (ngSubmit)="guardarUsuario()" class="form-horizontal"  id="nuevaActividadForm"> 
           <div class="row">
-            <div class="col-md-5 pr-1">
+            <div class="col-md-4 pr-1">
               <div class="form-group">
-                <label>Company (disabled)</label>
-                <input type="text" class="form-control" disabled="" placeholder="Company" value="Creative Code Inc.">
+                <label>Nombre</label>
+                <input formControlName="nombre" type="text" class="form-control" placeholder="Nombre" value="{{nombre}}">
               </div>
             </div>
-            <div class="col-md-3 px-1">
+            <div class="col-md-4 pl-1">
+              <div class="form-group">
+                <label>Primer Apellido</label>
+                <input  formControlName="apellido1" type="text" class="form-control" placeholder="Primer apellido" value="Faker">
+              </div>
+            </div>
+            <div class="col-md-4 pl-1">
+              <div class="form-group">
+                <label>Segundo Apellido</label>
+                <input formControlName="apellido2"  type="text" class="form-control" placeholder="Segundo apellido" value="Faker">
+              </div>
+            </div>
+          </div>          
+          <div class="row">
+            <div class="col-md-3 pr-1">
+              <div class="form-group">
+                <label>Fecha de Nacimiento</label>
+                <input type="date" class="form-control" formControlName="fechaNacimiento" >
+              </div>
+            </div>
+            <div class="col-md-5 px-1">
               <div class="form-group">
                 <label>Email</label>
-                <input type="email" class="form-control" placeholder="Email">
+                <input type="email" class="form-control" placeholder="Email"  formControlName="email">
               </div>
             </div>
             <div class="col-md-4 pl-1">
               <div class="form-group">
                 <label for="exampleInputEmail1">Contraseña</label>
-                <input type="text" class="form-control" placeholder="Username" value="michael23">
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-md-3 pr-1">
-              <div class="form-group">
-                <label>Nombre</label>
-                <input type="text" class="form-control" placeholder="Company" value="{{nombre}}">
-              </div>
-            </div>
-            <div class="col-md-3 pl-1">
-              <div class="form-group">
-                <label>Primer Apellido</label>
-                <input type="text" class="form-control" placeholder="Last Name" value="Faker">
-              </div>
-            </div>
-            <div class="col-md-3 pl-1">
-              <div class="form-group">
-                <label>Segundo Apellido</label>
-                <input type="text" class="form-control" placeholder="Last Name 2" value="Faker">
+                <input type="text" class="form-control" placeholder="Contraseña"   formControlName="email">
               </div>
             </div>
           </div>
           <div class="row">
             <div class="col-md-12">
               <div class="form-group">
-                <label>Address</label>
-                <input type="text" class="form-control" placeholder="Home Address" value="Melbourne, Australia">
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-md-4 pr-1">
-              <div class="form-group">
-                <label>City</label>
-                <input type="text" class="form-control" placeholder="City" value="Melbourne">
-              </div>
-            </div>
-            <div class="col-md-4 px-1">
-              <div class="form-group">
-                <label>Country</label>
-                <input type="text" class="form-control" placeholder="Country" value="Australia">
-              </div>
-            </div>
-            <div class="col-md-4 pl-1">
-              <div class="form-group">
-                <label>Postal Code</label>
-                <input type="number" class="form-control" placeholder="ZIP Code">
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-md-12">
-              <div class="form-group">
-                <label>About Me</label>
-                <textarea class="form-control textarea">Oh so, your weak rhyme You doubt I'll bother, reading into it</textarea>
+                <label>Sobre mí</label>
+                <textarea class="form-control textarea"  formControlName="sobreMi"></textarea>
               </div>
             </div>
           </div>
           <div class="row">
             <div class="update ml-auto mr-auto">
-              <button type="submit" class="btn btn-primary btn-round">Update Profile</button>
+              <button type="submit" class="btn btn-primary btn-round">Actualizar usuario</button>
             </div>
           </div>
         </form>
       </div>
     </div>
-  </div>
+ 
+    <div class="card card-user">
+      <div class="card-header">
+        <h5 class="card-title">Habilidades</h5>
+      </div>
+      <div class="card-body">
+        <form [formGroup]="nuevaTareaForm" (ngSubmit)="guardarActividad()" class="form-horizontal"  id="nuevaActividadForm"> 
+          <div class="form-group">
+            <label class="control-label .col labelFormulario2" for="categoria_ID2">Categoría</label>
+            <select   class="form-control campoFormulario"  
+            formControlName="categoria_ID2" (change)="onChangeCategoriaActividad($event.target.value)">
+              <option value="-1" >Elige una categoría</option>
+              <option *ngFor="let categ2 of categoriasObjet2" [value]="categ2.id">
+              {{ categ2.descripcion }}
+              </option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="control-label .col labelFormulario2" for="habilidad_ID2">Habilidad</label>
+            <select class="form-control campoFormulario" formControlName="habilidad_ID2" (change)="onChangeCategoriaHabilidad($event.target.value)">
+              <option value="-1" >Elige una habilidad</option>
+              <option *ngFor="let hab2 of habilidadesObjet2" [value]="hab2.habilidad_id">
+              {{ hab2.descripcion }}
+              </option>
+            </select>
+          </div>
+          <div class="form-group">
+              <span>aqui falta un listado con las habilidades que ya tiene y una X para quitarlas</span>
+          </div>
+          <button type="submit"  class="btn btn-primary btn-round">Guardar </button>
+      </form>  
+      </div>
+    </div>
+  </div>    
+
+
+
 </div>

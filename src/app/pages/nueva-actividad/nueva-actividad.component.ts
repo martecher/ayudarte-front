@@ -34,25 +34,14 @@ export class NuevaActividadComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
- 
-  //  console.log("NuevaActividadComponent.ngOnInit"); 
     this.categoriaHabilidadesService.leerlistado();    
     this.categoriaHabilidadesService.getCategorias$().subscribe( data => {
       this.categoriasObjet2 = data;
-//       console.log("HabilidadComponent.ngOnInit  = "+JSON.stringify(this.categoriasObjet2));
-
       this.habilidadesService.getHabilidades$().subscribe( data => {
         this.habilidadesObjet2 = data;
- //       console.log("NuevaActividadComponent.ngOnInit  = "+JSON.stringify(this.habilidadesObjet2));
-        // hay que meter esto en un observable para poder cargar esta lista
-        // automaticamente cuando de de alta la categoria
- //       this.createForm();
       });
     });
     this.createForm();
-
-    
-
   }
 
   createForm() {

@@ -41,6 +41,7 @@ export class UsuariosService {
     	post( environment.ipBackend + "/api/login", user).
     	pipe(
         	map((resp: any) => {
+            //console.log("UsuariosService.login: "+  JSON.stringify(resp)  )
           		this.usuarioGuardadoServicio.setToken( resp.token_acceso );
           		this.usuarioGuardadoServicio.setNombreUsuario( resp.nombreUsuario );
               this.usuarioGuardadoServicio.setNombre( resp.nombre );
@@ -55,14 +56,15 @@ export class UsuariosService {
               this.usuarioGuardadoServicio.setUsuarioId( resp.usuario_id );
           		this.usuarioGuardadoServicio.setTipoToken(resp.tipo_token);
               this.usuarioGuardadoServicio.setNumeroVotaciones(resp.numeroVotaciones);
-              
+              this.usuarioGuardadoServicio.setSobreMi(resp.sobreMi);
+             
               localStorage.setItem('token_acceso', resp.token_acceso);
                
-              console.log("-----");
-              console.log("UsuariosService.login()");
-          		console.log("Usuario guardado: " +  resp.token_acceso);
+//              console.log("-----");
+//              console.log("UsuariosService.login()");
+//           		console.log("Usuario guardado: " +  resp.token_acceso);
 //          		console.log(this.usuarioGuardadoServicio.toString());
-              console.log("-----");
+//              console.log("-----");
                
               return resp;
         	})

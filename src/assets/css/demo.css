@@ -271,6 +271,11 @@
   color:orange !important;
   font-size: 40px  !important;
 }
+.estrellaDoradaPeque{
+  color:orange !important;
+  font-size: 25px  !important;
+}
+
 .estrella:hover{color:orange;}
 .estrella:hover ~ .estrella{color:orange;}
 .radioEstrella{
@@ -549,4 +554,28 @@ overflow: hidden;
 
 .liHabilidades {
   text-align: center !important;
+}
+
+.texto-rojo {
+  color: #ef8157 !important;
+}
+
+.texto-azul {
+  color: #51cbce !important;
+}
+.texto-verde {
+  color: #27a844 !important;
+}
+.btn-success {
+  background-color: #27a844 !important;
+  color: #FFFFFF;
+}
+.nc-icon {
+  display: inline-block;
+  font: normal normal normal 14px/1 "nucleo-icons";
+  font-size: 17px !important;
+  speak: none;
+  text-transform: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
