@@ -10,6 +10,7 @@ import { HabilidadesService } from '../../servicios/habilidades.service';
 import { Habilidad } from "../../models/Habilidad";
 import { CategoriaHabilidad } from "../../models/categoriaHabilidad";
 import { CategoriaHabilidadesService } from '../../servicios/categoriaHabilidades.service';
+import Swal from 'sweetalert2'
 
 @Component({
     selector: 'user-cmp',
@@ -22,7 +23,7 @@ export class UserComponent implements OnInit{
   idActividadSelect;
   idHabilidadSelect; 
   public actualizarUsuarioForm: FormGroup;
-  public nuevaTareaForm: FormGroup;
+  public habilidadForm: FormGroup;
 
   public usuario:Usuario;
   public tareas: number;
@@ -89,7 +90,7 @@ export class UserComponent implements OnInit{
 
   createForm2() {
     console.log("CategoriaComponent.createForm");
-    this.nuevaTareaForm = new FormGroup({
+    this.habilidadForm = new FormGroup({
       descripcionTarea: new FormControl( null, [ Validators.required, Validators.minLength(4)]),
       categoria_ID2: new FormControl( null, [ Validators.required] ), 
       habilidad_ID2: new FormControl( null, [ Validators.required] )     
@@ -117,13 +118,56 @@ export class UserComponent implements OnInit{
   }
 
   onChangeCategoriaActividad(idActividad: number){
-    //    console.log("NuevaActividadComponent.onChangeActividad");
-        this.habilidadesService.leerlistado(idActividad);
+          this.habilidadesService.leerlistado(idActividad);
           this.habilidadesService.getHabilidades$().subscribe( data => {
           this.habilidadesObjet2 = data;
-    //      console.log("NuevaActividadComponent.onChangeActividad habilidadesObjet2 = "+JSON.stringify(this.habilidadesObjet2));
-          // hay que meter esto en un observable para poder cargar esta lista
           this.idActividadSelect = idActividad;
       });   
       }
+
+  guardarUsuario(){
+    console.log("UserComponent.guardarUsuario");
+    console.log("UserComponent.guardarUsuario  = "+JSON.stringify(this.actualizarUsuarioForm.value));
+    if(this.actualizarUsuarioForm.valid){
+  /*
+       nombre
+      apellido1
+      apellido2
+      fechaNacimiento
+      email
+      sobreMi
+       */     
+      this.usuarioService.actualizarUsuario(this.usuarioGuardado.getToken(),
+      this.usuarioGuardado.getUsuarioId(), this.actualizarUsuarioForm.value.nombre,
+      this.actualizarUsuarioForm.value.apellido1, this.actualizarUsuarioForm.value.apellido2,
+      this.actualizarUsuarioForm.value.fechaNacimiento, this.actualizarUsuarioForm.value.email,
+      this.actualizarUsuarioForm.value.sobreMi
+      ).subscribe( data => {
+          console.log("guardarUsuario data: " +JSON.stringify(data));
+          this.usuarioGuardado.setNombre(this.actualizarUsuarioForm.value.nombre); 
+          this.usuarioGuardado.setApellido1(this.actualizarUsuarioForm.value.apellido1); 
+          this.usuarioGuardado.setApellido2(this.actualizarUsuarioForm.value.apellido2); 
+          this.usuarioGuardado.setFechaNacimiento (this.actualizarUsuarioForm.value.fechaNacimiento); 
+          this.usuarioGuardado.setEmail (this.actualizarUsuarioForm.value.email); 
+          this.usuarioGuardado.setSobreMi (this.actualizarUsuarioForm.value.sobreMi); 
+          
+          Swal.fire("Usuario actualizado correctamente", " ", "success");
+          this.ngOnInit();
+          
+        });     
+    }else{
+      Swal.fire("Errores en el formulario", "Revise los datos", "error");
+    }
+  }
+
+  guardarHabilidad(){
+    console.log("UserComponent.guardarHabilidad");
+    console.log("UserComponent.guardarHabilidad  = "+JSON.stringify(this.habilidadForm.value));
+ 
+    if(this.habilidadForm.valid){
+
+    }else{
+      Swal.fire("Errores en el formulario", "Revise los datos", "error");
+    }
+  }
 }

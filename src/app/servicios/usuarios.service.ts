@@ -147,6 +147,39 @@ export class UsuariosService {
     return this.http.put(environment.ipBackend + "/api/usuarios/updateNoPass/"+id, body,  { headers: headers })
   }
 
+  actualizarUsuario(auth_token, id, 
+    nombre,
+    apellido1,
+    apellido2,
+    fechaNacimiento,
+    email,
+    sobreMi
+    ): Observable<any> {
+
+      /*
+      nombre
+      apellido1
+      apellido2
+      fechaNacimiento
+      email
+      sobreMi
+     
+      */
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${auth_token}`
+    })
+    const body = { 
+      nombre: nombre,
+      apellido1:apellido1,
+      apellido2:apellido2,     
+      fechaNacimiento:fechaNacimiento, 
+      email:email, 
+      sobreMi:sobreMi
+   };
+
+    return this.http.put(environment.ipBackend + "/api/usuarios/updateNoPass/"+id, body,  { headers: headers })
+  }
   getRanking$(): Observable<Usuario[]>{
     //   console.log("CategoriaHabilidadesService.getCategorias$ ");
        return this.usuariosRanking$.asObservable();

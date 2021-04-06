@@ -153,8 +153,7 @@
             </div>
             <div class="col-md-4 pl-1">
               <div class="form-group">
-                <label for="exampleInputEmail1">Contraseña</label>
-                <input type="text" class="form-control" placeholder="Contraseña"   formControlName="email">
+ 
               </div>
             </div>
           </div>
@@ -180,7 +179,7 @@
         <h5 class="card-title">Habilidades</h5>
       </div>
       <div class="card-body">
-        <form [formGroup]="nuevaTareaForm" (ngSubmit)="guardarActividad()" class="form-horizontal"  id="nuevaActividadForm"> 
+        <form [formGroup]="habilidadForm" (ngSubmit)="guardarHabilidad()" class="form-horizontal"  id="nuevaActividadForm"> 
           <div class="form-group">
             <label class="control-label .col labelFormulario2" for="categoria_ID2">Categoría</label>
             <select   class="form-control campoFormulario"  
