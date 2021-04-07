@@ -26,6 +26,7 @@ export class UserComponent implements OnInit{
   public habilidadForm: FormGroup;
 
   public usuario:Usuario;
+  public usuario2:Usuario;
   public tareas: number;
   public horas: string;
   public valoracion: string;
@@ -36,7 +37,7 @@ export class UserComponent implements OnInit{
   public urlImagen: string;
   habilidadesObjet2: Habilidad[] = [];
   categoriasObjet2: CategoriaHabilidad[] = [];
-  
+  habilidadesObjet: Habilidad[] = [];
 
   constructor(
     public router: Router,
@@ -65,7 +66,7 @@ export class UserComponent implements OnInit{
     this.usuario.email = this.usuarioGuardado.getEmail();
     this.usuario.fechaNacimiento = this.usuarioGuardado.getFechaNacimiento();
     this.usuario.sobreMi= this.usuarioGuardado.getSobreMi();
-    console.log("UserComponent.ngOnInit: "+this.usuario.fechaNacimiento);
+//    console.log("UserComponent.ngOnInit: "+this.usuario.fechaNacimiento);
     this.createForm();
 
     this.tareasService.solicitadasPorUsuario(this.usuarioGuardado.getToken(),this.usuarioGuardado.getUsuarioId()).subscribe( data => {
@@ -85,6 +86,15 @@ export class UserComponent implements OnInit{
         this.habilidadesObjet2 = data;
       });
     });
+
+    this.usuarioService.getUsuario(this.usuarioGuardado.getToken(),this.usuario.usuario_id).subscribe( data => {
+//      console.log("UserComponent ngOnInit() getUsuario: "+ JSON.stringify( data.data));
+      this.habilidadesObjet =data.data.habilidades;
+      console.log("UserComponent ngOnInit() this.habilidadesObjet: "+ JSON.stringify( this.habilidadesObjet));
+      
+    });
+
+     
     this.createForm2();
   }
 

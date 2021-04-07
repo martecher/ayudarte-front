@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Habilidad } from "../models/Habilidad";
 
 @Injectable({
   providedIn: 'root'
@@ -18,11 +19,10 @@ export class UsuarioGuardadoService {
   private _email: string = null;
   private _usuario_id: string = null;
   private _numeroVotaciones: string = null;
-
   private _tipoToken: string = null;
-
   private _sobreMi: string = null;
 
+  private _habilidades: Habilidad[] = [];
   constructor() { }
 
   setToken(token: string) {
@@ -179,13 +179,18 @@ export class UsuarioGuardadoService {
     return localStorage.getItem('_numeroVotaciones');
   }
 
-  isLoggedIn() {
-//    console.log("UsuarioGuardadoService.isLoggedIn()");
-    let token_acceso = localStorage.getItem('token_acceso');
-//    console.log(token_acceso);
+  setHabilidades(habilidades: Habilidad[]) {
+    this._habilidades = habilidades;
+    localStorage.setItem('_habilidades', JSON.stringify(this._habilidades));
 
+  }
+
+  getHabilidades() {
+    return localStorage.getItem('_habilidades');
+  }
+  isLoggedIn() {
+    let token_acceso = localStorage.getItem('token_acceso');
     return token_acceso != null;
-//    return this.getToken() != null;
   }
 
   logOut(){

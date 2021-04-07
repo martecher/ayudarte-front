@@ -199,11 +199,18 @@
               </option>
             </select>
           </div>
-          <div class="form-group">
-              <span>aqui falta un listado con las habilidades que ya tiene y una X para quitarlas</span>
+
+          <div class="row">
+            <div class="update ml-auto mr-auto">
+              <button type="submit" class="btn btn-primary btn-round">Guardar</button>
+            </div>
+          </div>      
+        </form>  
+        <div >
+          <div  *ngFor="let habilidad of habilidadesObjet" >
+              {{ habilidad.descripcion }} X para borrar
           </div>
-          <button type="submit"  class="btn btn-primary btn-round">Guardar </button>
-      </form>  
+        </div>
       </div>
     </div>
   </div>    
