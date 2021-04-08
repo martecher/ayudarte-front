@@ -128,6 +128,19 @@ export class UsuariosService {
     })
     return this.http.get(environment.ipBackend + "/api/usuarios/"+id, { headers: headers })
   }
+
+  asignarDesasignarHabilidad(auth_token,idUsuario,idHabilidad,accion){
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${auth_token}`
+    }) 
+    const body = { 
+      idHabilidad: idHabilidad,
+      accion:accion
+   };
+   return this.http.put(environment.ipBackend + "/api/habilidadesUsuarios/"+idUsuario, body, { headers: headers })
+  }
+
   actualizarValoracionUsuario(auth_token, id, numeroVotaciones, reputacionSolicita, horas,nVotos5, nVotos4, nVotos3, nVotos2, nVotos1): Observable<any> {
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',

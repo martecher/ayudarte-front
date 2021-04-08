@@ -88,10 +88,7 @@ export class UserComponent implements OnInit{
     });
 
     this.usuarioService.getUsuario(this.usuarioGuardado.getToken(),this.usuario.usuario_id).subscribe( data => {
-//      console.log("UserComponent ngOnInit() getUsuario: "+ JSON.stringify( data.data));
       this.habilidadesObjet =data.data.habilidades;
-      console.log("UserComponent ngOnInit() this.habilidadesObjet: "+ JSON.stringify( this.habilidadesObjet));
-      
     });
 
      
@@ -101,7 +98,6 @@ export class UserComponent implements OnInit{
   createForm2() {
     console.log("CategoriaComponent.createForm");
     this.habilidadForm = new FormGroup({
-      descripcionTarea: new FormControl( null, [ Validators.required, Validators.minLength(4)]),
       categoria_ID2: new FormControl( null, [ Validators.required] ), 
       habilidad_ID2: new FormControl( null, [ Validators.required] )     
       });
@@ -170,14 +166,31 @@ export class UserComponent implements OnInit{
     }
   }
 
-  guardarHabilidad(){
+ asignarHabilidad(){
     console.log("UserComponent.guardarHabilidad");
     console.log("UserComponent.guardarHabilidad  = "+JSON.stringify(this.habilidadForm.value));
- 
     if(this.habilidadForm.valid){
-
+        this.usuarioService.asignarDesasignarHabilidad(this.usuarioGuardado.getToken(),
+        this.usuarioGuardado.getUsuarioId(),this.habilidadForm.value.habilidad_ID2,"1").subscribe( data => {   
+          this.ngOnInit();    
+          Swal.fire("Usuario actualizado correctamente", " ", "success");
+        });   
     }else{
       Swal.fire("Errores en el formulario", "Revise los datos", "error");
     }
   }
+  desasignarHabilidad(event, item){
+    //alert('Open ' + item);
+    //esto lo puedo recibir sin que sea un form
+    //puedo tener muchos forms que se llamen igual en la vista??
+    console.log("UserComponent.desasignarHabilidad");
+    this.usuarioService.asignarDesasignarHabilidad(this.usuarioGuardado.getToken(),
+      this.usuarioGuardado.getUsuarioId(),item,"0").subscribe( data => {   
+        this.ngOnInit();    
+        Swal.fire("Usuario actualizado correctamente", " ", "success");
+    });  
+  }
+
+ 
+
 }
