@@ -141,7 +141,7 @@ export class UsuariosService {
    return this.http.put(environment.ipBackend + "/api/habilidadesUsuarios/"+idUsuario, body, { headers: headers })
   }
 
-  actualizarValoracionUsuario(auth_token, id, numeroVotaciones, reputacionSolicita, horas,nVotos5, nVotos4, nVotos3, nVotos2, nVotos1): Observable<any> {
+  actualizarValoracionUsuario(auth_token, id, numeroVotaciones, reputacionSolicita, nVotos5, nVotos4, nVotos3, nVotos2, nVotos1): Observable<any> {
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${auth_token}`
@@ -149,7 +149,6 @@ export class UsuariosService {
     const body = { 
       numeroVotaciones: numeroVotaciones,
       reputacion:reputacionSolicita,
-      bolsaHora:horas,     
       numVotos5:nVotos5, 
       numVotos4:nVotos4, 
       numVotos3:nVotos3, 
@@ -159,6 +158,18 @@ export class UsuariosService {
 
     return this.http.put(environment.ipBackend + "/api/usuarios/updateNoPass/"+id, body,  { headers: headers })
   }
+
+  actualizarHorasUsuarios(auth_token,id,horas,signo){
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${auth_token}`
+    })
+    const body = { 
+      horas: horas,
+      signo:signo 
+   };
+    return this.http.put(environment.ipBackend + "/api/actualizarBolsa/"+id, body,  { headers: headers })
+ }
 
   actualizarUsuario(auth_token, id, 
     nombre,

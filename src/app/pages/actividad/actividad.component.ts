@@ -257,10 +257,19 @@ export class ActividadComponent implements OnInit {
                     data.data;
                     var myJSON = JSON.stringify(data.data);
       //            console.log("ActividadComponent.actualizarActividad() data.data: "+ myJSON);
-                    this.usuarioService.actualizarValoracionUsuario(this.usuarioGuardado.getToken(),idUsuario, numeroVotaciones, reputacionSolicita,horas,
+                    this.usuarioService.actualizarValoracionUsuario(this.usuarioGuardado.getToken(),idUsuario, numeroVotaciones, reputacionSolicita, 
                     nVotos5, nVotos4, nVotos3, nVotos2, nVotos1).subscribe( data => {
                         data.data;
-                         this.router.navigateByUrl('/panel');
+                        //falta por sumar las horas al usuario logado y actualizar
+                        //en el usuarioguardado
+
+                        console.log("ActividadComponent.actualizarActividad() sumo this.actividad.horasReales: "+ this.actividad.horasReales +" y this.usuarioGuardado.getBolsaHora(): "+this.usuarioGuardado.getBolsaHora());
+                        this.usuarioService.actualizarHorasUsuarios(this.usuarioGuardado.getToken(),this.usuarioGuardado.getUsuarioId(),this.actividad.horasReales,"+").subscribe( data => {
+                           this.usuarioGuardado.setBolsaHora( String( Number(this.usuarioGuardado.getBolsaHora())+ Number(this.actividad.horasReales))   );
+
+                          Swal.fire("Has terminado la tarea correctamente", " ", "success");
+                          this.router.navigateByUrl('/panel');
+                        });
                       });
                 });
           }else{
@@ -313,18 +322,21 @@ export class ActividadComponent implements OnInit {
             let horas2 = Math.trunc(this.actividadCruda.usuarioRealiza[0].bolsaHora +1);
             let idUsuario2 = this.actividadCruda.usuarioRealiza[0].usuario_id;
 
-
             this.actividad.id=  Number(this.id);
             this.actividad.valoracion = this.aceptarForm.value.valoracion;
             this.tareasService.finalizarTarea(this.usuarioGuardado.getToken(),this.actividad).subscribe( data => {
               data.data;
               var myJSON = JSON.stringify(data.data);
    //           console.log("ActividadComponent.actualizarActividad() data.data: "+ myJSON);
-                this.usuarioService.actualizarValoracionUsuario(this.usuarioGuardado.getToken(),idUsuario2, numeroVotaciones2, valoracion,horas2,
+                this.usuarioService.actualizarValoracionUsuario(this.usuarioGuardado.getToken(),idUsuario2, numeroVotaciones2, valoracion,
                 nVotos5b, nVotos4b, nVotos3b, nVotos2b, nVotos1b).subscribe( data => {
                   data.data;
-                                          //faltaria restar la bolsa de horas del otro usuario
+                  this.usuarioService.actualizarHorasUsuarios(this.usuarioGuardado.getToken(),idUsuario2,this.actividadCruda.horasReales,"-").subscribe( data => {
+                    Swal.fire("Has aceptado la tarea correctamente", " ", "success");
+                    this.usuarioGuardado.setBolsaHora( String( Number(this.usuarioGuardado.getBolsaHora())- Number(this.actividadCruda.horasReales ))   );
 
+                    this.router.navigateByUrl('/panel');
+                  }); 
               });
             });
           }else{
