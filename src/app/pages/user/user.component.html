@@ -206,10 +206,27 @@
             </div>
           </div>      
         </form>  
-        <div >
-          <div  *ngFor="let habilidad of habilidadesObjet" >
-                <span>{{ habilidad.descripcion }}     <i class="nc-icon nc-simple-remove" (click)="desasignarHabilidad($event, habilidad.habilidad_id )"></i></span>
-          </div>
+
+        
+        <div  *ngIf="habilidadesObjet?.length > 0"  class=" table-striped " style="padding: 40px;">
+          <table class="table round_table">
+            <thead class="thead-verde">
+              <tr>
+                <th scope="col">Habilidad</th>
+                <th scope="col"> </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let habilidad of habilidadesObjet">
+                <td> 
+                  <span>{{ habilidad.descripcion }}</span>
+                </td>
+                <td> 
+                  <span ><i class="nc-icon nc-simple-remove" (click)="desasignarHabilidad($event, habilidad.habilidad_id )"></i></span>
+                </td>
+               </tr>
+            </tbody>
+          </table>
         </div>
       </div>
     </div>

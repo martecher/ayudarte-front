@@ -579,3 +579,12 @@ overflow: hidden;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+.thead-verde  {
+  color: #fff  !important;
+  background-color: #27a844  !important;
+  border-color: #fff  !important;
+}
+.round_table {
+ 
+}
