@@ -331,7 +331,8 @@ export class ActividadComponent implements OnInit {
                 this.usuarioService.actualizarValoracionUsuario(this.usuarioGuardado.getToken(),idUsuario2, numeroVotaciones2, valoracion,
                 nVotos5b, nVotos4b, nVotos3b, nVotos2b, nVotos1b).subscribe( data => {
                   data.data;
-                  this.usuarioService.actualizarHorasUsuarios(this.usuarioGuardado.getToken(),idUsuario2,this.actividadCruda.horasReales,"-").subscribe( data => {
+                  //al aceptar la tarea que hace otro me resto las horas consumidas
+                  this.usuarioService.actualizarHorasUsuarios(this.usuarioGuardado.getToken(),this.usuarioGuardado.getUsuarioId(),this.actividadCruda.horasReales,"-").subscribe( data => {
                     Swal.fire("Has aceptado la tarea correctamente", " ", "success");
                     this.usuarioGuardado.setBolsaHora( String( Number(this.usuarioGuardado.getBolsaHora())- Number(this.actividadCruda.horasReales ))   );
 
