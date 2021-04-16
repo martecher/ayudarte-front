@@ -171,6 +171,18 @@ export class UsuariosService {
     return this.http.put(environment.ipBackend + "/api/actualizarBolsa/"+id, body,  { headers: headers })
  }
 
+ actualizaractualizarContrasegna(auth_token,id,passActual,passNueva){
+  const headers = new HttpHeaders({
+    'Content-Type': 'application/json',
+    'Authorization': `Bearer ${auth_token}`
+  })
+  const body = { 
+    passActual: passActual,
+    passNueva:passNueva 
+ };
+  return this.http.put(environment.ipBackend + "/api/actualizarPassword/"+id, body,  { headers: headers })
+}
+
   actualizarUsuario(auth_token, id, 
     nombre,
     apellido1,

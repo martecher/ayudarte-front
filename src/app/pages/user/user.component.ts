@@ -24,6 +24,8 @@ export class UserComponent implements OnInit{
   idHabilidadSelect; 
   public actualizarUsuarioForm: FormGroup;
   public habilidadForm: FormGroup;
+  public contrasennaForm: FormGroup;
+
 
   public usuario:Usuario;
   public usuario2:Usuario;
@@ -47,7 +49,6 @@ export class UserComponent implements OnInit{
     private fb: FormBuilder,   
     private categoriaHabilidadesService: CategoriaHabilidadesService,
     private habilidadesService: HabilidadesService,
-
     ) { 
 
      }
@@ -92,17 +93,26 @@ export class UserComponent implements OnInit{
     });
 
      
-    this.createForm2();
+    this.createFormHabilidad();
+    this.createFormContrasegnna();
   }
 
-  createForm2() {
-    console.log("CategoriaComponent.createForm");
+  createFormContrasegnna() {
+    console.log("CategoriaComponent.createFormContrasegnna");
+    this.contrasennaForm = new FormGroup({
+      contrasennaActual: new FormControl( null, [ Validators.required] ), 
+      contrasennaNueva: new FormControl( null, [ Validators.required] ),    
+      contrasennaNueva2: new FormControl( null, [ Validators.required] )
+      });
+  }
+
+  createFormHabilidad() {
+    console.log("CategoriaComponent.createFormHabilidad");
     this.habilidadForm = new FormGroup({
       categoria_ID2: new FormControl( null, [ Validators.required] ), 
       habilidad_ID2: new FormControl( null, [ Validators.required] )     
       });
   }
-
   createForm() {
     /* 
   nombre: string;
@@ -129,7 +139,32 @@ export class UserComponent implements OnInit{
           this.habilidadesObjet2 = data;
           this.idActividadSelect = idActividad;
       });   
-      }
+  }
+
+
+  actualizarContrasegna(){
+    console.log("UserComponent.actualizarContrasegna");
+    console.log("UserComponent.actualizarContrasegna  = "+JSON.stringify(this.contrasennaForm.value));
+    if(this.contrasennaForm.valid){  
+      if(this.contrasennaForm.value.contrasennaNueva !=this.contrasennaForm.value.contrasennaNueva2 ){
+        Swal.fire("Errores en el formulario", "No coinciden las contraseñas nuevas", "error");
+      }else {
+        this.usuarioService.actualizaractualizarContrasegna(this.usuarioGuardado.getToken(),
+        this.usuarioGuardado.getUsuarioId(), this.contrasennaForm.value.contrasennaActual,
+        this.contrasennaForm.value.contrasennaNueva
+        ).subscribe( data => {
+            console.log("actualizarContrasegna data: " +JSON.stringify(data));
+            Swal.fire("Contraseña actualizada correctamente", " ", "success");
+            this.ngOnInit();          
+          }); 
+      }        
+    }else{
+      Swal.fire("Errores en el formulario", "Revise los datos", "error");
+    }
+  }
+
+
+
 
   guardarUsuario(){
     console.log("UserComponent.guardarUsuario");

@@ -44,75 +44,47 @@
         </div>
       </div>
     </div>
-    <!-- Empieza chat  
+    <!-- Empieza cambio contraseña -->  
     <div class="card">
       <div class="card-header">
-        <h4 class="card-title">Chat</h4>
+        <h4 class="card-title">Cambiar contraseña</h4>
       </div>
-      <div class="card-body">
-        <ul class="list-unstyled team-members">
-          <li>
-            <div class="row">
-              <div class="col-md-2 col-2">
-                <div class="avatar">
-                  <img src="assets/img/faces/ayo-ogunseinde-2.jpg" alt="Circle Image" class="img-circle img-no-padding img-responsive">
-                </div>
-              </div>
-              <div class="col-md-7 col-7">
-                DJ Khaled
-                <br />
-                <span class="text-muted">
-                  <small>Offline</small>
-                </span>
-              </div>
-              <div class="col-md-3 col-3 text-right">
-                <button class="btn btn-sm btn-outline-success btn-round btn-icon"><i class="fa fa-envelope"></i></button>
-              </div>
+      <div class="card-body">        
+        <form [formGroup]="contrasennaForm" (ngSubmit)="actualizarContrasegna()" class="form-horizontal"  id="nuevaActividadForm"> 
+          <div class="form-group">
+            <label class="control-label .col labelFormulario" for="horasReales">Actual</label>
+            <input type="password"
+                    placeholder="Contraseña actual"
+                    formControlName="contrasennaActual"
+                    class="form-control campoFormulario"
+            >
+          </div>
+          <div class="form-group">
+            <label class="control-label .col labelFormulario" for="horasReales">Nueva</label>
+            <input type="password"
+                    placeholder="Nueva contraseña"
+                    formControlName="contrasennaNueva"
+                    class="form-control campoFormulario"
+            >
+          </div>           
+          <div class="form-group">
+            <label class="control-label .col labelFormulario" for="horasReales">Repita nueva</label>
+            <input type="password"
+                    placeholder="Repita contraseña"
+                    formControlName="contrasennaNueva2"
+                    class="form-control campoFormulario"
+            >
+          </div>                  
+          <div class="row">
+            <div class="update ml-auto mr-auto">
+              <button type="submit" class="btn btn-primary btn-round">Guardar</button>
             </div>
-          </li>
-          <li>
-            <div class="row">
-              <div class="col-md-2 col-2">
-                <div class="avatar">
-                  <img src="assets/img/faces/joe-gardner-2.jpg" alt="Circle Image" class="img-circle img-no-padding img-responsive">
-                </div>
-              </div>
-              <div class="col-md-7 col-7">
-                Creative Tim
-                <br />
-                <span class="text-success">
-                  <small>Available</small>
-                </span>
-              </div>
-              <div class="col-md-3 col-3 text-right">
-                <button class="btn btn-sm btn-outline-success btn-round btn-icon"><i class="fa fa-envelope"></i></button>
-              </div>
-            </div>
-          </li>
-          <li>
-            <div class="row">
-              <div class="col-md-2 col-2">
-                <div class="avatar">
-                  <img src="assets/img/faces/clem-onojeghuo-2.jpg" alt="Circle Image" class="img-circle img-no-padding img-responsive">
-                </div>
-              </div>
-              <div class="col-ms-7 col-7">
-                Flume
-                <br />
-                <span class="text-danger">
-                  <small>Busy</small>
-                </span>
-              </div>
-              <div class="col-md-3 col-3 text-right">
-                <button class="btn btn-sm btn-outline-success btn-round btn-icon"><i class="fa fa-envelope"></i></button>
-              </div>
-            </div>
-          </li>
-        </ul>
+          </div>      
+        </form> 
+        
       </div>
     </div> 
-    Termina chat-->
-  </div>
+<!-- Termina cambio contraseña -->   </div>
   <div class="col-md-8">
     <div class="card card-user">
       <div class="card-header">
