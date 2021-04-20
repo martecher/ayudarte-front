@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UsuariosService } from "../../servicios/usuarios.service";
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2'
 
 @Component({
   selector: 'app-login',
@@ -26,6 +27,7 @@ export class LoginComponent implements OnInit {
         //guardamos en local storage
         this.router.navigateByUrl('/panel');
       }else{
+        Swal.fire("Los datos introducidos no son correctos", " ", "error");
         this.router.navigateByUrl('/login');
       }
     });

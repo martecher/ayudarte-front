@@ -60,6 +60,7 @@ guardarUsuario(){
     console.log("RegistroComponent.guardarUsuario: "+ JSON.stringify(this.nuevoUsuario));
     
     this.usuariosService.registro(this.nuevoUsuario).subscribe( data => {
+      console.log("Registro.guardarUsuario()"+ JSON.stringify(data));
        if(data.status=="ok"){ 
         Swal.fire("Usuario registrado correctamente", " ", "success");
        }else{
