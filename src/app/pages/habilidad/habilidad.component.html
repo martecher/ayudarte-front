@@ -1,5 +1,5 @@
 <h4 class="card-title tituloFormulario">Nueva habilidad</h4>
-<form [formGroup]="form"  (ngSubmit)="guardarHabilidad()" class="form-horizontal" id="form"> 
+<form [formGroup]="formHabilidad"  (ngSubmit)="guardarHabilidad()" class="form-horizontal" id="form"> 
        <div class="form-group">
               <label class="control-label .col labelFormulario2"  for="categoria_ID">Categoría</label>
               <select  class="form-control campoFormulario" formControlName="categoria_ID">

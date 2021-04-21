@@ -14,7 +14,7 @@ import Swal from 'sweetalert2'
   styleUrls: ['./habilidad.component.css']
 })
 export class HabilidadComponent implements OnInit {
-  public form: FormGroup;
+  public formHabilidad: FormGroup;
   public nuevaHabilidadForm: FormGroup;
   Categorias: any = ['Categoria 1', 'Categoria 2', 'Categoria 3', 'Categoria 4'];
   categoriasObjet: CategoriaHabilidad[] = [];
@@ -41,8 +41,8 @@ export class HabilidadComponent implements OnInit {
    //   console.log("HabilidadComponent.ngOnInit  = "+JSON.stringify(this.categoriasObjet));
       // hay que meter esto en un observable para poder cargar esta lista
       // automaticamente cuando de de alta la categoria
-      this.createForm();
     });
+    this.createForm();
   }
 
   createForm() {
@@ -60,7 +60,7 @@ export class HabilidadComponent implements OnInit {
         categoria_ID:  [null, [ Validators.required ] ]
       });
         */
-      this.form = new FormGroup({
+      this.formHabilidad = new FormGroup({
         descripcionHabilidad: new FormControl( null, [
           Validators.required,
           Validators.minLength(4)]),
@@ -74,16 +74,16 @@ export class HabilidadComponent implements OnInit {
   
 
   guardarHabilidad (): void {
-//    console.log("HabilidadComponent.guardarHabilidad form: "+ JSON.stringify( this.form.value));
-//    console.log("HabilidadComponent.guardarHabilidad idcategoria: "+  this.form.value.categoria_ID.id   );
-if( this.form.valid){ 
-    this.habilidadesService.nuevaHabilidad(this.form.value.descripcionHabilidad,
-      this.form.value.horasEstipuladas,
-      this.form.value.categoria_ID.id,
+     console.log("HabilidadComponent.guardarHabilidad form: "+ JSON.stringify( this.formHabilidad.value));
+     console.log("HabilidadComponent.guardarHabilidad idcategoria: "+  this.formHabilidad.value.categoria_ID.id   );
+if( this.formHabilidad.valid){ 
+    this.habilidadesService.nuevaHabilidad(this.formHabilidad.value.descripcionHabilidad,
+      this.formHabilidad.value.horasEstipuladas,
+      this.formHabilidad.value.categoria_ID.id,
       ).subscribe( data => {
 //      console.log("HabilidadComponent.guardarHabilidad: " + JSON.stringify (data) );
        Swal.fire("Habilidad almacenada correctamente", " ", "success");
-      this.habilidadesService.leerlistado(this.form.value.categoria_ID.id); 
+      this.habilidadesService.leerlistado(this.formHabilidad.value.categoria_ID.id); 
   });
 }else{
   Swal.fire("Hay errores en el formulario", "Revise la habilidad", "error");
