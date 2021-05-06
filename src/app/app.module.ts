@@ -24,6 +24,8 @@ import { NuevaActividadComponent } from './pages/nueva-actividad/nueva-actividad
 import { RankingUsuariosComponent } from './pages/ranking-usuarios/ranking-usuarios.component';
 import { LogoutComponent } from './pages/logout/logout.component';
 import { RegistroComponent } from './pages/registro/registro.component';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 //import { ActividadComponent } from './pages/actividad/actividad.component';
  
 
@@ -53,7 +55,8 @@ import { RegistroComponent } from './pages/registro/registro.component';
     NavbarModule,
     ToastrModule.forRoot(),
     FooterModule,
-    FixedPluginModule
+    FixedPluginModule,
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [],
   bootstrap: [AppComponent]

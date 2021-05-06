@@ -8,7 +8,7 @@ import { Usuario } from '../../models/usuario';
   styleUrls: ['./ranking-usuarios.component.css']
 })
 export class RankingUsuariosComponent implements OnInit {
-  private rankingUsuarios : Usuario[];
+  public rankingUsuarios : Usuario[];
   constructor(
         private usuariosService: UsuariosService,
 

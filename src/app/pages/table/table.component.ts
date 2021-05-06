@@ -81,7 +81,7 @@ export class TableComponent implements OnInit{
         };
     });
   }
-  buscarPorHabilidad(habilidad){
+  buscarPorHabilidad(){
       //falta llamar a un metodo que filtre las actividades por habilidad que incluya el nombre
       //de la actividad
     console.log("TableComponent buscarPorHabilidad: "+this.buscarForm.value.texto );
