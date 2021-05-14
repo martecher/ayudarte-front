@@ -26,28 +26,24 @@
                         <div class="backside">
                             <div class="card ">
                                 <div class="card-body text-center ">
-                                                                         
-                                    <h4 class="card-title h4Card">{{usuario.nombre}}</h4>
-                                    <h4 class="card-title h4Card">{{usuario.apellido1}} {{usuario.apellido2}}</h4>                                    
-                                                                        
-                                    <p class="card-textHabilidades">Habilidades</p>
+                                    <div>                                                                        
+                                       <h4 class="card-title h4Card">{{usuario.nombre}}</h4>
+                                        <h4 class="card-title h4Card">{{usuario.apellido1}} {{usuario.apellido2}}</h4>                                    
+                                    </div>                         
+                                    <div>
+                                        <span>                
+                                            {{usuario.sobreMi}}     
+                                        </span>                                            
+                                    </div> 
+                                    <div> 
+                                        <p class="card-textHabilidades">Habilidades</p>
+                                    </div>                         
                                     <div  *ngFor="let habilidad of usuario.habilidades">
                                         <span>                
                                             <i class="nc-icon nc-satisfied"></i>
                                             {{habilidad.descripcion}}
                                         </span>
                                     </div>
-
-                                    <!--  
-                                    <ul class="ulHabilidades">
-                                        <li class="liHabilidades" *ngFor="let habilidad of usuario.habilidades">
-                                            <span>                
-                                                <i class="nc-icon nc-satisfied"></i>
-                                                {{habilidad.descripcion}}
-                                            </span>
-                                        </li>
-                                    </ul>
-                                    -->
                                 </div>
                             </div>
                         </div>

@@ -5,5 +5,5 @@
 
 export const environment = {
   production: false,
-  ipBackend: "http://192.168.1.149:8000"
+  ipBackend: "http://192.168.1.186:8000"
 };
